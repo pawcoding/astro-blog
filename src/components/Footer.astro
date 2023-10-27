@@ -1,10 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import instagram from '../assets/icons/instagram.svg';
-import x from '../assets/icons/x.svg';
-import github from '../assets/icons/github.svg';
-import linkedin from '../assets/icons/linkedin.svg';
-import youtube from '../assets/icons/youtube.svg';
+import { Image } from "astro:assets";
+import instagram from "../assets/icons/instagram.svg";
+import x from "../assets/icons/x.svg";
+import github from "../assets/icons/github.svg";
+import linkedin from "../assets/icons/linkedin.svg";
+import youtube from "../assets/icons/youtube.svg";
 
 const year = new Date().getFullYear();
 ---
@@ -40,7 +40,7 @@ const year = new Date().getFullYear();
         class="block cursor-default text-center text-xs text-gray-500 max-sm:mt-8"
       >
         <a href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode">
-        &copy; {year} pawcode Development
+          &copy; {year} pawcode Development
         </a>
       </span>
 
@@ -55,7 +55,13 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">Instagram</span>
 
-            <Image src={instagram} alt="Instagram" width="20" height="20" loading="lazy" />
+            <Image
+              src={instagram}
+              alt="Instagram"
+              width="20"
+              height="20"
+              loading="lazy"
+            />
           </a>
         </li>
 
@@ -83,7 +89,13 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">GitHub</span>
 
-            <Image src={github} alt="GitHub" width="20" height="20" loading="lazy" />
+            <Image
+              src={github}
+              alt="GitHub"
+              width="20"
+              height="20"
+              loading="lazy"
+            />
           </a>
         </li>
 
@@ -97,7 +109,13 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">LinkedIn</span>
 
-            <Image src={linkedin} alt="LinkedIn" width="20" height="20" loading="lazy" />
+            <Image
+              src={linkedin}
+              alt="LinkedIn"
+              width="20"
+              height="20"
+              loading="lazy"
+            />
           </a>
         </li>
 
@@ -111,7 +129,13 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">YouTube</span>
 
-            <Image src={youtube} alt="YouTube" width="20" height="20" loading="lazy" />
+            <Image
+              src={youtube}
+              alt="YouTube"
+              width="20"
+              height="20"
+              loading="lazy"
+            />
           </a>
         </li>
       </ul>

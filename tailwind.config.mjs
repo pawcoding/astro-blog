@@ -4,17 +4,17 @@ export default {
   theme: {
     extend: {
       blur: {
-        xs: '2px'
+        xs: "2px",
       },
       height: {
-        'screen-95': '95svh'
+        "screen-95": "95svh",
       },
       minHeight: {
-        screen: '100svh'
+        screen: "100svh",
       },
       margin: {
-        '3/4': '0.1875rem'
-      }
+        "3/4": "0.1875rem",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
