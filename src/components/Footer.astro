@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import instagram from '../assets/icons/instagram.svg';
+import x from '../assets/icons/x.svg';
+import github from '../assets/icons/github.svg';
+import linkedin from '../assets/icons/linkedin.svg';
+import youtube from '../assets/icons/youtube.svg';
+
+const year = new Date().getFullYear();
+---
+
+<footer aria-label="Footer" class="bg-white">
+  <div class="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
+    <div
+      class="border-t border-gray-100 pt-8 sm:flex sm:items-center sm:justify-between"
+    >
+      <nav aria-label="Footer Navigation">
+        <ul class="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
+          <li>
+            <a
+              href="https://pawcode.de/impressum#impressum?mtm_campaign=Blog&mtm_source=pawcode"
+              class="text-gray-500 transition hover:opacity-75"
+            >
+              Imprint
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://pawcode.de/impressum#datenschutz?mtm_campaign=Blog&mtm_source=pawcode"
+              class="text-gray-500 transition hover:opacity-75"
+            >
+              Privacy
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <span
+        class="block cursor-default text-center text-xs text-gray-500 max-sm:mt-8"
+      >
+        <a href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode">
+        &copy; {year} pawcode Development
+        </a>
+      </span>
+
+      <ul class="mt-8 flex justify-center gap-4 sm:mt-0 lg:justify-end">
+        <li>
+          <a
+            href="https://www.instagram.com/paw.coding/"
+            rel="noreferrer"
+            target="_blank"
+            class="text-gray-700 transition hover:opacity-75"
+            title="Instagram"
+          >
+            <span class="sr-only">Instagram</span>
+
+            <Image src={instagram} alt="Instagram" width="20" height="20" loading="lazy" />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://twitter.com/pawcode"
+            rel="noreferrer"
+            target="_blank"
+            class="text-gray-700 transition hover:opacity-75"
+            title="X"
+          >
+            <span class="sr-only">X</span>
+
+            <Image src={x} alt="X" width="20" height="20" loading="lazy" />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://github.com/pawcoding"
+            rel="noreferrer"
+            target="_blank"
+            class="text-gray-700 transition hover:opacity-75"
+            title="GitHub"
+          >
+            <span class="sr-only">GitHub</span>
+
+            <Image src={github} alt="GitHub" width="20" height="20" loading="lazy" />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://www.linkedin.com/in/luis-wolf-0a8a261b2/"
+            rel="noreferrer"
+            target="_blank"
+            class="text-gray-700 transition hover:opacity-75"
+            title="LinkedIn"
+          >
+            <span class="sr-only">LinkedIn</span>
+
+            <Image src={linkedin} alt="LinkedIn" width="20" height="20" loading="lazy" />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://www.youtube.com/channel/UCMR0jp9jjK4ehhMNkVDGGRA"
+            rel="noreferrer"
+            target="_blank"
+            class="text-gray-700 transition hover:opacity-75"
+            title="YouTube"
+          >
+            <span class="sr-only">YouTube</span>
+
+            <Image src={youtube} alt="YouTube" width="20" height="20" loading="lazy" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
