@@ -4,7 +4,25 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout {...frontmatter}>
-  <section class="prose">
-    <slot />
-  </section>
+  <div class="mx-auto max-w-screen-md p-4 @container">
+    <section
+      class="flex items-end gap-4 border-b border-b-gray-100 pb-2 md:col-span-2"
+    >
+      <h1
+        class="pb-4 pt-8 text-3xl font-bold text-gray-900 first:pt-0 last:pb-0 @3xl:text-4xl"
+      >
+        {frontmatter.title}
+      </h1>
+    </section>
+
+    <section class="prose lg:prose-lg mt-4 max-w-screen-md">
+      <style is:global>
+        .prose img {
+          border-radius: 0.375rem;
+        }
+      </style>
+
+      <slot />
+    </section>
+  </div>
 </BaseLayout>

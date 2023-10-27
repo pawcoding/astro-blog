@@ -5,7 +5,7 @@ import Article from "../components/Article.astro";
 
 let posts: Array<MarkdownInstance<Record<string, any>>> = [];
 try {
-  posts = await Astro.glob("../pages/posts/*.md");
+  posts = await Astro.glob("../pages/posts/*.{md,mdx}");
 } catch (error) {
   console.error("No posts found");
 }
