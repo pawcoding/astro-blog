@@ -1,0 +1,69 @@
+---
+import { slugify } from "../utils/slugify";
+import { formatDate } from "../utils/format-date";
+
+const { icon, title, description, image, pubDate, color, url } = Astro.props;
+---
+
+<article id={slugify(title)} class="p-0 relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm transition @container hover:shadow-lg">
+  <span
+    class="absolute inset-x-0 bottom-0 h-2"
+    style={`background-color: ${color}`}></span>
+
+  <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
+    <section class="relative block">
+      {
+        image && (
+          <img
+            src={image}
+            class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-left-top"
+          />
+        )
+      }
+
+      {
+        icon && (
+          <span class="absolute left-0 top-0 ml-4 mt-4 inline-flex items-center justify-center rounded bg-blue-600 p-2 text-white transition-all @sm:ml-6 @sm:mt-6 @3xl:p-4">
+            <img src={icon} class="transition-all @3xl:scale-150" />
+          </span>
+        )
+      }
+    </section>
+
+    <section
+      class={"p-4 @sm:p-6 " + (icon && !image ? "mt-14 @lg:mt-0 @lg:ml-16" : "")}
+    >
+      <h3 class="pb-3 pt-6 text-2xl font-semibold text-gray-900 first:pt-0 last:pb-0 @3xl:text-3xl">
+        {title}
+      </h3>
+
+      <div class="mt-2 line-clamp-6 text-sm/relaxed text-gray-500">
+        {description}
+      </div>
+
+      <div class="mt-4 flex items-baseline justify-between text-sm">
+        <a
+          href={url}
+          class="group inline-flex items-center gap-1 font-medium text-blue-600"
+        >
+          Read more
+
+          <span
+            aria-hidden="true"
+            class="block transition-all group-hover:ms-0.5"
+          >
+            &rarr;
+          </span>
+        </a>
+
+        {
+          pubDate && (
+            <span class="hidden text-gray-500 @xs:block">
+              {formatDate(pubDate)}
+            </span>
+          )
+        }
+      </div>
+    </section>
+  </div>
+</article>
