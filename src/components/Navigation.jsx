@@ -1,33 +1,17 @@
----
-import { Image } from "astro:assets";
-import pawcodeDark from "../assets/pawcode-dark.svg";
-let navOpen = false;
----
+import { useState } from "preact/hooks";
 
-<header aria-label="Header" class="bg-white">
-  <div
-    class="mx-auto max-w-screen-xl border-b border-gray-100 px-4 sm:px-6 lg:px-8"
-  >
-    <div class="flex flex-wrap items-center justify-between py-4">
-      <div class="flex-1 md:flex md:items-center md:gap-12">
-        <a class="block" href="/">
-          <p class="sr-only">pawcode Development Blog</p>
-          <Image
-            src={pawcodeDark}
-            alt="pawcode Development"
-            height="32"
-            width="140"
-            loading="eager"
-          />
-        </a>
-      </div>
+export default function Navigation() {
+  const [navOpen, setNavOpen] = useState(false);
 
+  return (
+    <>
       <button
         type="button"
         title={navOpen ? "Navigation schließen" : "Navigation öffnen"}
-        aria-controls="navigation"
+        ariaControls="navigation"
         class="inline-flex items-center justify-center focus:outline-none md:hidden"
-        attr.aria-expanded={navOpen}
+        ariaExpanded={navOpen}
+        onClick={() => setNavOpen(!navOpen)}
       >
         <span class="sr-only">
           {navOpen ? "Navigation schließen" : "Navigation öffnen"}
@@ -45,24 +29,26 @@ let navOpen = false;
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"></path>
+            d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+          ></path>
         </svg>
       </button>
 
       <nav
         aria-label="Navigation"
-        class={"block select-none overflow-y-clip transition-all duration-300 max-md:w-full " +
-          (navOpen ? "max-md:max-h-24 max-md:pt-4" : "max-md:max-h-0")}
+        class={
+          "block select-none overflow-y-clip transition-all duration-300 max-md:w-full " +
+          (navOpen ? "max-md:max-h-24 max-md:pt-4" : "max-md:max-h-0")
+        }
         id="navigation"
       >
-        <ul
-          class="grid grid-cols-4 items-center gap-4 max-md:justify-evenly max-md:text-center md:flex md:gap-6 md:text-sm"
-        >
+        <ul class="grid grid-cols-3 items-center gap-4 max-md:justify-evenly max-md:text-center md:flex md:gap-6 md:text-sm">
           <li
             class="block grow rounded text-blue-800/80 transition hover:text-blue-950 max-md:bg-blue-50 max-md:py-1 max-md:hover:bg-blue-100 md:text-gray-500 md:hover:text-gray-500/75"
+            onClick={() => setNavOpen(false)}
           >
             <a class="block" href="/" title="Blog">
-              <span class="block pt-1 md:hidden">
+              <span class="inline-block pt-1 md:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -87,9 +73,10 @@ let navOpen = false;
 
           <li
             class="block grow rounded text-blue-800/80 transition hover:text-blue-950 max-md:bg-blue-50 max-md:py-1 max-md:hover:bg-blue-100 md:text-gray-500 md:hover:text-gray-500/75"
+            onClick={() => setNavOpen(false)}
           >
             <a class="block" href="https://pawcode.de" title="Website">
-              <span class="block pt-1 md:hidden">
+              <span class="inline-block pt-1 md:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -114,6 +101,7 @@ let navOpen = false;
 
           <li
             class="block grow rounded text-blue-800/80 transition hover:text-blue-950 max-md:bg-blue-50 max-md:py-1 max-md:hover:bg-blue-100 md:text-gray-500 md:hover:text-gray-500/75"
+            onClick={() => setNavOpen(false)}
           >
             <a
               href="https://github.com/pawcoding"
@@ -122,7 +110,7 @@ let navOpen = false;
               title="GitHub"
               class="block items-baseline gap-2 md:inline-flex"
             >
-              <span class="block pt-2 md:hidden">
+              <span class="inline-block pt-2 md:hidden">
                 <svg
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -131,9 +119,7 @@ let navOpen = false;
                   width="20"
                   height="20"
                 >
-                  <path
-                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                  ></path>
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
                 </svg>
               </span>
 
@@ -152,17 +138,19 @@ let navOpen = false;
                   <path
                     fill-rule="evenodd"
                     d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
-                    clip-rule="evenodd"></path>
+                    clip-rule="evenodd"
+                  ></path>
                   <path
                     fill-rule="evenodd"
                     d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z"
-                    clip-rule="evenodd"></path>
+                    clip-rule="evenodd"
+                  ></path>
                 </svg>
               </span>
             </a>
           </li>
         </ul>
       </nav>
-    </div>
-  </div>
-</header>
+    </>
+  );
+}

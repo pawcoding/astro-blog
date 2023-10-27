@@ -1,5 +1,5 @@
 ---
-import Navigation from "../components/Navigation.astro";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 const { title } = Astro.props;
 ---
@@ -54,7 +54,7 @@ const { title } = Astro.props;
 
   <body class="scroll-smooth">
     <div class="flex min-h-screen flex-col justify-between">
-      <Navigation />
+      <Header />
 
       <main>
         <slot />

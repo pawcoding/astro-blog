@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import pawcodeDark from "../assets/pawcode-dark.svg";
+import Navigation from "./Navigation.jsx";
+---
+
+<header aria-label="Header" class="bg-white">
+  <div
+    class="mx-auto max-w-screen-xl border-b border-gray-100 px-4 sm:px-6 lg:px-8"
+  >
+    <div class="flex flex-wrap items-center justify-between py-4">
+      <div class="flex-1 md:flex md:items-center md:gap-12">
+        <a class="block" href="/">
+          <p class="sr-only">pawcode Development Blog</p>
+          <Image
+            src={pawcodeDark}
+            alt="pawcode Development"
+            height="32"
+            width="140"
+            loading="eager"
+          />
+        </a>
+      </div>
+
+      <Navigation client:load />
+    </div>
+  </div>
+</header>
