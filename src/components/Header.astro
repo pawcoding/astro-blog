@@ -1,14 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import pawcodeDark from "../assets/pawcode-dark.svg";
+import pawcodeLight from "../assets/pawcode-light.svg";
 import Navigation from "./Navigation.jsx";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header aria-label="Header" class="bg-white">
+<header aria-label="Header" class="bg-white dark:bg-gray-900">
   <div
-    class="mx-auto max-w-screen-xl border-b border-gray-100 px-4 sm:px-6 lg:px-8"
+    class="mx-auto max-w-screen-xl border-b border-gray-100 px-4 sm:px-6 lg:px-8 dark:border-gray-700"
   >
-    <div class="flex flex-wrap items-center justify-between py-4">
+    <div class="flex flex-wrap items-center justify-between gap-x-4 py-4">
       <div class="flex-1 md:flex md:items-center md:gap-12">
         <a class="block" href="/">
           <p class="sr-only">pawcode Development Blog</p>
@@ -18,8 +20,21 @@ import Navigation from "./Navigation.jsx";
             height="32"
             width="140"
             loading="eager"
+            class="dark:hidden"
+          />
+          <Image
+            src={pawcodeLight}
+            alt="pawcode Development"
+            height="32"
+            width="140"
+            loading="eager"
+            class="hidden dark:block"
           />
         </a>
+      </div>
+
+      <div class="h-7 w-7 md:order-3 md:w-6 md:h-6 md:ml-4">
+        <ThemeToggle />
       </div>
 
       <Navigation client:load />

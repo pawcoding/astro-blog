@@ -7,10 +7,10 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
 
 <article
   id={slugify(title)}
-  class="p-0 relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm transition @container hover:shadow-lg"
+  class="p-0 relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm transition @container hover:shadow-lg dark:shadow-none dark:bg-gray-800 dark:border-none"
 >
   <span
-    class="absolute inset-x-0 bottom-0 h-2"
+    class="absolute inset-x-0 bottom-0 h-2 dark:invert dark:hue-rotate-180"
     style={`background-color: ${color}`}></span>
 
   <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
@@ -38,19 +38,21 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
         (icon && !image ? "mt-14 @lg:mt-0 @lg:ml-16" : "")}
     >
       <h3
-        class="pb-3 pt-6 text-2xl font-semibold text-gray-900 first:pt-0 last:pb-0 @3xl:text-3xl"
+        class="pb-3 pt-6 text-2xl font-semibold text-gray-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-gray-200"
       >
         {title}
       </h3>
 
-      <div class="mt-2 line-clamp-6 text-sm/relaxed text-gray-500">
+      <div
+        class="mt-2 line-clamp-6 text-sm/relaxed text-gray-500 dark:text-gray-300"
+      >
         {description}
       </div>
 
       <div class="mt-4 flex items-baseline justify-between text-sm">
         <a
           href={url}
-          class="group inline-flex items-center gap-1 font-medium text-blue-600"
+          class="group inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400"
         >
           Read more
 
@@ -64,7 +66,7 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
 
         {
           pubDate && (
-            <span class="hidden text-gray-500 @xs:block">
+            <span class="hidden text-gray-500 @xs:block dark:text-gray-300">
               {formatDate(pubDate)}
             </span>
           )
