@@ -3,16 +3,16 @@ import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-const { title, description, image, pubTime, modTime, author, tags, post } =
+const { title, description, pubTime, modTime, author, tags, post, slug } =
   Astro.props as {
     title: string;
     description: string;
-    image: string;
     pubTime?: string;
     modTime?: string;
     author?: string;
     tags?: string[];
     post?: boolean;
+    slug?: string;
   };
 ---
 
@@ -32,7 +32,7 @@ const { title, description, image, pubTime, modTime, author, tags, post } =
         basic: {
           title: title,
           type: post ? "article" : "website",
-          image: image,
+          image: slug ? `${slug}/og-image.png` : '/og-image.png',
         },
         optional: {
           siteName: "pawcode Development Blog",
@@ -51,7 +51,7 @@ const { title, description, image, pubTime, modTime, author, tags, post } =
         site: "@pawcode",
         creator: "@pawcode",
         title: title,
-        image: image,
+        image: slug ? `${slug}/og-image.png` : '/og-image.png',
         description: description,
       }}
       extend={{
