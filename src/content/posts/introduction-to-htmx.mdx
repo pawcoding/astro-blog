@@ -1,28 +1,25 @@
 ---
-layout: ../../layouts/PostLayout.astro
-
 title: "Introduction to HTMX"
 description: "A few months ago I came across HTMX and found the concept behind it fascinating. I started reading up on it, which led to a talk at FrankenJS Würzburg and this blog article. First I cover the application architecture and some other fundamentals behind HTMX. After that I will show how a simple HTMX application is build."
 image: "/images/introduction-to-htmx.webp"
-pubDate: "2023-10-26T17:00:00"
+pubDate: 2023-10-26T17:00:00
 color: "#3465a4"
-author: Luis Wolf
 tags: ["web development", "htmx", "bun", "elysia", "daisyui"]
 ---
-import { Image } from 'astro:assets';
-import multiPageApplication from '../../assets/images/introduction-to-htmx/multi_page_application.webp';
-import singlePageApplication from '../../assets/images/introduction-to-htmx/single_page_application.webp';
-import hybridApplication from '../../assets/images/introduction-to-htmx/hybrid_application.webp';
-import htmxApplication from '../../assets/images/introduction-to-htmx/htmx_application.webp';
-import bun from '../../assets/images/introduction-to-htmx/bun.svg';
-import elysia from '../../assets/images/introduction-to-htmx/elysia.svg';
-import daisyui from '../../assets/images/introduction-to-htmx/daisyui.svg';
-import htmx from '../../assets/images/introduction-to-htmx/htmx.webp';
-import lazyLoading from '../../assets/images/introduction-to-htmx/htmx_1.webp';
-import createdLinkCards from '../../assets/images/introduction-to-htmx/htmx_2.webp';
-import listOfLinks from '../../assets/images/introduction-to-htmx/htmx_3.webp';
-import architectureDiagram from '../../assets/images/introduction-to-htmx/architecture.webp';
 
+import { Image } from "astro:assets";
+import multiPageApplication from "../../assets/images/introduction-to-htmx/multi_page_application.webp";
+import singlePageApplication from "../../assets/images/introduction-to-htmx/single_page_application.webp";
+import hybridApplication from "../../assets/images/introduction-to-htmx/hybrid_application.webp";
+import htmxApplication from "../../assets/images/introduction-to-htmx/htmx_application.webp";
+import bun from "../../assets/images/introduction-to-htmx/bun.svg";
+import elysia from "../../assets/images/introduction-to-htmx/elysia.svg";
+import daisyui from "../../assets/images/introduction-to-htmx/daisyui.svg";
+import htmx from "../../assets/images/introduction-to-htmx/htmx.webp";
+import lazyLoading from "../../assets/images/introduction-to-htmx/htmx_1.webp";
+import createdLinkCards from "../../assets/images/introduction-to-htmx/htmx_2.webp";
+import listOfLinks from "../../assets/images/introduction-to-htmx/htmx_3.webp";
+import architectureDiagram from "../../assets/images/introduction-to-htmx/architecture.webp";
 
 Hey, and welcome to this blog post.
 
@@ -38,14 +35,28 @@ We will take a look the some of HTML code and also look at the live website and 
 
 ### Web architectures
 
-<Image src={multiPageApplication} alt="Multi Page Application" decoding="async" loading="lazy" style="width: 50%; margin: 0 auto 0 auto;" widths={[176, 368, multiPageApplication.width]} />
+<Image
+  src={multiPageApplication}
+  alt="Multi Page Application"
+  decoding="async"
+  loading="lazy"
+  style="width: 50%; margin: 0 auto 0 auto;"
+  widths={[176, 368, multiPageApplication.width]}
+/>
 
 Let's dive into various web application architectures, starting with the traditional multi-page application featuring server-side rendering or static site generation.
 In this setup, a web server hosts a PHP application, which dynamically generates HTML documents using templates and data fetched from a database.
 These HTML documents are then sent to the client's browser.
 When a user clicks on a link, the process repeats, generating a new HTML page.
 
-<Image src={singlePageApplication} alt="Single Page Application" decoding="async" loading="lazy" style="width: 50%; margin: 0 auto 0 auto;" widths={[176, 368, singlePageApplication.width]} />
+<Image
+  src={singlePageApplication}
+  alt="Single Page Application"
+  decoding="async"
+  loading="lazy"
+  style="width: 50%; margin: 0 auto 0 auto;"
+  widths={[176, 368, singlePageApplication.width]}
+/>
 
 Now, contrast this with the [single-page application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) model, characterized by client-side rendering.
 In this approach, an entire website is constructed using a framework like Angular, React, or a similar technology.
@@ -53,7 +64,14 @@ This website is bundled and delivered to the user's browser.
 Here, the browser is responsible for executing JavaScript code and rendering the page.
 When a user clicks a link, only the content of the page that needs to change is updated, resulting in a smoother and more interactive experience.
 
-<Image src={hybridApplication} alt="Hybrid Application" decoding="async" loading="lazy" style="width: 50%; margin: 0 auto 0 auto;" widths={[176, 368, hybridApplication.width]} />
+<Image
+  src={hybridApplication}
+  alt="Hybrid Application"
+  decoding="async"
+  loading="lazy"
+  style="width: 50%; margin: 0 auto 0 auto;"
+  widths={[176, 368, hybridApplication.width]}
+/>
 
 Hybrid architectures seek to blend the advantages and drawbacks of both preceding concepts.
 Initially, the server generates and sends a fully rendered HTML document to the client.
@@ -62,7 +80,14 @@ This hybrid approach offers the benefits of server-side rendering for search eng
 
 Let's see where an HTMX application operates on this spectrum.
 
-<Image src={htmxApplication} alt="HTMX Application" decoding="async" loading="lazy" style="width: 50%; margin: 0 auto 0 auto;" widths={[176, 368, htmxApplication.width]} />
+<Image
+  src={htmxApplication}
+  alt="HTMX Application"
+  decoding="async"
+  loading="lazy"
+  style="width: 50%; margin: 0 auto 0 auto;"
+  widths={[176, 368, htmxApplication.width]}
+/>
 
 When a client initiates the first request, the server performs server-side rendering (SSR) in a manner similar to traditional web applications.
 It generates the entire HTML document and sends it back to the client, just as any SSR page would.
@@ -83,7 +108,9 @@ One of the notable advantages of HTMX is that it eliminates the necessity to wri
 The second fundamental principle behind HTMX is [HATEOAS](https://htmx.org/essays/hateoas/), which stands for:
 
 <p style="text-align: center">
-  <strong>H</strong>ypermedia <strong>A</strong>s <strong>T</strong>he <strong>E</strong>ngine <strong>O</strong>f <strong>A</strong>pplication <strong>S</strong>tate
+  <strong>H</strong>ypermedia <strong>A</strong>s <strong>T</strong>he{" "}
+  <strong>E</strong>ngine <strong>O</strong>f <strong>A</strong>pplication{" "}
+  <strong>S</strong>tate
 </p>
 
 ```json
@@ -126,16 +153,44 @@ Before we dive into the demo application, let me introduce you to the tech stack
   <tbody>
     <tr>
       <td>
-        <Image src={bun} alt="Bun" decoding="async" loading="lazy" style="width: calc(100vw / 4); max-width: 150px" widths={[150, bun.width]} />
+        <Image
+          src={bun}
+          alt="Bun"
+          decoding="async"
+          loading="lazy"
+          style="width: calc(100vw / 4); max-width: 150px"
+          widths={[150, bun.width]}
+        />
       </td>
       <td>
-        <Image src={elysia} alt="Elysia" decoding="async" loading="lazy" style="width: calc(100vw / 4); max-width: 150px" widths={[150, elysia.width]} />
+        <Image
+          src={elysia}
+          alt="Elysia"
+          decoding="async"
+          loading="lazy"
+          style="width: calc(100vw / 4); max-width: 150px"
+          widths={[150, elysia.width]}
+        />
       </td>
       <td>
-        <Image src={daisyui} alt="DaisyUI" decoding="async" loading="lazy" style="width: calc(100vw / 4); max-width: 150px" widths={[150, daisyui.width]} />
+        <Image
+          src={daisyui}
+          alt="DaisyUI"
+          decoding="async"
+          loading="lazy"
+          style="width: calc(100vw / 4); max-width: 150px"
+          widths={[150, daisyui.width]}
+        />
       </td>
       <td>
-        <Image src={htmx} alt="HTMX" decoding="async" loading="lazy" style="width: calc(100vw / 4); max-width: 150px" widths={[150, htmx.width]} />
+        <Image
+          src={htmx}
+          alt="HTMX"
+          decoding="async"
+          loading="lazy"
+          style="width: calc(100vw / 4); max-width: 150px"
+          widths={[150, htmx.width]}
+        />
       </td>
     </tr>
   </tbody>
@@ -220,7 +275,13 @@ The response consists of two elements:
 
 Before we proceed, let's check the browser to confirm that the page loads and displays this form.
 
-<Image src={lazyLoading} alt="Lazy loaded link creation form" decoding="async" loading="lazy" widths={[352, 736, lazyLoading.width]} />
+<Image
+  src={lazyLoading}
+  alt="Lazy loaded link creation form"
+  decoding="async"
+  loading="lazy"
+  widths={[352, 736, lazyLoading.width]}
+/>
 
 Now, let's delve into the code for the form and its custom attributes:
 
@@ -254,7 +315,13 @@ It's a straightforward card presentation containing the URL that can be shared w
 
 Let's go ahead and try this out in practice to see how it works in action.
 
-<Image src={createdLinkCards} alt="Created link cards" decoding="async" loading="lazy" widths={[352, 736, createdLinkCards.width]} />
+<Image
+  src={createdLinkCards}
+  alt="Created link cards"
+  decoding="async"
+  loading="lazy"
+  widths={[352, 736, createdLinkCards.width]}
+/>
 
 #### Navigation
 
@@ -302,7 +369,13 @@ This class effectively hides the element until it's triggered, and after the res
 
 With all these components in place, we're now ready to click the link and display all the links we've created, showcasing this feature in action.
 
-<Image src={listOfLinks} alt="List of links" decoding="async" loading="lazy" widths={[352, 736, listOfLinks.width]} />
+<Image
+  src={listOfLinks}
+  alt="List of links"
+  decoding="async"
+  loading="lazy"
+  widths={[352, 736, listOfLinks.width]}
+/>
 
 #### Delete a link
 
@@ -342,7 +415,14 @@ We've built a link shortener as a kind of single page application but without wr
 
 Here is the complete architecture:
 
-<Image src={architectureDiagram} alt="Architecture diagram" decoding="async" loading="lazy" style="width: 75%; margin: 0 auto 0 auto;" widths={[264, 552, architectureDiagram.width]} />
+<Image
+  src={architectureDiagram}
+  alt="Architecture diagram"
+  decoding="async"
+  loading="lazy"
+  style="width: 75%; margin: 0 auto 0 auto;"
+  widths={[264, 552, architectureDiagram.width]}
+/>
 
 - We can send a GET request to first load the basic page with the HTMX script tag and the stylesheet.
 - We then load the creation form with an automatic GET request to the new endpoint.

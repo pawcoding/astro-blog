@@ -1,19 +1,25 @@
 ---
-import type { MarkdownInstance } from "astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 import Article from "../components/Article.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-let posts: Array<MarkdownInstance<Record<string, any>>> = [];
+let posts: Array<{ data: any; slug: string }> = [];
 try {
-  posts = await Astro.glob("../pages/posts/*.{md,mdx}");
+  posts = await getCollection("posts");
 } catch (error) {
   console.error("No posts found");
 }
 ---
 
-<BaseLayout title="Blog">
+<BaseLayout
+  title="Blog"
+  description="Here you can find all my articles. I write about interesting stuff I came across while working on projects or just for fun as well as small tutorials and guides. I hope you enjoy reading them as much as I enjoyed writing and researching them."
+  image="/images/introduction-to-htmx.webp"
+>
   <div class="mx-auto max-w-3xl p-4">
-    <h2 class="text-center pb-4 text-3xl font-bold text-gray-900 3xl:text-4xl dark:text-gray-200">
+    <h2
+      class="text-center pb-4 text-3xl font-bold text-gray-900 3xl:text-4xl dark:text-gray-200"
+    >
       My articles
     </h2>
 
@@ -28,13 +34,13 @@ try {
       {
         posts.map((post) => (
           <Article
-            icon={post.frontmatter.icon}
-            title={post.frontmatter.title}
-            description={post.frontmatter.description}
-            image={post.frontmatter.image}
-            pubDate={post.frontmatter.pubDate}
-            color={post.frontmatter.color}
-            url={post.url}
+            icon={post.data.icon}
+            title={post.data.title}
+            description={post.data.description}
+            image={post.data.image}
+            pubDate={post.data.pubDate}
+            color={post.data.color}
+            url={`/posts/${post.slug}`}
           />
         ))
       }
