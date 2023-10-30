@@ -1,14 +1,14 @@
 {
   "name": "astro-blog",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write . --plugin=prettier-plugin-astro"
+    "prettier": "prettier --write ./src --plugin=prettier-plugin-astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.2.1",
@@ -21,6 +21,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^3.4.0",
     "astro-matomo": "^1.4.0",
+    "astro-seo": "^0.8.0",
     "preact": "^10.6.5",
     "sharp": "^0.32.6",
     "tailwindcss": "^3.0.24",
