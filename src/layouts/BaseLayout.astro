@@ -3,25 +3,24 @@ import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-const { title, description, image, post, pubTime, modTime, author, tags } =
+const { title, description, image, pubTime, modTime, author, tags, post } =
   Astro.props as {
     title: string;
-    description?: string;
-    image?: string;
-    post: boolean;
-    pubTime: string;
-    modTime: string;
-    author: string;
-    tags: string[];
+    description: string;
+    image: string;
+    pubTime?: string;
+    modTime?: string;
+    author?: string;
+    tags?: string[];
+    post?: boolean;
   };
-
-const defaultImage = "/images/introduction-to-htmx.webp";
 ---
 
 <html lang="en">
   <head>
     <base href="/" />
 
+    <!-- SEO -->
     <SEO
       title={title}
       titleTemplate="%s | pawcode Development"
@@ -33,17 +32,19 @@ const defaultImage = "/images/introduction-to-htmx.webp";
         basic: {
           title: title,
           type: post ? "article" : "website",
-          image: image ?? defaultImage,
+          image: image,
         },
         optional: {
           siteName: "pawcode Development Blog",
         },
-        article: {
-          publishedTime: pubTime,
-          modifiedTime: modTime,
-          authors: [author],
-          tags: tags,
-        },
+        article: post
+          ? {
+              publishedTime: pubTime,
+              modifiedTime: modTime,
+              authors: author ? [author] : undefined,
+              tags: tags,
+            }
+          : undefined,
       }}
       twitter={{
         card: "summary_large_image",
