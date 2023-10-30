@@ -19,9 +19,9 @@ export default defineConfig({
       disableCookies: true,
     }),
     sitemap({
-      changefreq: 'monthly',
+      changefreq: "monthly",
       priority: 0.7,
-      lastmod: new Date()
+      lastmod: new Date(),
     }),
   ],
 });

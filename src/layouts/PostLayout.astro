@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 ---
 
-<BaseLayout {...frontmatter}>
+<BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
   <div class="mx-auto max-w-screen-md p-4 @container">
     <section
       class="flex items-end gap-4 border-b border-b-gray-100 pb-2 md:col-span-2 dark:border-b-gray-700"
