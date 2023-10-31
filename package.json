@@ -1,14 +1,15 @@
 {
   "name": "astro-blog",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write ./src --plugin=prettier-plugin-astro"
+    "prettier": "prettier --write ./src --plugin=prettier-plugin-astro",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "@astrojs/check": "^0.2.1",
@@ -29,7 +30,10 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.1"
+    "prettier-plugin-astro": "^0.12.1",
+    "semantic-release": "^22.0.6"
   }
 }
