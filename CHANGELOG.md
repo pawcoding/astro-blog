@@ -1,3 +1,10 @@
+# [1.1.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.0.0...v1.1.0-staging.1) (2023-11-01)
+
+
+### Features
+
+* **style:** add view transitions ([0b7513c](https://github.com/pawcoding/astro-blog/commit/0b7513cc85e16cfbf656a17b97423eb630cf8b51))
+
 # 1.0.0 (2023-10-31)
 
 
