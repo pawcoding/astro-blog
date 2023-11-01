@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -107,6 +108,8 @@ const { title, description, pubTime, modTime, author, tags, post, slug } =
     <link rel="mask-icon" href="/brand/safari-pinned-tab.svg" color="#4472c4" />
     <link rel="shortcut icon" href="/brand/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="/brand/favicon.ico" />
+
+    <ViewTransitions />
   </head>
 
   <body class="scroll-smooth dark:bg-gray-900 dark:text-gray-200">
