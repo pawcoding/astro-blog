@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import pawcodeDark from "../assets/pawcode-dark.svg";
 import pawcodeLight from "../assets/pawcode-light.svg";
-import Navigation from "./Navigation.jsx";
+import Navigation from "./Navigation.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
@@ -37,7 +37,7 @@ import ThemeToggle from "./ThemeToggle.astro";
         <ThemeToggle />
       </div>
 
-      <Navigation client:load />
+      <Navigation />
     </div>
   </div>
 </header>
