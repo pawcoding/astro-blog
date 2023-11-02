@@ -1,3 +1,15 @@
+# [1.1.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.1...v1.1.0-staging.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* **style:** fix theme after view transition ([f99c689](https://github.com/pawcoding/astro-blog/commit/f99c6896934be5182c91427262d837bb858e74fa))
+
+
+### Features
+
+* **navigation:** migrate from preact to astro component ([25609ad](https://github.com/pawcoding/astro-blog/commit/25609ad3e4932599ce4db982da0dc588583e9dc7))
+
 # [1.1.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.0.0...v1.1.0-staging.1) (2023-11-01)
 
 
