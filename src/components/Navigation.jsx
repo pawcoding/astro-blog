@@ -75,7 +75,7 @@ export default function Navigation() {
             class="block grow rounded text-blue-800/80 transition hover:text-blue-950 max-md:bg-blue-50 max-md:py-1 max-md:hover:bg-blue-100 md:text-gray-500 md:hover:text-gray-500/75 dark:md:text-gray-300 dark:md:hover:text-gray-300/75 dark:text-blue-200 dark:hover-text-blue-300 max-md:dark:bg-blue-800 max-md:dark:hover:bg-blue-900"
             onClick={() => setNavOpen(false)}
           >
-            <a class="block" href="https://pawcode.de" title="Website">
+            <a class="block" href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode" title="Website">
               <span class="inline-block pt-1 md:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
