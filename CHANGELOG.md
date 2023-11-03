@@ -1,3 +1,10 @@
+# [1.1.0-staging.3](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.2...v1.1.0-staging.3) (2023-11-03)
+
+
+### Bug Fixes
+
+* **style:** use neutral instead of gray color ([ff49008](https://github.com/pawcoding/astro-blog/commit/ff49008b17de6766a338e95edf56bba476013bf8))
+
 # [1.1.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.1...v1.1.0-staging.2) (2023-11-02)
 
 
