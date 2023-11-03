@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import matomo from "astro-matomo";
@@ -10,7 +9,6 @@ export default defineConfig({
   site: "https://blog.pawcode.de",
   integrations: [
     tailwind(),
-    preact(),
     mdx(),
     matomo({
       enabled: import.meta.env.PROD,

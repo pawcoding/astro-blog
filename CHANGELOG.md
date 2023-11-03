@@ -1,3 +1,36 @@
+# [1.1.0-staging.4](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.3...v1.1.0-staging.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* **navigation:** update button color on mobile ([bc783ec](https://github.com/pawcoding/astro-blog/commit/bc783ec3ad09c09e554eb3de32e0036789fd6f47))
+
+# [1.1.0-staging.3](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.2...v1.1.0-staging.3) (2023-11-03)
+
+
+### Bug Fixes
+
+* **style:** use neutral instead of gray color ([ff49008](https://github.com/pawcoding/astro-blog/commit/ff49008b17de6766a338e95edf56bba476013bf8))
+
+# [1.1.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.1...v1.1.0-staging.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* **style:** fix theme after view transition ([f99c689](https://github.com/pawcoding/astro-blog/commit/f99c6896934be5182c91427262d837bb858e74fa))
+
+
+### Features
+
+* **navigation:** migrate from preact to astro component ([25609ad](https://github.com/pawcoding/astro-blog/commit/25609ad3e4932599ce4db982da0dc588583e9dc7))
+
+# [1.1.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.0.0...v1.1.0-staging.1) (2023-11-01)
+
+
+### Features
+
+* **style:** add view transitions ([0b7513c](https://github.com/pawcoding/astro-blog/commit/0b7513cc85e16cfbf656a17b97423eb630cf8b51))
+
 # 1.0.0 (2023-10-31)
 
 

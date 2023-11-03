@@ -7,7 +7,7 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
 
 <article
   id={slugify(title)}
-  class="p-0 relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm transition @container hover:shadow-lg dark:shadow-none dark:bg-gray-800 dark:border-none"
+  class="p-0 relative block overflow-hidden rounded-lg border border-neutral-300 shadow-sm transition @container hover:shadow-lg dark:shadow-none dark:bg-neutral-800 dark:border-none"
 >
   <span
     class="absolute inset-x-0 bottom-0 h-2 dark:invert dark:hue-rotate-180"
@@ -39,13 +39,13 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
         (icon && !image ? "mt-14 @lg:mt-0 @lg:ml-16" : "")}
     >
       <h3
-        class="pb-3 pt-6 text-2xl font-semibold text-gray-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-gray-200"
+        class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
       >
         {title}
       </h3>
 
       <div
-        class="mt-2 line-clamp-6 text-sm/relaxed text-gray-500 dark:text-gray-300"
+        class="mt-2 line-clamp-6 text-sm/relaxed text-neutral-500 dark:text-neutral-300"
       >
         {description}
       </div>
@@ -67,7 +67,7 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
 
         {
           pubDate && (
-            <span class="hidden text-gray-500 @xs:block dark:text-gray-300">
+            <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
               {formatDate(pubDate)}
             </span>
           )

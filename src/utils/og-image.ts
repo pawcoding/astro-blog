@@ -33,16 +33,18 @@ export async function generateOgImage(title: string, subtitle?: string) {
               },
             },
           },
-          subtitle ? {
-            type: "div",
-            props: {
-              children: subtitle,
-              style: {
-                fontSize: 40,
-                marginTop: 20,
-              },
-            },
-          } : null,
+          subtitle
+            ? {
+                type: "div",
+                props: {
+                  children: subtitle,
+                  style: {
+                    fontSize: 40,
+                    marginTop: 20,
+                  },
+                },
+              }
+            : null,
         ],
         style: {
           height: "100%",
