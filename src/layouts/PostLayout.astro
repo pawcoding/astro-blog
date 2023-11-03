@@ -6,10 +6,10 @@ const { frontmatter, slug } = Astro.props;
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
   <div class="mx-auto max-w-screen-md p-4 @container">
     <section
-      class="flex items-end gap-4 border-b border-b-gray-100 pb-2 md:col-span-2 dark:border-b-gray-700"
+      class="flex items-end gap-4 border-b border-b-neutral-200 pb-2 md:col-span-2 dark:border-b-neutral-800"
     >
       <h1
-        class="pb-4 pt-8 text-3xl font-bold text-gray-900 first:pt-0 last:pb-0 @3xl:text-4xl dark:text-gray-200"
+        class="pb-4 pt-8 text-3xl font-bold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-4xl dark:text-neutral-200"
       >
         {frontmatter.title}
       </h1>
@@ -18,7 +18,7 @@ const { frontmatter, slug } = Astro.props;
     <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
       <style is:global>
         .prose img {
-          border-radius: 0.375rem;
+          @apply border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md;
         }
       </style>
 
