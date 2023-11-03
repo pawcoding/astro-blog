@@ -1,3 +1,10 @@
+# [1.1.0-staging.4](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.3...v1.1.0-staging.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* **navigation:** update button color on mobile ([bc783ec](https://github.com/pawcoding/astro-blog/commit/bc783ec3ad09c09e554eb3de32e0036789fd6f47))
+
 # [1.1.0-staging.3](https://github.com/pawcoding/astro-blog/compare/v1.1.0-staging.2...v1.1.0-staging.3) (2023-11-03)
 
 
