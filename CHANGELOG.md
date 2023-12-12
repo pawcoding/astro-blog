@@ -1,3 +1,10 @@
+# [1.2.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.1.0...v1.2.0-staging.1) (2023-12-12)
+
+
+### Features
+
+* **footer:** add business card link ([81cedb2](https://github.com/pawcoding/astro-blog/commit/81cedb22eea5f03b1490c8226b69bba9b6ec3b9b))
+
 # [1.1.0](https://github.com/pawcoding/astro-blog/compare/v1.0.0...v1.1.0) (2023-11-03)
 
 
