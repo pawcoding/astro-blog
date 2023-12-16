@@ -1,3 +1,10 @@
+# [1.3.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.2.0...v1.3.0-staging.1) (2023-12-16)
+
+
+### Features
+
+* open external links in new tab ([59e8846](https://github.com/pawcoding/astro-blog/commit/59e8846444f73a6dda6c97db2d170173fd217d21))
+
 # [1.2.0](https://github.com/pawcoding/astro-blog/compare/v1.1.0...v1.2.0) (2023-12-16)
 
 
