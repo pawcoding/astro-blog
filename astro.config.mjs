@@ -3,10 +3,14 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import matomo from "astro-matomo";
 import { defineConfig } from "astro/config";
+import { externalLink } from "./src/utils/external-link";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.pawcode.de",
+  markdown: {
+    rehypePlugins: [[externalLink, { domain: "blog.pawcode.de" }]],
+  },
   integrations: [
     tailwind(),
     mdx(),

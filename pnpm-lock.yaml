@@ -8,6 +8,9 @@ dependencies:
   '@astrojs/check':
     specifier: ^0.3.3
     version: 0.3.3(prettier-plugin-astro@0.12.2)(prettier@3.1.1)(typescript@5.3.3)
+  '@astrojs/markdown-remark':
+    specifier: ^4.0.1
+    version: 4.0.1
   '@astrojs/mdx':
     specifier: ^2.0.1
     version: 2.0.1(astro@4.0.6)
@@ -35,6 +38,9 @@ dependencies:
   astro-seo:
     specifier: ^0.8.0
     version: 0.8.0
+  hast:
+    specifier: ^1.0.0
+    version: 1.0.0
   prettier-plugin-organize-imports:
     specifier: ^3.2.4
     version: 3.2.4(prettier@3.1.1)(typescript@5.3.3)
@@ -50,6 +56,9 @@ dependencies:
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
+  unist-util-visit:
+    specifier: ^5.0.0
+    version: 5.0.0
 
 devDependencies:
   '@semantic-release/changelog':
@@ -58,6 +67,9 @@ devDependencies:
   '@semantic-release/git':
     specifier: ^10.0.1
     version: 10.0.1(semantic-release@22.0.12)
+  '@types/hast':
+    specifier: ^3.0.3
+    version: 3.0.3
   prettier:
     specifier: ^3.1.1
     version: 3.1.1
@@ -1410,7 +1422,6 @@ packages:
     resolution: {integrity: sha512-2fYGlaDy/qyLlhidX42wAH0KBi2TCjKMH8CHmBXgRlJ3Y+OXTiqsPQ6IWarZKwF1JoUcAJdPogv1d4b0COTpmQ==}
     dependencies:
       '@types/unist': 3.0.2
-    dev: false
 
   /@types/mdast@4.0.3:
     resolution: {integrity: sha512-LsjtqsyF+d2/yFOYaN22dHZI1Cpwkrj+g06G8+qtUKlhovPW89YhqSnfKtMbkgmEtYpH2gydRNULd6y8mciAFg==}
@@ -1452,7 +1463,6 @@ packages:
 
   /@types/unist@3.0.2:
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
-    dev: false
 
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -2951,6 +2961,11 @@ packages:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
     dependencies:
       '@types/hast': 3.0.3
+    dev: false
+
+  /hast@1.0.0:
+    resolution: {integrity: sha512-vFUqlRV5C+xqP76Wwq2SrM0kipnmpxJm7OfvVXpB35Fp+Fn4MV+ozr+JZr5qFvyR1q/U+Foim2x+3P+x9S1PLA==}
+    deprecated: Renamed to rehype
     dev: false
 
   /hastscript@8.0.0:
