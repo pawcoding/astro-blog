@@ -12,14 +12,14 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "@astrojs/mdx": "^2.0.0",
+    "@astrojs/check": "^0.3.3",
+    "@astrojs/mdx": "^2.0.1",
     "@astrojs/rss": "^4.0.1",
     "@astrojs/sitemap": "^3.0.3",
     "@astrojs/tailwind": "^5.0.3",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.10",
-    "astro": "^4.0.3",
+    "astro": "^4.0.6",
     "astro-matomo": "^1.4.1",
     "astro-seo": "^0.8.0",
     "prettier-plugin-organize-imports": "^3.2.4",
@@ -33,6 +33,6 @@
     "@semantic-release/git": "^10.0.1",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
-    "semantic-release": "^22.0.10"
+    "semantic-release": "^22.0.12"
   }
 }
