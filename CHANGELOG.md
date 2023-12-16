@@ -1,3 +1,10 @@
+# [1.2.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.2.0-staging.1...v1.2.0-staging.2) (2023-12-16)
+
+
+### Bug Fixes
+
+* **navigation:** update button styles ([e86a65b](https://github.com/pawcoding/astro-blog/commit/e86a65b5781e99190b92b84a7dbd287277804c25))
+
 # [1.2.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.1.0...v1.2.0-staging.1) (2023-12-12)
 
 
