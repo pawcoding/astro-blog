@@ -1,3 +1,10 @@
+# [1.3.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.3.0-staging.1...v1.3.0-staging.2) (2023-12-29)
+
+
+### Bug Fixes
+
+* **home:** sort articles by publication date ([acc0582](https://github.com/pawcoding/astro-blog/commit/acc0582037bb2bce05c7369b65300db9fdfd2359))
+
 # [1.3.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.2.0...v1.3.0-staging.1) (2023-12-16)
 
 
