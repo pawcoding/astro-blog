@@ -6,6 +6,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 let posts: Array<{ data: any; slug: string }> = [];
 try {
   posts = await getCollection("posts");
+  posts.sort((a, b) => {
+    return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+  });
 } catch (error) {
   console.error("No posts found");
 }
