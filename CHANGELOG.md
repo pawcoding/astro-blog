@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/pawcoding/astro-blog/compare/v1.2.0...v1.3.0) (2024-01-01)
+
+
+### Bug Fixes
+
+* **home:** sort articles by publication date ([acc0582](https://github.com/pawcoding/astro-blog/commit/acc0582037bb2bce05c7369b65300db9fdfd2359))
+
+
+### Features
+
+* open external links in new tab ([59e8846](https://github.com/pawcoding/astro-blog/commit/59e8846444f73a6dda6c97db2d170173fd217d21))
+
 # [1.3.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.3.0-staging.1...v1.3.0-staging.2) (2023-12-29)
 
 
