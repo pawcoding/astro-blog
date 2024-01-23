@@ -38,6 +38,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/hast": "^3.0.3",
+    "astro-meta-tags": "^0.2.1",
     "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.12.3",
     "semantic-release": "^22.0.12"

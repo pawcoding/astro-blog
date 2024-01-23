@@ -3,6 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import matomo from "astro-matomo";
+import astroMetaTags from "astro-meta-tags";
 import { defineConfig } from "astro/config";
 import { externalLink } from "./src/utils/external-link";
 
@@ -29,5 +30,6 @@ export default defineConfig({
       lastmod: new Date(),
     }),
     icon(),
+    astroMetaTags(),
   ],
 });
