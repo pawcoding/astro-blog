@@ -1,3 +1,11 @@
+# [1.4.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.3.0...v1.4.0-staging.1) (2024-01-23)
+
+
+### Features
+
+* **dev:** add meta tag debugging toolbar ([b47ffa8](https://github.com/pawcoding/astro-blog/commit/b47ffa85788726556a4716076a4f2fa58461ce5e))
+* **icons:** use astro-icon with heroicons and simpleicons ([324a241](https://github.com/pawcoding/astro-blog/commit/324a241685a741a59dfbbf3964c45e9ba107a8c2)), closes [#12](https://github.com/pawcoding/astro-blog/issues/12)
+
 # [1.3.0](https://github.com/pawcoding/astro-blog/compare/v1.2.0...v1.3.0) (2024-01-01)
 
 
