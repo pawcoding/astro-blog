@@ -1,7 +1,10 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import icon from "astro-icon";
 import matomo from "astro-matomo";
+import astroMetaTags from "astro-meta-tags";
+import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 import { externalLink } from "./src/utils/external-link";
 
@@ -9,7 +12,9 @@ import { externalLink } from "./src/utils/external-link";
 export default defineConfig({
   site: "https://blog.pawcode.de",
   markdown: {
-    rehypePlugins: [[externalLink, { domain: "blog.pawcode.de" }]],
+    rehypePlugins: [
+      [externalLink, { domain: "blog.pawcode.de" }]
+    ]
   },
   integrations: [
     tailwind(),
@@ -25,5 +30,8 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
     }),
+    icon(),
+    astroMetaTags(),
+    robotsTxt(),
   ],
 });

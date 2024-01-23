@@ -1,12 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import { version } from "../../package.json";
-import github from "../assets/icons/github.svg";
-import instagram from "../assets/icons/instagram.svg";
-import linkedin from "../assets/icons/linkedin.svg";
-import snapaddy from "../assets/icons/snapADDY.webp";
-import x from "../assets/icons/x.svg";
-import youtube from "../assets/icons/youtube.svg";
+import snapaddy from "../icons/snapADDY.webp";
 
 const year = new Date().getFullYear();
 ---
@@ -57,13 +53,7 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">Instagram</span>
 
-            <Image
-              src={instagram}
-              alt="Instagram"
-              width="20"
-              height="20"
-              loading="lazy"
-            />
+            <Icon name="simple-icons:instagram" size={20} />
           </a>
         </li>
 
@@ -77,7 +67,7 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">X</span>
 
-            <Image src={x} alt="X" width="20" height="20" loading="lazy" />
+            <Icon name="simple-icons:x" size={20} />
           </a>
         </li>
 
@@ -91,13 +81,7 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">GitHub</span>
 
-            <Image
-              src={github}
-              alt="GitHub"
-              width="20"
-              height="20"
-              loading="lazy"
-            />
+            <Icon name="simple-icons:github" size={20} />
           </a>
         </li>
 
@@ -111,13 +95,7 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">LinkedIn</span>
 
-            <Image
-              src={linkedin}
-              alt="LinkedIn"
-              width="20"
-              height="20"
-              loading="lazy"
-            />
+            <Icon name="simple-icons:linkedin" size={20} />
           </a>
         </li>
 
@@ -151,13 +129,7 @@ const year = new Date().getFullYear();
           >
             <span class="sr-only">YouTube</span>
 
-            <Image
-              src={youtube}
-              alt="YouTube"
-              width="20"
-              height="20"
-              loading="lazy"
-            />
+            <Icon name="simple-icons:youtube" size={20} />
           </a>
         </li>
       </ul>
