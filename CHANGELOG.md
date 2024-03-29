@@ -1,3 +1,10 @@
+# [1.4.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.4.0-staging.1...v1.4.0-staging.2) (2024-03-29)
+
+
+### Features
+
+* **reading:** add reading time computation ([db9f7a2](https://github.com/pawcoding/astro-blog/commit/db9f7a2f744148d21560c8f4c2bf594e92071c30))
+
 # [1.4.0-staging.1](https://github.com/pawcoding/astro-blog/compare/v1.3.0...v1.4.0-staging.1) (2024-01-23)
 
 
