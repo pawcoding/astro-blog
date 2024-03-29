@@ -1,18 +1,23 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { frontmatter, slug } = Astro.props;
+import { formatDate } from "../utils/format-date";
+const { frontmatter, slug, readingTime } = Astro.props;
 ---
 
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
   <div class="mx-auto max-w-screen-md p-4 @container">
     <section
-      class="flex items-end gap-4 border-b border-b-neutral-200 pb-2 md:col-span-2 dark:border-b-neutral-800"
+      class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
     >
       <h1
         class="pb-4 pt-8 text-3xl font-bold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-4xl dark:text-neutral-200"
       >
         {frontmatter.title}
       </h1>
+
+      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
+        {readingTime}
+      </p>
     </section>
 
     <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
@@ -20,9 +25,24 @@ const { frontmatter, slug } = Astro.props;
         .prose img {
           @apply border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md;
         }
+
+        .prose p code {
+          @apply before:content-none after:content-none rounded-md px-1 py-0.5 bg-neutral-300 dark:bg-neutral-700;
+        }
       </style>
 
       <slot />
+
+      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
+        {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
+      </p>
+    </section>
+
+    <hr class="mt-8" />
+
+    <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
+      If you have any questions or other feedback, feel free to reach out to me
+      on the social media platforms listed below.
     </section>
   </div>
 </BaseLayout>

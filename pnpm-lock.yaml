@@ -53,9 +53,15 @@ dependencies:
   hast:
     specifier: ^1.0.0
     version: 1.0.0
+  mdast-util-to-string:
+    specifier: ^4.0.0
+    version: 4.0.0
   prettier-plugin-organize-imports:
     specifier: ^3.2.4
     version: 3.2.4(prettier@3.2.4)(typescript@5.3.3)
+  reading-time:
+    specifier: ^1.5.0
+    version: 1.5.0
   satori:
     specifier: ^0.10.11
     version: 0.10.11
@@ -5009,6 +5015,10 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+
+  /reading-time@1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
+    dev: false
 
   /redeyed@2.1.1:
     resolution: {integrity: sha512-FNpGGo1DycYAdnrKFxCMmKYgo/mILAqtRYbkdQD8Ep/Hk2PQ5+aEAEx+IU713RTDmuBaH0c8P5ZozurNu5ObRQ==}
