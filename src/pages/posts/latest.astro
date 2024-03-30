@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+let latestArticle: { data: any; slug: string } | undefined;
+try {
+  const articles = await getCollection("posts");
+  articles.sort((a, b) => {
+    return (
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+    );
+  });
+  latestArticle = articles[0];
+} catch (e) {
+  console.error("No posts found");
+}
+const url = `${Astro.site?.origin}/${latestArticle?.slug ? `posts/${latestArticle.slug}` : ""}`;
+---
+
+<head>
+  <meta http-equiv="refresh" content={`0; url=${url}`} />
+</head>
