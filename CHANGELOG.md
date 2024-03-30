@@ -1,3 +1,10 @@
+# [1.4.0-staging.4](https://github.com/pawcoding/astro-blog/compare/v1.4.0-staging.3...v1.4.0-staging.4) (2024-03-30)
+
+
+### Features
+
+* **404:** redirect to base on unknown url ([e988f73](https://github.com/pawcoding/astro-blog/commit/e988f734319fdb2b91e25285e1d270bbfde2976a))
+
 # [1.4.0-staging.3](https://github.com/pawcoding/astro-blog/compare/v1.4.0-staging.2...v1.4.0-staging.3) (2024-03-30)
 
 
