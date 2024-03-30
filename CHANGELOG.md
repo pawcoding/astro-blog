@@ -1,3 +1,10 @@
+# [1.4.0-staging.3](https://github.com/pawcoding/astro-blog/compare/v1.4.0-staging.2...v1.4.0-staging.3) (2024-03-30)
+
+
+### Features
+
+* **redirect:** add redirects for /posts and /posts/latest ([8973b7a](https://github.com/pawcoding/astro-blog/commit/8973b7a8c29f0e0694262239df4c10cd1f4c63c3))
+
 # [1.4.0-staging.2](https://github.com/pawcoding/astro-blog/compare/v1.4.0-staging.1...v1.4.0-staging.2) (2024-03-29)
 
 
