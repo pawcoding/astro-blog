@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/pawcoding/astro-blog/compare/v1.4.2...v1.4.3) (2024-04-06)
+
+
+### Bug Fixes
+
+* **posts:** make new tab icon visible in dark mode ([64aede5](https://github.com/pawcoding/astro-blog/commit/64aede555e5c0c963dbfc049ec2e64813ee9edff))
+
 ## [1.4.2](https://github.com/pawcoding/astro-blog/compare/v1.4.1...v1.4.2) (2024-04-06)
 
 
