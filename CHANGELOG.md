@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/pawcoding/astro-blog/compare/v1.4.1...v1.4.2) (2024-04-06)
+
+
+### Bug Fixes
+
+* **footer:** load business card logo eagerly ([b4fc6da](https://github.com/pawcoding/astro-blog/commit/b4fc6daae35d809dcff1911f0854259f442fd8ce))
+
 ## [1.4.1](https://github.com/pawcoding/astro-blog/compare/v1.4.0...v1.4.1) (2024-04-06)
 
 
