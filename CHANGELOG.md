@@ -1,3 +1,14 @@
+# [1.4.0](https://github.com/pawcoding/astro-blog/compare/v1.3.0...v1.4.0) (2024-04-06)
+
+
+### Features
+
+* **dev:** add meta tag debugging toolbar ([b47ffa8](https://github.com/pawcoding/astro-blog/commit/b47ffa85788726556a4716076a4f2fa58461ce5e))
+* **reading:** add reading time computation ([db9f7a2](https://github.com/pawcoding/astro-blog/commit/db9f7a2f744148d21560c8f4c2bf594e92071c30))
+* **redirect:** add redirects for /posts and /posts/latest ([8973b7a](https://github.com/pawcoding/astro-blog/commit/8973b7a8c29f0e0694262239df4c10cd1f4c63c3))
+* **404:** redirect to base on unknown url ([e988f73](https://github.com/pawcoding/astro-blog/commit/e988f734319fdb2b91e25285e1d270bbfde2976a))
+* **icons:** use astro-icon with heroicons and simpleicons ([324a241](https://github.com/pawcoding/astro-blog/commit/324a241685a741a59dfbbf3964c45e9ba107a8c2)), closes [#12](https://github.com/pawcoding/astro-blog/issues/12)
+
 # [1.4.0-staging.4](https://github.com/pawcoding/astro-blog/compare/v1.4.0-staging.3...v1.4.0-staging.4) (2024-03-30)
 
 
