@@ -6,14 +6,18 @@ export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
     params: { slug: post.slug },
-    props: { post },
+    props: { post }
   }));
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
-<PostLayout frontmatter={post.data} slug={post.slug}>
+<PostLayout
+  frontmatter={post.data}
+  slug={post.slug}
+  readingTime={remarkPluginFrontmatter.minutesRead}
+>
   <Content />
 </PostLayout>

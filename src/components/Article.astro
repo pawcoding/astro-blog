@@ -2,7 +2,8 @@
 import { slugify } from "../utils/slugify";
 import { formatDate } from "../utils/format-date";
 
-const { icon, title, description, image, pubDate, color, url } = Astro.props;
+const { icon, title, description, image, pubDate, color, url, readingTime } =
+  Astro.props;
 ---
 
 <article
@@ -65,13 +66,9 @@ const { icon, title, description, image, pubDate, color, url } = Astro.props;
           </span>
         </a>
 
-        {
-          pubDate && (
-            <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
-              {formatDate(pubDate)}
-            </span>
-          )
-        }
+        <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
+          {readingTime} • {pubDate && formatDate(pubDate)}
+        </span>
       </div>
     </section>
   </div>
