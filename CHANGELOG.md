@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/pawcoding/astro-blog/compare/v1.4.0...v1.4.1) (2024-04-06)
+
+
+### Bug Fixes
+
+* **posts:** use new tab icon for links ([379c2d8](https://github.com/pawcoding/astro-blog/commit/379c2d87872a98646772c3ec74f7e759ed0b84a8))
+
 # [1.4.0](https://github.com/pawcoding/astro-blog/compare/v1.3.0...v1.4.0) (2024-04-06)
 
 
