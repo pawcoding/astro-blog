@@ -1,6 +1,11 @@
+const branches = [
+  "master",
+  { name: "staging", channel: "next", prerelease: true },
+];
+
 // Check if the current branch is a release branch
-const branch = process.env.github.ref_name;
-const isRelease = config.branches.some(
+const branch = process.env.GITHUB_REF_NAME;
+const isRelease = branches.some(
   (b) => b === branch || (b.name === branch && !b.prerelease),
 );
 
@@ -13,7 +18,7 @@ if (isRelease) {
 }
 
 const config = {
-  branches: ["master", { name: "staging", channel: "next", prerelease: true }],
+  branches,
   plugins: [
     [
       "@semantic-release/commit-analyzer",
