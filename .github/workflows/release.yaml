@@ -1,4 +1,5 @@
-name: Release
+name: 🚀 Publish new version
+# Run this on every push to master
 on:
   push:
     branches:
@@ -6,53 +7,62 @@ on:
       - staging
 
 permissions:
-  contents: read # for checkout
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
 
 jobs:
   release:
-    name: release
+    # Use the latest version of Ubuntu
     runs-on: ubuntu-latest
     permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       # Checkout repository
-      - name: Get latest code
-        uses: actions/checkout@v3
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      # Setup Node lts
-      - name: Use node lts
-        uses: actions/setup-node@v3
+          persist-credentials: false
+
+      # Setup Node
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
+
       # Install pnpm
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v3
         with:
           version: 8
           run_install: false
+
       # Get pnpm store directory
-      - name: Get pnpm store directory
-        id: pnpm-cache
+      - name: 📦 Get pnpm store directory
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
+      # Setup pnpm cache
+      - name: 📦 Setup pnpm cache
+        uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
       # Install dependencies
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile --prefer-frozen-lockfile
+      - name: 📦 Install dependencies
+        run: |
+          pnpm install --frozen-lockfile --prefer-frozen-lockfile
+
       # Create semantic release
-      - name: Release
+      - name: 🚀 Create semantic release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
+        run: pnpm run semantic-release
