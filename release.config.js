@@ -1,0 +1,61 @@
+// Check if the current branch is a release branch
+const branch = process.env.github.ref_name;
+const isRelease = config.branches.some(
+  (b) => b === branch || (b.name === branch && !b.prerelease),
+);
+
+// Assets to update on release
+const assetsToUpdate = ["package.json", "pnpm-lock.yaml"];
+
+// Add changelog to assets if it's a production release
+if (isRelease) {
+  assetsToUpdate.push("CHANGELOG.md");
+}
+
+const config = {
+  branches: ["master", { name: "staging", channel: "next", prerelease: true }],
+  plugins: [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        preset: "angular",
+        releaseRules: [
+          { type: "docs", scope: "README", release: "patch" },
+          { type: "refactor", release: "patch" },
+          { type: "style", release: "patch" },
+        ],
+        parserOpts: {
+          noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
+        },
+      },
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        preset: "angular",
+        parserOpts: {
+          noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
+        },
+        writerOpts: {
+          commitsSort: ["subject", "scope"],
+        },
+      },
+    ],
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/npm",
+      {
+        npmPublish: false,
+      },
+    ],
+    [
+      "@semantic-release/git",
+      {
+        assets: assetsToUpdate,
+      },
+    ],
+    "@semantic-release/github",
+  ],
+};
+
+module.exports = config;
