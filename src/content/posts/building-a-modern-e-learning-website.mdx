@@ -19,7 +19,7 @@ tags:
   ]
 ---
 
-import { Image } from "astro:assets";
+import Figure from "../../components/Figure.astro";
 import homepage from "../../assets/images/building-a-modern-e-learning-website/homepage.webp";
 import podcast from "../../assets/images/building-a-modern-e-learning-website/podcast.webp";
 import worksheets from "../../assets/images/building-a-modern-e-learning-website/worksheets.webp";
@@ -37,12 +37,10 @@ import flowMediaUpload from "../../assets/images/building-a-modern-e-learning-we
 In June 2023 I published a website for latin teaching material in cooperation with the department of classical philology at the university of Würzburg called "[Forum für Antike und Gesellschaft](https://forum-antike-und-gesellschaft.de/?mtm_campaign=Partner&mtm_source=pawcode_Blog)".
 The website features texts, videos, podcasts, interactive exercises and worksheets to every material and is used by students and teachers all over Germany.
 
-<Image
+<Figure
   src={homepage}
-  alt='Screenshot of the homepage of the "Forum für Antike und Gesellschaft"'
-  decoding="async"
+  label='Screenshot of the homepage of the "Forum für Antike und Gesellschaft"'
   loading="eager"
-  widths={[352, 736, homepage.width]}
 />
 
 In this article I want to share my experiences and learnings from this project.
@@ -59,21 +57,15 @@ In addition, there are worksheets for nearly every material, which can be downlo
 All of this content is available for free and can be used by everyone, without the need to register an account.
 
 <div class="grid grid-cols-1 gap-4 xs:grid-cols-2">
-  <Image
+  <Figure
     src={podcast}
-    alt="Screenshot of an available podcast"
-    decoding="async"
-    loading="lazy"
-    style="margin: 0 auto 0 auto;"
-    widths={[176, 360, podcast.width]}
+    label="Screenshot of an available podcast"
+    widths={[176, 360]}
   />
-  <Image
+  <Figure
     src={worksheets}
-    alt="Screenshot of the worksheets for the podcast"
-    decoding="async"
-    loading="lazy"
-    style="margin: 0 auto 0 auto;"
-    widths={[176, 360, worksheets.width]}
+    label="Screenshot of the worksheets for the podcast"
+    widths={[176, 360]}
   />
 </div>
 
@@ -142,13 +134,7 @@ With this setup, the website keeps always running and restarts automatically if 
 I even added a plugin to enable autoscaling called "[PM2-Autoscale](https://github.com/VeXell/pm2-autoscale)", even though I doubt that it ever has to spawn more processes.
 Using Docker would have been an option as well, but nearly all of the services I use are not containerized and simple node applications, so I decided to keep it simple.
 
-<Image
-  src={pm2Processes}
-  alt="List of processes managed by PM2"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, pm2Processes.width]}
-/>
+<Figure src={pm2Processes} label="List of processes managed by PM2" />
 
 #### Handling incoming requests
 
@@ -177,13 +163,7 @@ But PocketBase is really easy to setup and uses nearly no resources, so it was t
 All authors of the website have their own administrator account and can edit their content through the integrated admin dashboard.
 Since the user interface is really simple for managing a database, it was easy to teach the authors how to use it and I don't have to implement a custom editor for the website.
 
-<Image
-  src={pocketbase}
-  alt="Table of video material in PocketBase"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, pocketbase.width]}
-/>
+<Figure src={pocketbase} label="Table of video material in PocketBase" />
 
 Besides just storing text data, PocketBase also supports storing files, which is perfect for all the worksheets that are available for download on the website.
 And before you ask, no, the files are not stored in the database directly, but on the file system and are then referenced by PocketBase in the background.
@@ -206,13 +186,7 @@ Since we have enough storage for the files and the server is not under heavy loa
 Using YouTube for this streaming infrastructure would be nice as well (since it's free, fast and provides multiple bitrates).
 But some interviewies were not comfortable with their content being on YouTube, and so we created this custom solution.
 
-<Image
-  src={fileUpload}
-  alt="File upload dashboard for the authors"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, fileUpload.width]}
-/>
+<Figure src={fileUpload} label="File upload dashboard for the authors" />
 
 To upload the files to the server, I built a custom micro-service called "forum-files".
 It's just a simple express server that accepts file uploads from a simple dashboard and saves them to the shared folder.
@@ -243,11 +217,9 @@ This way we don't have to generate the same image multiple times and the server 
 
 And the image from the URL above looks like this (live preview and not a static image):
 
-<Image
+<Figure
   src="https://open-graph.forum-antike-und-gesellschaft.de/og-image.png?subtitle=Hello%20Blog!"
-  alt='"Hello Blog!" thumbnail'
-  decoding="async"
-  loading="lazy"
+  label='"Hello Blog!" thumbnail (original preview)'
   width={1200}
   height={630}
 />
@@ -268,13 +240,10 @@ With this, we have an overview over how many people are using the website, which
 
 To sum it up, here is the complete tech stack of the website:
 
-<Image
+<Figure
   src={architecture}
-  alt="Software running on the server"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, architecture.width]}
-  class="!shadow-none"
+  label="All software components running on the server"
+  tailwind="!shadow-none"
 />
 
 - **Nginx** as a reverse proxy, cache and file server
@@ -301,13 +270,10 @@ The data is then rendered into the HTML and when finished sent back to Nginx.
 Nginx writes the response into the integrated cache for recurring requests.
 After everything is done, the HTML gets sent to the user's browser where the website gets displayed.
 
-<Image
+<Figure
   src={flowVisitMiss}
-  alt="Traffic flow when the requested page is not in the cache"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, architecture.width]}
-  class="!shadow-none"
+  label="Traffic flow when the requested page is not in the cache"
+  tailwind="!shadow-none"
 />
 
 When the initial load is done, the browser gets to work.
@@ -333,14 +299,11 @@ Nginx recognizes this and sends the cached response back to the user immediately
 This includes the HTML with the serialized data, so the browser can again hydrate the website without doing any requests to the API.
 Pretty neat, right?
 
-<Image
+<Figure
   src={flowVisitHit}
-  alt="Traffic flow when the requested page is in the cache"
-  decoding="async"
-  loading="lazy"
-  widths={[176, 368, architecture.width]}
-  style="width: 50%; margin: 0 auto 0 auto;"
-  class="!shadow-none"
+  label="Traffic flow when the requested page is in the cache"
+  width={50}
+  tailwind="!shadow-none"
 />
 
 Nearly the same happens when an author visits the development instance of the website.
@@ -348,14 +311,11 @@ The only difference is that requests get forwarded to the development instance o
 Since this is only for internal use, the cache is disabled and the website is always rendered from scratch.
 This way, the authors can see the changes they make immediately and don't have to wait for the cache to invalidate.
 
-<Image
+<Figure
   src={flowVisitDev}
-  alt="Traffic flow when an author visits the development instance"
-  decoding="async"
-  loading="lazy"
-  widths={[299, 626, architecture.width]}
-  style="width: 85%; margin: 0 auto 0 auto;"
-  class="!shadow-none"
+  label="Traffic flow when an author visits the development instance"
+  width={85}
+  tailwind="!shadow-none"
 />
 
 I also use this instance for testing new features in a production environment with SSL encryption and real data.
@@ -376,14 +336,11 @@ Then when the user clicks on the download button, the file is requested from the
 Again the request is routed through Nginx and directly to PocketBase.
 PocketBase then resolves the file path and sends the file back to the user.
 
-<Image
+<Figure
   src={flowDownload}
-  alt="Traffic flow when a user downloads a pdf worksheet"
-  decoding="async"
-  loading="lazy"
-  widths={[176, 368, architecture.width]}
-  style="width: 50%; margin: 0 auto 0 auto;"
-  class="!shadow-none"
+  label="Traffic flow when a user downloads a pdf worksheet"
+  width={50}
+  tailwind="!shadow-none"
 />
 
 Now that I think about it, API requests are also handled this way.
@@ -393,14 +350,11 @@ But that would have made the first flow charts even more complicated, so I left 
 Nearly the same simple process is used for the video and podcast files.
 The client / browser requests the file from the server, Nginx looks up the file in the shared folder and sends it back to the user.
 
-<Image
+<Figure
   src={flowMediaStream}
-  alt="Traffic flow when a user watches a video or listens to a podcast"
-  decoding="async"
-  loading="lazy"
-  widths={[176, 368, architecture.width]}
-  style="width: 50%; margin: 0 auto 0 auto;"
-  class="!shadow-none"
+  label="Traffic flow when a user watches a video or listens to a podcast"
+  width={50}
+  tailwind="!shadow-none"
 />
 
 To not download the whole file at once, the video player only requests metadata for the video first.
@@ -414,13 +368,10 @@ The last scenario is when an author uploads a new video or podcast file.
 Even though this is not a common scenario and only used internally, it's still important to have a smooth workflow for this.
 And as you can see in the flow chart, it actually involves a lot of different services.
 
-<Image
+<Figure
   src={flowMediaUpload}
-  alt="Traffic flow when an author uploads a new video or podcast"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, architecture.width]}
-  class="!shadow-none"
+  label="Traffic flow when an author uploads a new video or podcast"
+  tailwind="!shadow-none"
 />
 
 First the author visits the file upload dashboard and selects the material they want to upload the file for.
@@ -448,5 +399,5 @@ I even wrote my Bachelor thesis about the project, building a custom load genera
 But this is a topic for another article.
 
 On that note, I hope you enjoyed this article and learned something new on the way.
-Up next I will probably write about how the website is maintained, since I just finished the CI/CD pipeline and other automations for this.
+Up next I will probably write about how the website is maintained, since I just finished the [CI/CD pipeline and other automations for this.
 Stay tuned for that and have a great day!

@@ -1,0 +1,164 @@
+---
+import type { ImageMetadata } from "astro";
+import { AstroError } from "astro/errors";
+import { Image } from "astro:assets";
+
+/**
+ * The default widths to generate for local images.
+ */
+const DEFAULT_WIDTHS = [352, 736];
+
+/**
+ * The props for the `Figure` component.
+ */
+interface Props {
+  /**
+   * The alignment of the image and caption (default: `center`)
+   */
+  alignment?: "start" | "center" | "end";
+  /**
+   * The height of the image.
+   * Only required for external images (in pixels).
+   */
+  height?: number;
+  /**
+   * The caption to display below the image.
+   * This is also used as the `alt` attribute for the image.
+   */
+  label: string;
+  /**
+   * The loading strategy for the image.
+   * - `lazy`: Load the image when it becomes visible on the screen (default).
+   * - `eager`: Load the image immediately (only recommended for above-the-fold images / the first image in a post)
+   */
+  loading?: "lazy" | "eager";
+  /**
+   * Whether to show the caption below the image (default: `true`)
+   */
+  showLabel?: boolean;
+  /**
+   * The image to display.
+   * Can be a string (URL) or an local image.
+   */
+  src: ImageMetadata | string;
+  /**
+   * Additional CSS styles to apply to the image.
+   */
+  style?: string;
+  /**
+   * Additional Tailwind CSS classes to apply to the image.
+   */
+  tailwind?: string;
+  /**
+   * The width of the image.
+   * For local images, this is a percentage value depending on the container / blog post width (default: 100%).
+   * For external images, this is the width in pixels.
+   */
+  width?: number;
+  /**
+   * The widths to generate for the image.
+   * Only required for local images.
+   * When not provided, default widths are used and multiplied by the `width` prop.
+   * The width of the original image is always included.
+   */
+  widths?: number[];
+}
+let {
+  alignment,
+  height,
+  label,
+  loading,
+  showLabel,
+  src,
+  style,
+  tailwind,
+  width,
+  widths
+} = Astro.props;
+
+// Check type of image
+if (typeof src === "string") {
+  if (!width || !height) {
+    throw new AstroError("Image dimensions are required for external images");
+  }
+}
+
+// Set default values
+if (!loading) {
+  loading = "lazy";
+}
+if (!alignment) {
+  alignment = "center";
+}
+if (showLabel === undefined) {
+  showLabel = true;
+}
+if (!width) {
+  width = 100;
+}
+
+// Align the image
+tailwind = `${tailwind} `;
+switch (alignment) {
+  case "start":
+    tailwind += "me-auto";
+    break;
+  case "end":
+    tailwind += "ms-auto";
+    break;
+  default:
+    tailwind += "mx-auto";
+    break;
+}
+
+// Calculate the widths
+if (typeof src !== "string") {
+  if (!widths) {
+    widths = DEFAULT_WIDTHS.map((w) => w * width!);
+  }
+  widths.push(src.width);
+}
+
+// Set image width
+if (!style?.includes("width")) {
+  style = style || "";
+  if (!style.endsWith(";")) {
+    style += ";";
+  }
+  style += `width: ${width}%;`;
+}
+---
+
+<figure>
+  {
+    typeof src === "string" ? (
+      // @ts-ignore
+      <Image
+        alt={label}
+        class={tailwind}
+        decoding="async"
+        height={height}
+        loading={loading}
+        src={src}
+        style={style}
+        width={width}
+      />
+    ) : (
+      <Image
+        alt={label}
+        class={tailwind}
+        decoding="async"
+        loading={loading}
+        src={src}
+        style={style}
+        widths={widths}
+      />
+    )
+  }
+
+  {
+    showLabel && (
+      <figcaption style={`text-align: ${alignment}`}>{label}</figcaption>
+    )
+  }
+</figure>

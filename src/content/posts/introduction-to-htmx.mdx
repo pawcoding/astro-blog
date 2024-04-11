@@ -7,7 +7,7 @@ color: "#3465a4"
 tags: ["web development", "htmx", "bun", "elysia", "daisyui"]
 ---
 
-import { Image } from "astro:assets";
+import Figure from "../../components/Figure.astro";
 import multiPageApplication from "../../assets/images/introduction-to-htmx/multi_page_application.webp";
 import singlePageApplication from "../../assets/images/introduction-to-htmx/single_page_application.webp";
 import hybridApplication from "../../assets/images/introduction-to-htmx/hybrid_application.webp";
@@ -35,13 +35,11 @@ We will take a look the some of HTML code and also look at the live website and 
 
 ### Web architectures
 
-<Image
+<Figure
   src={multiPageApplication}
-  alt="Multi Page Application"
-  decoding="async"
+  label="Flowchart of a traditional multi-page application"
   loading="eager"
-  style="width: 50%; margin: 0 auto 0 auto;"
-  widths={[176, 368, multiPageApplication.width]}
+  width={50}
 />
 
 Let's dive into various web application architectures, starting with the traditional multi-page application featuring server-side rendering or static site generation.
@@ -49,13 +47,10 @@ In this setup, a web server hosts a PHP application, which dynamically generates
 These HTML documents are then sent to the client's browser.
 When a user clicks on a link, the process repeats, generating a new HTML page.
 
-<Image
+<Figure
   src={singlePageApplication}
-  alt="Single Page Application"
-  decoding="async"
-  loading="lazy"
-  style="width: 50%; margin: 0 auto 0 auto;"
-  widths={[176, 368, singlePageApplication.width]}
+  label="Flowchart of a single-page application"
+  width={50}
 />
 
 Now, contrast this with the [single-page application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) model, characterized by client-side rendering.
@@ -64,13 +59,10 @@ This website is bundled and delivered to the user's browser.
 Here, the browser is responsible for executing JavaScript code and rendering the page.
 When a user clicks a link, only the content of the page that needs to change is updated, resulting in a smoother and more interactive experience.
 
-<Image
+<Figure
   src={hybridApplication}
-  alt="Hybrid Application"
-  decoding="async"
-  loading="lazy"
-  style="width: 50%; margin: 0 auto 0 auto;"
-  widths={[176, 368, hybridApplication.width]}
+  label="Flowchart of a hybrid application"
+  width={50}
 />
 
 Hybrid architectures seek to blend the advantages and drawbacks of both preceding concepts.
@@ -80,13 +72,10 @@ This hybrid approach offers the benefits of server-side rendering for search eng
 
 Let's see where an HTMX application operates on this spectrum.
 
-<Image
+<Figure
   src={htmxApplication}
-  alt="HTMX Application"
-  decoding="async"
-  loading="lazy"
-  style="width: 50%; margin: 0 auto 0 auto;"
-  widths={[176, 368, htmxApplication.width]}
+  label="Flowchart of an HTMX application"
+  width={50}
 />
 
 When a client initiates the first request, the server performs server-side rendering (SSR) in a manner similar to traditional web applications.
@@ -152,44 +141,44 @@ Before we dive into the demo application, let me introduce you to the tech stack
   </thead>
   <tbody>
     <tr>
-      <td>
-        <Image
+      <td class="align-top">
+        <Figure
           src={bun}
-          alt="Bun"
-          decoding="async"
-          loading="lazy"
+          label="Bun logo"
           style="width: calc(100vw / 4); max-width: 150px"
-          widths={[150, bun.width]}
+          tailwind="!shadow-none"
+          widths={[150]}
+          showLabel={false}
         />
       </td>
-      <td>
-        <Image
+      <td class="align-top">
+        <Figure
           src={elysia}
-          alt="Elysia"
-          decoding="async"
-          loading="lazy"
+          label="Elysia logo"
           style="width: calc(100vw / 4); max-width: 150px"
-          widths={[150, elysia.width]}
+          tailwind="!shadow-none"
+          widths={[150]}
+          showLabel={false}
         />
       </td>
-      <td>
-        <Image
+      <td class="align-top">
+        <Figure
           src={daisyui}
-          alt="DaisyUI"
-          decoding="async"
-          loading="lazy"
+          label="DaisyUI logo"
           style="width: calc(100vw / 4); max-width: 150px"
-          widths={[150, daisyui.width]}
+          tailwind="!shadow-none"
+          widths={[150]}
+          showLabel={false}
         />
       </td>
-      <td>
-        <Image
+      <td class="align-top">
+        <Figure
           src={htmx}
-          alt="HTMX"
-          decoding="async"
-          loading="lazy"
+          label="HTMX logo"
           style="width: calc(100vw / 4); max-width: 150px"
-          widths={[150, htmx.width]}
+          tailwind="!shadow-none"
+          widths={[150]}
+          showLabel={false}
         />
       </td>
     </tr>
@@ -275,12 +264,9 @@ The response consists of two elements:
 
 Before we proceed, let's check the browser to confirm that the page loads and displays this form.
 
-<Image
+<Figure
   src={lazyLoading}
-  alt="Lazy loaded link creation form"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, lazyLoading.width]}
+  label="Lazy loaded link creation form with networking dev-tools open"
 />
 
 Now, let's delve into the code for the form and its custom attributes:
@@ -315,12 +301,9 @@ It's a straightforward card presentation containing the URL that can be shared w
 
 Let's go ahead and try this out in practice to see how it works in action.
 
-<Image
+<Figure
   src={createdLinkCards}
-  alt="Created link cards"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, createdLinkCards.width]}
+  label="Created link cards with post request and partial markup response"
 />
 
 #### Navigation
@@ -369,12 +352,9 @@ This class effectively hides the element until it's triggered, and after the res
 
 With all these components in place, we're now ready to click the link and display all the links we've created, showcasing this feature in action.
 
-<Image
+<Figure
   src={listOfLinks}
-  alt="List of links"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 736, listOfLinks.width]}
+  label="Loading indicator while fetching the list of created links"
 />
 
 #### Delete a link
@@ -415,13 +395,10 @@ We've built a link shortener as a kind of single page application but without wr
 
 Here is the complete architecture:
 
-<Image
+<Figure
   src={architectureDiagram}
-  alt="Architecture diagram"
-  decoding="async"
-  loading="lazy"
-  style="width: 75%; margin: 0 auto 0 auto;"
-  widths={[264, 552, architectureDiagram.width]}
+  label="Architecture diagram with all endpoints and interactions"
+  width={75}
 />
 
 - We can send a GET request to first load the basic page with the HTMX script tag and the stylesheet.

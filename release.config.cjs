@@ -5,6 +5,7 @@ const branches = [
 
 // Check if the current branch is a release branch
 const branch = process.env.GITHUB_REF_NAME;
+console.info(`Current branch: ${branch}`);
 const isRelease = branches.some(
   (b) => b === branch || (b.name === branch && !b.prerelease),
 );

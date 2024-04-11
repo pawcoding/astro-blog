@@ -6,7 +6,7 @@ pubDate: 2024-01-01T09:30:00
 tags: ["yearly-review"]
 ---
 
-import { Image } from "astro:assets";
+import Figure from "../../components/Figure.astro";
 import portfolioVisitsPerMonth from "../../assets/images/yearly-review-2023/portfolio_visits_per_month.webp";
 import portfolioProjectViews from "../../assets/images/yearly-review-2023/portfolio_project_views.webp";
 import portfolioUptime from "../../assets/images/yearly-review-2023/portfolio_uptime.webp";
@@ -43,12 +43,10 @@ The average number of visits per month is hovering around **50 - 60**.
 I am happy with these numbers, but I would like to see them grow in the future.
 Here is a graph of these visits per month:
 
-<Image
+<Figure
   src={portfolioVisitsPerMonth}
-  alt="Visits per month on my portfolio"
-  decoding="async"
+  label="Visits per month on my portfolio"
   loading="eager"
-  widths={[352, 739, portfolioVisitsPerMonth.width]}
 />
 
 Another interesting thing to know is how many views each project has (talking about the project descriptions on my portfolio, not the websites themselves).
@@ -56,13 +54,7 @@ Grouping the projects by category, the most viewed category is **Websites with 6
 Even the most recent projects already have some views on them, which is nice to see.
 Here are the top 10 projects (by their views):
 
-<Image
-  src={portfolioProjectViews}
-  alt="Top 10 projects on my portfolio"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, portfolioProjectViews.width]}
-/>
+<Figure src={portfolioProjectViews} label="Top 10 projects on my portfolio" />
 
 _I kept the colors grouped by category similar to how they are on my website._
 
@@ -74,16 +66,10 @@ It is a self-hosted open source monitoring tool that pings my services regularly
 I am very happy with this tool and I can only recommend it to everyone who wants to monitor their services.
 And so here is a graph of the uptime of my websites:
 
-<Image
-  src={portfolioUptime}
-  alt="Uptime of my portfolio"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, portfolioUptime.width]}
-/>
+<Figure src={portfolioUptime} label="Uptime of my portfolio (since October)" />
 
 My goal is to have an uptime of at least 99.95% (which is 21.92 minutes of downtime per month).
-As you can see, I am almost there  but there are two things to keep in mind:
+As you can see, I am almost there but there are two things to keep in mind:
 Unfortunately, the server running this monitoring tool had some issues on a day or two, not functioning reliably.
 I am still not sure what the problem was, but this caused the numbers to drop a bit, even though the websites were all up and running.
 Another flaw in my measurement is that I am only doing these health checks once per hour (or even once per day for some older projects).
@@ -103,13 +89,7 @@ Knowing which device type and screen resolution my visitors use, I can optimize 
 In addition, I can also scale down the images in different sizes to save bandwidth and improve the loading time when the user is on a mobile device.
 To not go into too much detail, here is a graph of the different device types:
 
-<Image
-  src={portfolioDeviceType}
-  alt="Device type of visitors"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, portfolioDeviceType.width]}
-/>
+<Figure src={portfolioDeviceType} label="Device type of visitors" />
 
 It is surprising to see that **32.3% of my visitors are on a mobile device**, since I expected this number to be a little higher.
 The layout and design of the website was originally designed for desktop, but I tried to make it responsive so it also looks good on mobile.
@@ -120,13 +100,7 @@ Drawing inspiration from [HyperUI](https://hyperui.dev/), I decided to go with o
 I was thinking about also adding a dark theme, but I did not know how to make it look good.
 The only way to find out if this was a good decision is to look at the data:
 
-<Image
-  src={portfolioTheme}
-  alt="Preferred browser theme of visitors"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, portfolioTheme.width]}
-/>
+<Figure src={portfolioTheme} label="Preferred browser theme of visitors" />
 
 Even though the website only has a light theme, I can still track the user's preferred theme (according to their browser settings).
 I was surprised to see that most people prefer the light theme over the dark theme.
@@ -137,13 +111,7 @@ The last thing I want to talk about (for my portfolio) is the preferred language
 I am a native German speaker, living in Germany with mostly German customers, so I decided to also write my portfolio in German.
 Let's see how that worked out:
 
-<Image
-  src={portfolioLanguage}
-  alt="Preferred language of visitors"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, portfolioLanguage.width]}
-/>
+<Figure src={portfolioLanguage} label="Preferred language of visitors" />
 
 Well... I guess I was wrong.
 Looking at the data, only **15.9% of my visitors are from Germany** (or speak German according to their browser settings).
@@ -169,24 +137,12 @@ So far the average number of visits per month was **just over 10** until a few d
 Not sure what happend there, but I am happy with the overall numbers (even if December seems a bit unrealistic for now).
 Here is a graph of these visits per month:
 
-<Image
-  src={blogVisitsPerMonth}
-  alt="Visits per month on my blog"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, blogVisitsPerMonth.width]}
-/>
+<Figure src={blogVisitsPerMonth} label="Visits per month on my blog" />
 
 Mimicking the format of my portfolio, I also tracked the views of each of my posts.
 But since I only have [one post](/posts/introduction-to-htmx) so far, I will just show you the top 1 post (which is also the only post).
 
-<Image
-  src={blogPostViews}
-  alt="Top 1 posts on my blog"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, blogPostViews.width]}
-/>
+<Figure src={blogPostViews} label="Top 1 posts on my blog" />
 
 Obviously the chart is not very useful with only one post, but I wanted to show it anyways to keep the format consistent (both with my portfolio and hopefully with future yearly reviews).
 Talking numbers, the post has **38 views** so far, which is not too bad for the first post on a new blog.
@@ -194,13 +150,7 @@ Talking numbers, the post has **38 views** so far, which is not too bad for the 
 Of course I also tracked the uptime of my blog.
 Since I am using [Vercel](https://vercel.com/) to host this blog (like my portfolio), I don't expected any downtime there.
 
-<Image
-  src={blogUptime}
-  alt="Uptime of my blog"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, blogUptime.width]}
-/>
+<Figure src={blogUptime} label="Uptime of my blog (since October)" />
 
 Actually there was one downtime of 1 hour in the last days of December, but I am not sure what caused it.
 Somehow the deployment was lost and I had to manually redeploy it.
@@ -208,12 +158,9 @@ But since this was the first and only downtime in the last 2 months, I am not to
 
 ### Users and their preferences
 
-<Image
+<Figure
   src={blogDeviceType}
-  alt="Device type of visitors"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, blogDeviceType.width]}
+  label="Device type of visitors"
 />
 
 Starting with device type (again), you can see that even less people are using a mobile device to read my blog.
@@ -234,12 +181,9 @@ The last thing I want to talk about is the preferred language of my readers here
 When I started building this blog, I decided to write all posts in English rather then German like on my portfolio.
 Since the content is more technical and English is the language of developers, I thought it would be better to write in English to reach a wider audience.
 
-<Image
+<Figure
   src={blogLanguage}
-  alt="Preferred language of visitors"
-  decoding="async"
-  loading="lazy"
-  widths={[352, 739, blogLanguage.width]}
+  label="Preferred language of visitors"
 />
 
 I think I was right, because **only 4.3% of my visitors are from Germany** (I suppose most of them can read English as well).
