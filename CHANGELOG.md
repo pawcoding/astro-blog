@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/pawcoding/astro-blog/compare/v1.4.3...v1.5.0) (2024-05-04)
+
+
+### Bug Fixes
+
+* **rss:** add auto-discovery tag ([c208261](https://github.com/pawcoding/astro-blog/commit/c20826104550c1b5e3840056aabe896784820ab4))
+
+
+### Features
+
+* **figure:** add figure component for automatic image optimization ([ac5db58](https://github.com/pawcoding/astro-blog/commit/ac5db58876da22451b46fe7140e0b66d62b47d7b))
+* **rss:** add link to article to rss content ([e6e943c](https://github.com/pawcoding/astro-blog/commit/e6e943c9f51b8d892dec7ae713765e6da64d15d6))
+
 ## [1.4.3](https://github.com/pawcoding/astro-blog/compare/v1.4.2...v1.4.3) (2024-04-06)
 
 
