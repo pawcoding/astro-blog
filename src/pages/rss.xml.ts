@@ -3,6 +3,11 @@ import { getCollection } from "astro:content";
 
 export async function GET(context: { site: string }): Promise<Response> {
   const posts = await getCollection("posts");
+  posts.sort((a, b) => {
+    return (
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+    );
+  });
   return rss({
     title: "Blog | pawcode Development",
     description:
@@ -10,7 +15,7 @@ export async function GET(context: { site: string }): Promise<Response> {
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
-      description: post.data.description,
+      description: `${post.data.description} You can read the full article on https://blog.pawcode.de/posts/${post.slug}/`,
       link: `/posts/${post.slug}`,
       pubDate: post.data.pubDate,
     })),
