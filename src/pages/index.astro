@@ -20,7 +20,7 @@ try {
     posts.map(async (post) => {
       const { remarkPluginFrontmatter } = await post.render();
       post.readingTime = remarkPluginFrontmatter.minutesRead;
-    })
+    }),
   );
 } catch (error) {
   console.error("No posts found");
