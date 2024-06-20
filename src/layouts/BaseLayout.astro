@@ -19,8 +19,6 @@ const { title, description, pubTime, modTime, author, tags, post, slug } =
 
 <html lang="en">
   <head>
-    <base href="/" />
-
     <!-- SEO -->
     <link
       rel="alternate"
@@ -38,19 +36,19 @@ const { title, description, pubTime, modTime, author, tags, post, slug } =
         basic: {
           title: title,
           type: post ? "article" : "website",
-          image: slug ? `${slug}/og-image.png` : "/og-image.png",
+          image: slug ? `${slug}/og-image.png` : "/og-image.png"
         },
         optional: {
-          siteName: "pawcode Development Blog",
+          siteName: "pawcode Development Blog"
         },
         article: post
           ? {
               publishedTime: pubTime,
               modifiedTime: modTime,
               authors: author ? [author] : undefined,
-              tags: tags,
+              tags: tags
             }
-          : undefined,
+          : undefined
       }}
       twitter={{
         card: "summary_large_image",
@@ -58,37 +56,37 @@ const { title, description, pubTime, modTime, author, tags, post, slug } =
         creator: "@pawcode",
         title: title,
         image: slug ? `${slug}/og-image.png` : "/og-image.png",
-        description: description,
+        description: description
       }}
       extend={{
         link: [
           {
             rel: "sitemap",
-            href: "/sitemap-index.xml",
-          },
+            href: "/sitemap-index.xml"
+          }
         ],
         meta: [
           {
             name: "viewport",
-            content: "width=device-width, initial-scale=1.0",
+            content: "width=device-width, initial-scale=1.0"
           },
           {
             name: "generator",
-            content: Astro.generator,
+            content: Astro.generator
           },
           {
             name: "msapplication-TileColor",
-            content: "#262626",
+            content: "#262626"
           },
           {
             name: "msapplication-config",
-            content: "/brand/browserconfig.xml",
+            content: "/brand/browserconfig.xml"
           },
           {
             name: "theme-color",
-            content: "#262626",
-          },
-        ],
+            content: "#262626"
+          }
+        ]
       }}
     />
 
@@ -115,7 +113,7 @@ const { title, description, pubTime, modTime, author, tags, post, slug } =
     <link rel="shortcut icon" href="/brand/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="/brand/favicon.ico" />
 
-    <ViewTransitions />
+    <ViewTransitions fallback="none" />
   </head>
 
   <body

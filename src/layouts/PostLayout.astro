@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
 import { formatDate } from "../utils/format-date";
+import BaseLayout from "./BaseLayout.astro";
 const { frontmatter, slug, readingTime } = Astro.props;
 ---
 
@@ -11,11 +11,15 @@ const { frontmatter, slug, readingTime } = Astro.props;
     >
       <h1
         class="pb-4 pt-8 text-3xl font-bold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-4xl dark:text-neutral-200"
+        transition:name={"title" + slug}
       >
         {frontmatter.title}
       </h1>
 
-      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
+      <p
+        class="text-sm text-right text-neutral-500 dark:text-neutral-300"
+        transition:name={"reading" + slug}
+      >
         {readingTime}
       </p>
     </section>
@@ -44,15 +48,26 @@ const { frontmatter, slug, readingTime } = Astro.props;
       <slot />
 
       <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
-        {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
+        <span transition:name={"date" + slug}>
+          {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
+        </span>
+
+        {
+          frontmatter.modDate && (
+            <span>
+              {" "}
+              (Updated: <span>{formatDate(frontmatter.updatedDate)}</span>)
+            </span>
+          )
+        }
       </p>
-    </section>
 
-    <hr class="mt-8" />
+      <hr class="mt-8" />
 
-    <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
-      If you have any questions or other feedback, feel free to reach out to me
-      on the social media platforms listed below.
+      <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
+        If you have any questions or other feedback, feel free to reach out to
+        me on the social media platforms listed below.
+      </section>
     </section>
   </div>
 </BaseLayout>

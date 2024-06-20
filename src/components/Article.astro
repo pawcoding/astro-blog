@@ -1,14 +1,22 @@
 ---
-import { slugify } from "../utils/slugify";
 import { formatDate } from "../utils/format-date";
 
-const { icon, title, description, image, pubDate, color, url, readingTime } =
-  Astro.props;
+const {
+  icon,
+  title,
+  description,
+  image,
+  pubDate,
+  color,
+  url,
+  readingTime,
+  slug
+} = Astro.props;
 ---
 
 <article
-  id={slugify(title)}
-  class="p-0 relative block overflow-hidden rounded-lg border border-neutral-300 shadow-sm transition @container hover:shadow-lg dark:shadow-none dark:bg-neutral-800 dark:border-none"
+  id={slug}
+  class="p-0 relative block overflow-hidden rounded-lg border border-neutral-300 shadow-sm transition @container hover:shadow-lg dark:shadow-none dark:bg-neutral-800 dark:border-neutral-800"
 >
   <span
     class="absolute inset-x-0 bottom-0 h-2 dark:invert dark:hue-rotate-180"
@@ -41,6 +49,7 @@ const { icon, title, description, image, pubDate, color, url, readingTime } =
     >
       <h3
         class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
+        transition:name={"title" + slug}
       >
         {title}
       </h3>
@@ -60,14 +69,20 @@ const { icon, title, description, image, pubDate, color, url, readingTime } =
 
           <span
             aria-hidden="true"
-            class="block transition-all group-hover:ms-0.5"
+            class="block transition-all group-hover:ms-0.5 ease-spring"
           >
             &rarr;
           </span>
         </a>
 
         <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
-          {readingTime} • {pubDate && formatDate(pubDate)}
+          <span transition:name={"reading" + slug}>
+            {readingTime}
+          </span>
+          •
+          <span transition:name={"date" + slug}>
+            {pubDate && formatDate(pubDate)}
+          </span>
         </span>
       </div>
     </section>

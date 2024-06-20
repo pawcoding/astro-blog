@@ -22,6 +22,9 @@ export default {
       margin: {
         "3/4": "0.1875rem",
       },
+      transitionTimingFunction: {
+        spring: "cubic-bezier(.4,1.75,.6,1)",
+      },
     },
   },
   plugins: [

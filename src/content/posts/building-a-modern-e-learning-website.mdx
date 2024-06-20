@@ -3,6 +3,7 @@ title: "Building a modern e-learning website"
 description: "Roughly 2 years ago I was asked to build a website for latin teaching material in cooperation with the department of classical philology at the university of Würzburg. In this article I want to share my experiences in building it, show you the tech stack behind it and what else was needed to make it work."
 image: "/images/building-a-modern-e-learning-website.webp"
 pubDate: 2024-04-06T18:00:00
+modDate: 2024-06-20T10:00:00
 color: "#EFB85E"
 tags:
   [
@@ -130,7 +131,7 @@ It's really cheap and has more than enough computing power for our use case.
 To keep the server side rendering and other services running I used a tool called [PM2](https://pm2.keymetrics.io/).
 This is a daemon process manager mainly used for Node.js applications.
 It's perfect for us, since a server-side Angular project is basically a Node.js application under the hood.
-With this setup, the website keeps always running and restarts automatically if it crashes or I update the code (more on that in a future post).
+With this setup, the website keeps always running and restarts automatically if it crashes or I update the code (you can read more about my [automated deployment strategy in this post](/posts/automatic-deployment-with-webhooks)).
 I even added a plugin to enable autoscaling called "[PM2-Autoscale](https://github.com/VeXell/pm2-autoscale)", even though I doubt that it ever has to spawn more processes.
 Using Docker would have been an option as well, but nearly all of the services I use are not containerized and simple node applications, so I decided to keep it simple.
 
