@@ -1,3 +1,13 @@
+# [1.6.0](https://github.com/pawcoding/astro-blog/compare/v1.5.0...v1.6.0) (2024-06-20)
+
+
+### Features
+
+* **footer:** add link to rss feed ([1851f0d](https://github.com/pawcoding/astro-blog/commit/1851f0d67ba58e2e5312ba7b8f6e3605ff3d2b42))
+* **home:** add spring animation ([710d0e1](https://github.com/pawcoding/astro-blog/commit/710d0e137701f93531cebb5c18560abe0d82c8f1))
+* **view-transitions:** animate some elements during page transition ([2c61d95](https://github.com/pawcoding/astro-blog/commit/2c61d951e3eb41fe4a718bc22c2e53bcfb8d19ba))
+* **posts:** display updated date ([07ef082](https://github.com/pawcoding/astro-blog/commit/07ef082a544f454e9a3aa70043ae51adbaa31ddb))
+
 # [1.5.0](https://github.com/pawcoding/astro-blog/compare/v1.4.3...v1.5.0) (2024-05-04)
 
 
