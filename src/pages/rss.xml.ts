@@ -18,6 +18,7 @@ export async function GET(context: { site: string }): Promise<Response> {
       description: `${post.data.description} You can read the full article on https://blog.pawcode.de/posts/${post.slug}/`,
       link: `/posts/${post.slug}`,
       pubDate: post.data.pubDate,
+      author: "pawcode",
     })),
   });
 }

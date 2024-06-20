@@ -47,19 +47,27 @@ const { frontmatter, slug, readingTime } = Astro.props;
 
       <slot />
 
-      <p
-        class="text-sm text-right text-neutral-500 dark:text-neutral-300"
-        transition:name={"date" + slug}
-      >
-        {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
+      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
+        <span transition:name={"date" + slug}>
+          {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
+        </span>
+
+        {
+          frontmatter.modDate && (
+            <span>
+              {" "}
+              (Updated: <span>{formatDate(frontmatter.updatedDate)}</span>)
+            </span>
+          )
+        }
       </p>
-    </section>
 
-    <hr class="mt-8" />
+      <hr class="mt-8" />
 
-    <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
-      If you have any questions or other feedback, feel free to reach out to me
-      on the social media platforms listed below.
+      <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
+        If you have any questions or other feedback, feel free to reach out to
+        me on the social media platforms listed below.
+      </section>
     </section>
   </div>
 </BaseLayout>
