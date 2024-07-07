@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/pawcoding/astro-blog/compare/v1.6.0...v1.6.1) (2024-07-07)
+
+
+### Bug Fixes
+
+* **view-transitions:** add back fallback behavior ([5618517](https://github.com/pawcoding/astro-blog/commit/5618517bd5d16ba37bd8936121a329bb87e41ed9))
+
 # [1.6.0](https://github.com/pawcoding/astro-blog/compare/v1.5.0...v1.6.0) (2024-06-20)
 
 
