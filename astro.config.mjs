@@ -1,5 +1,6 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import solidJs from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import matomo from "astro-matomo";
@@ -13,7 +14,14 @@ import { calculateReadingTime } from "./src/utils/reading-time";
 export default defineConfig({
   site: "https://blog.pawcode.de",
   markdown: {
-    rehypePlugins: [[externalLink, { domain: "blog.pawcode.de" }]],
+    rehypePlugins: [
+      [
+        externalLink,
+        {
+          domain: "blog.pawcode.de",
+        },
+      ],
+    ],
     remarkPlugins: [calculateReadingTime],
   },
   integrations: [
@@ -33,5 +41,6 @@ export default defineConfig({
     icon(),
     astroMetaTags(),
     robotsTxt(),
+    solidJs(),
   ],
 });
