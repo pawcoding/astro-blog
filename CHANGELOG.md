@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/pawcoding/astro-blog/compare/v1.6.1...v1.6.2) (2024-07-07)
+
+
+### Bug Fixes
+
+* **color-wheel-demo:** split thumb styles for Chrome and Firefox ([2b498a6](https://github.com/pawcoding/astro-blog/commit/2b498a6e6d112115e2784de5e8e46a3e1e1097f3))
+
 ## [1.6.1](https://github.com/pawcoding/astro-blog/compare/v1.6.0...v1.6.1) (2024-07-07)
 
 
