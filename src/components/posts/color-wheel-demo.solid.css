@@ -2,7 +2,12 @@ input[type='range'] {
     @apply mt-2 h-4 w-full cursor-pointer appearance-none rounded-md outline-none sm:h-3;
 }
 
-input[type='range']::-webkit-slider-thumb,
+input[type='range']::-webkit-slider-thumb {
+    @apply h-8 w-8 cursor-grab appearance-none rounded-md border-none outline-none sm:h-6 sm:w-6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 input[type='range']::-moz-range-thumb {
     @apply h-8 w-8 cursor-grab appearance-none rounded-md border-none outline-none sm:h-6 sm:w-6;
     -webkit-appearance: none;
