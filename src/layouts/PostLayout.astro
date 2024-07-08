@@ -1,5 +1,5 @@
 ---
-import { formatDate } from "../utils/format-date";
+import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
 const { frontmatter, slug, readingTime } = Astro.props;
 ---
@@ -48,16 +48,16 @@ const { frontmatter, slug, readingTime } = Astro.props;
       <slot />
 
       <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
-        <span transition:name={"date" + slug}>
+        <time datetime={formatDateMachine(frontmatter.pubDate)} transition:name={"date" + slug}>
           {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
-        </span>
+        </time>
 
         {
           frontmatter.modDate && (
-            <span>
+            <time datetime={formatDateMachine(frontmatter.modDate)}>
               {" "}
               (Updated: <span>{formatDate(frontmatter.updatedDate)}</span>)
-            </span>
+            </time>
           )
         }
       </p>

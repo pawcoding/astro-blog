@@ -7,3 +7,11 @@ export function formatDate(date: Date | string): string {
 
   return formatter.format(date);
 }
+
+export function formatDateMachine(date: Date | string): string {
+  if (typeof date === "string") {
+    date = new Date(date);
+  }
+
+  return date.toISOString();
+}

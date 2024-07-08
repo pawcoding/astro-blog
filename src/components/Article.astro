@@ -1,5 +1,5 @@
 ---
-import { formatDate } from "../utils/format-date";
+import { formatDate, formatDateMachine } from "../utils/format-date";
 
 const {
   icon,
@@ -80,9 +80,9 @@ const {
             {readingTime}
           </span>
           •
-          <span transition:name={"date" + slug}>
+          <time datetime={formatDateMachine(pubDate)} transition:name={"date" + slug}>
             {pubDate && formatDate(pubDate)}
-          </span>
+          </time>
         </span>
       </div>
     </section>
