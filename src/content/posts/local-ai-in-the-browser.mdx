@@ -345,7 +345,7 @@ async function generatePalette(hex: string): Promise<Palette> {
         aiPalette.addColor(new Color([shade], name));
       }
 
-      // If the AI successfully generated at leas one color, return
+      // If the AI successfully generated at least one color, return
       if (aiPalette.colors.length > 1) {
         return aiPalette;
       }
