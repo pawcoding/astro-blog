@@ -11,7 +11,7 @@ const isRelease = branches.some(
 );
 
 // Assets to update on release
-const assetsToUpdate = ["package.json", "pnpm-lock.yaml"];
+const assetsToUpdate = ["README.md", "package.json", "pnpm-lock.yaml"];
 
 // Add changelog to assets if it's a production release
 if (isRelease) {
@@ -52,6 +52,12 @@ const config = {
       "@semantic-release/npm",
       {
         npmPublish: false,
+      },
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        prepareCmd: "pnpm build && pnpm run update-blog-list",
       },
     ],
     [

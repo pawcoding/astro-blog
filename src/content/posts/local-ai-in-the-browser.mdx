@@ -66,16 +66,16 @@ You can see this in the following example:
 <figure>
   <ColorWheelDemo client:idle />
 
-  <no-script>
-    <Image
-      alt="Screenshot of demo color wheel"
-      class="hidden"
-      decoding="async"
-      loading="lazy"
-      src={colorWheelDemoFallback}
-      widths={[...DEFAULT_WIDTHS, colorWheelDemoFallback.width]}
-    />
-  </no-script>
+<no-script>
+  <Image
+    alt="Screenshot of demo color wheel"
+    class="hidden"
+    decoding="async"
+    loading="lazy"
+    src={colorWheelDemoFallback}
+    widths={[...DEFAULT_WIDTHS, colorWheelDemoFallback.width]}
+  />
+</no-script>
 
   <figcaption class="text-center">
     Interactive sliders to show the difference between the color wheel and the

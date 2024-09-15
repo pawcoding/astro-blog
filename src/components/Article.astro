@@ -10,7 +10,7 @@ const {
   color,
   url,
   readingTime,
-  slug
+  slug,
 } = Astro.props;
 ---
 
@@ -80,7 +80,10 @@ const {
             {readingTime}
           </span>
           •
-          <time datetime={formatDateMachine(pubDate)} transition:name={"date" + slug}>
+          <time
+            datetime={formatDateMachine(pubDate)}
+            transition:name={"date" + slug}
+          >
             {pubDate && formatDate(pubDate)}
           </time>
         </span>
