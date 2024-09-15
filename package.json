@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "update-blog-list": "node ./scripts/update-blog-list.js",
     "preview": "astro preview",
     "astro": "astro",
     "prettier": "prettier --write ./src --plugin=prettier-plugin-astro",
