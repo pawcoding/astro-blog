@@ -1,47 +1,81 @@
-# Astro Starter Kit: Minimal
+# pawcode Blog
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Here you can find all my articles.
+I write about interesting stuff I came across while working on projects or just for fun as well as small tutorials and guides.
+I hope you enjoy reading them as much as I enjoyed writing and researching them.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+To see the blog in action, visit [blog.pawcode.de](https://blog.pawcode.de/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+<p align="right">
+  <sub>
+    <em>
+      This repository is only public to view the source code.
+      <br>
+      I will not accept any pull requests or issues.
+    </em>
+  </sub>
+</p>
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+### Latest blog posts
+
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
+
+---
+
+### Technical Details
+
+**Frameworks**
+<br />
+<img alt="Frameworks" src="https://skillicons.dev/icons?i=astro,solidjs&theme=light" />
+
+**Languages**
+<br />
+<img alt="Languages" src="https://skillicons.dev/icons?i=html,md,css,tailwind,ts&theme=light" />
+
+**Tools**
+<br />
+<img alt="Tools" src="https://skillicons.dev/icons?i=vercel,github,githubactions,pnpm&theme=light" />
+
+---
+
+### Project Structure
 
 ```text
 /
-├── public/
+├── .github/workflows/   <-- GitHub Actions for semantic-release
+│
+├── public/              <-- Static assets like images
+│
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/          <-- Images that will be optimized by Astro
+│   │
+│   ├── components/      <-- Astro components like Header, Footer, etc.
+│   │   │
+│   │   └ posts/         <-- SolidJS components for interactive blog elements
+│   │
+│   ├── content/
+│   │   └ posts/         <-- Markdown files for blog posts
+│   │
+│   ├── layouts/         <-- Layout components like base or post layout
+│   │
+│   ├── pages/           <-- Astro pages like index, posts, og-images, etc.
+│   │
+│   └── utils/           <-- Utility functions
+│
+└── astro.config.mjs     <-- Configuration for Astro and plugins
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Commands
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command             | Action                                      |
+| :------------------ | :------------------------------------------ |
+| `pnpm install`      | Installs dependencies                       |
+| `pnpm run dev`      | Starts local dev server at `localhost:4321` |
+| `pnpm run build`    | Build the production site to `./dist/`      |
+| `pnpm run preview`  | Preview the build locally, before deploying |
+| `pnpm run prettier` | Format the code                             |
