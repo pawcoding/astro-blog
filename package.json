@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/hast": "^3.0.4",
     "astro-meta-tags": "^0.3.0",

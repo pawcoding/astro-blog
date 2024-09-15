@@ -61,6 +61,12 @@ const config = {
       },
     ],
     "@semantic-release/github",
+    [
+      "@semantic-release/exec",
+      {
+        prepareCmd: "pnpm build",
+      },
+    ],
   ],
 };
 
