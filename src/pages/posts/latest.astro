@@ -18,4 +18,6 @@ const url = `${Astro.site?.origin}/${latestArticle?.slug ? `posts/${latestArticl
 
 <head>
   <meta http-equiv="refresh" content={`0; url=${url}`} />
+  <link rel="canonical" href={url} />
+  <meta name="robots" content="noindex" />
 </head>
