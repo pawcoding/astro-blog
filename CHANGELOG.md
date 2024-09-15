@@ -1,3 +1,11 @@
+## [1.6.4](https://github.com/pawcoding/astro-blog/compare/v1.6.3...v1.6.4) (2024-09-15)
+
+
+### Bug Fixes
+
+* **release:** update execution order or semantic release plugins ([91819ab](https://github.com/pawcoding/astro-blog/commit/91819ab34fb21fe6ddbb4269f671503bbdcea35f))
+* **seo:** update robots and canonical headers ([fda06cb](https://github.com/pawcoding/astro-blog/commit/fda06cb5d0836608e9627ca75bb5252047471d06))
+
 ## [1.6.3](https://github.com/pawcoding/astro-blog/compare/v1.6.2...v1.6.3) (2024-07-08)
 
 
