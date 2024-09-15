@@ -55,18 +55,18 @@ const config = {
       },
     ],
     [
+      "@semantic-release/exec",
+      {
+        prepareCmd: "pnpm build && pnpm run update-blog-list",
+      },
+    ],
+    [
       "@semantic-release/git",
       {
         assets: assetsToUpdate,
       },
     ],
     "@semantic-release/github",
-    [
-      "@semantic-release/exec",
-      {
-        prepareCmd: "pnpm build && pnpm run update-blog-list",
-      },
-    ],
   ],
 };
 
