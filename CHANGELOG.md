@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/pawcoding/astro-blog/compare/v1.6.2...v1.6.3) (2024-07-08)
+
+
+### Bug Fixes
+
+* **dates:** use `<time>` tag for displaying dates ([9ed27e4](https://github.com/pawcoding/astro-blog/commit/9ed27e4b48b40a4815c8e8c98308732e9f83c436))
+
 ## [1.6.2](https://github.com/pawcoding/astro-blog/compare/v1.6.1...v1.6.2) (2024-07-07)
 
 

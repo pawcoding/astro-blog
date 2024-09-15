@@ -7,6 +7,7 @@ tags: ["web development", "rainbow palette", "ai", "llm", "google chrome"]
 ---
 
 import { Image } from "astro:assets";
+import colorWheelDemoFallback from "../../assets/images/local-ai-in-the-browser/color_wheel_demo_fallback.png";
 import paletteGeneration from "../../assets/images/local-ai-in-the-browser/palette_generation.png";
 import promptDemoFallback from "../../assets/images/local-ai-in-the-browser/prompt_demo_fallback.png";
 import rainbowPalette from "../../assets/images/local-ai-in-the-browser/rainbow-palette.png";
@@ -64,6 +65,17 @@ You can see this in the following example:
 
 <figure>
   <ColorWheelDemo client:idle />
+
+<no-script>
+  <Image
+    alt="Screenshot of demo color wheel"
+    class="hidden"
+    decoding="async"
+    loading="lazy"
+    src={colorWheelDemoFallback}
+    widths={[...DEFAULT_WIDTHS, colorWheelDemoFallback.width]}
+  />
+</no-script>
 
   <figcaption class="text-center">
     Interactive sliders to show the difference between the color wheel and the
@@ -345,7 +357,7 @@ async function generatePalette(hex: string): Promise<Palette> {
         aiPalette.addColor(new Color([shade], name));
       }
 
-      // If the AI successfully generated at leas one color, return
+      // If the AI successfully generated at least one color, return
       if (aiPalette.colors.length > 1) {
         return aiPalette;
       }
