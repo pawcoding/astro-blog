@@ -25,10 +25,10 @@ export default defineConfig({
     remarkPlugins: [calculateReadingTime],
     shikiConfig: {
       themes: {
-        light: 'github-light-default',
-        dark: 'github-dark-dimmed',
-      }
-    }
+        light: "github-light-default",
+        dark: "github-dark-dimmed",
+      },
+    },
   },
   integrations: [
     tailwind(),
@@ -38,6 +38,8 @@ export default defineConfig({
       host: "https://analytics.apps.pawcode.de/",
       siteId: 9,
       disableCookies: true,
+      heartBeatTimer: 15,
+      preconnect: true,
     }),
     sitemap({
       changefreq: "monthly",
