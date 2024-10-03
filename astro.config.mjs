@@ -23,6 +23,12 @@ export default defineConfig({
       ],
     ],
     remarkPlugins: [calculateReadingTime],
+    shikiConfig: {
+      themes: {
+        light: 'github-light-default',
+        dark: 'github-dark-dimmed',
+      }
+    }
   },
   integrations: [
     tailwind(),
