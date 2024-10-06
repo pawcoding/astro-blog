@@ -1,7 +1,7 @@
 {
   "name": "astro-blog",
   "type": "module",
-  "version": "1.6.4",
+  "version": "1.7.0-staging.3",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,33 +10,34 @@
     "preview": "astro preview",
     "astro": "astro",
     "prettier": "prettier --write ./src --plugin=prettier-plugin-astro",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "upgrade": "pnpm dlx @astrojs/upgrade && pnpm up -i"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/markdown-remark": "^5.2.0",
-    "@astrojs/mdx": "^3.1.6",
+    "@astrojs/mdx": "^3.1.7",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/solid-js": "^4.4.1",
-    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/solid-js": "^4.4.2",
+    "@astrojs/tailwind": "^5.1.1",
     "@iconify-json/heroicons": "^1.2.0",
-    "@iconify-json/simple-icons": "^1.2.2",
+    "@iconify-json/simple-icons": "^1.2.5",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.15",
-    "astro": "^4.15.6",
+    "astro": "^4.15.10",
     "astro-icon": "^1.1.1",
     "astro-matomo": "^1.6.0",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "hast": "^1.0.0",
     "mdast-util-to-string": "^4.0.0",
-    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-organize-imports": "^4.1.0",
     "reading-time": "^1.5.0",
-    "satori": "^0.11.0",
+    "satori": "^0.11.1",
     "sharp": "^0.33.5",
-    "solid-js": "^1.8.22",
-    "tailwindcss": "^3.4.11",
+    "solid-js": "^1.9.1",
+    "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2",
     "unist-util-visit": "^5.0.0"
   },
@@ -45,9 +46,9 @@
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/hast": "^3.0.4",
-    "astro-meta-tags": "^0.3.0",
+    "astro-meta-tags": "^0.3.1",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "semantic-release": "^24.1.1"
+    "semantic-release": "^24.1.2"
   }
 }

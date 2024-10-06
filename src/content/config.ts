@@ -5,12 +5,12 @@ const postsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    image: z.string().default("/images/introduction-to-htmx.webp"),
+    image: z.optional(z.string()),
     pubDate: z.date(),
-    modDate: z.date().optional(),
+    modDate: z.optional(z.date()),
     color: z.string().default("#4472c4"),
     author: z.string().default("Luis Wolf"),
-    tags: z.array(z.string()).optional(),
+    tags: z.optional(z.array(z.string())),
   }),
 });
 

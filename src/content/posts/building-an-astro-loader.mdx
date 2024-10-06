@@ -1,0 +1,523 @@
+---
+title: "Building an Astro Loader"
+description: "With Astro 5, you can now load content from any source using custom loaders. In this post, I show you how I built a custom loader to load content from PocketBase, how you can use it in your own projects and how you can build your own."
+pubDate: 2024-10-06T18:30:00
+tags:
+  [
+    "web development",
+    "astro",
+    "content loader",
+    "content management",
+    "pocketbase",
+    "astro-loader-pocketbase",
+    "open-source",
+    "zod",
+  ]
+---
+
+Back in September, Astro published the first beta for Astro 5.
+With this new version came a lot of new features including Server Islands and more.
+But the most interesting feature for me was the new [Content Layer API](https://astro.build/blog/content-layer-deep-dive/), which allows you to load content not only from local markdown files but also from any other source.
+
+As you might know from [one of my previous posts](/posts/building-a-modern-e-learning-website), I am using a database system called [PocketBase](https://pocketbase.io) to manage the content of different websites.
+While PocketBase was designed to be a general purpose Backend-as-a-Service (BaaS), its simple user interface makes it a great choice as a content management system (CMS).
+
+So I decided to build a custom loader for Astro content that allows me to load content from my PocketBase instance.
+The first prototype was built in a few hours and I was already able to load the content complete with type checking and everything.
+Over the next few days, I polished the loader, added some more features and finally published it as an npm package.
+
+In this post, I want to show you how the Astro loader works under the hood and how you can use it in your own projects.
+
+## What is content in Astro?
+
+If you don't know what content is in Astro, I highly recommend reading [this section](https://astro.build/blog/content-layer-deep-dive/#what-is-the-content-layer) of the announcement post for the Content Layer API.
+The tl;dr is that content in Astro is stored in a collection where e.g. each markdown file is a document.
+During the build process, Astro reads the content from these documents, parses the frontmatter (in a typesafe way) and transforms the markdown content into HTML.
+You then have access to the frontmatter e.g. displaying the publication date or tags on your website and rendering the HTML content for the actual page.
+This is exactly how this very blog post is loaded and rendered.
+
+The new API allows you to define your own loaders that fetch content from any source, put it into a collection and then Astro will do the rest.
+
+_If you don't care about the technical details and just want to use the loader, you can skip to the section [Using the loader in your project](#using-the-loader-in-your-project)._
+
+## Building the loader
+
+A loader in Astro consists of three parts:
+The `name` of the loader, in my case "pocketbase-loader".
+A `load` function that is called during the build process that stores the content in a collection.
+And an optional `schema` (or function that returns a schema) that defines the shape of the content.
+
+Let's go through these parts one by one, starting with
+
+### The schema
+
+This is a [zod](https://zod.dev/) schema that defines the types of your content.
+Astro uses this schema to generate TypeScript types for your content.
+This way you can access the content in a typesafe way in your components.
+
+_The following code snippets are simplified versions of the actual code to make it easier to understand.
+If you want to see the full code, check out the [GitHub repository](https://github.com/pawcoding/astro-loader-pocketbase)._
+
+#### Parsing the PocketBase schema[^1]
+
+[^1]:
+    At the time of writing, PocketBase is still in version 0.22 and a first release candidate for version 0.23 was just published.
+    The schema has changed a bit between these versions, so the code snippets are not 100% accurate anymore, though I decided to keep them as they are.
+    The general idea is still the same, but the new version brought some other changes that made the code more complex.
+
+Fortunately for us, Astro also allows us to define an async function that returns the schema.
+We can use this to [fetch the database schema directly from PocketBase](https://pocketbase.io/docs/api-collections/#view-collection) and generate the zod schema from it.
+
+This is how a schema returned by PocketBase looks:
+
+```json
+{
+  "name": "posts",
+  "type": "base",
+  "schema": [
+    {
+      "name": "title",
+      "type": "text",
+      "required": false,
+    },
+    {
+      "name": "type",
+      "type": "select",
+      "required": true,
+      "options": {
+        "maxSelect": 2,
+        "values": [ "website", "open-source", "app" ]
+      }
+    }
+    {
+      "name": "logo",
+      "type": "file",
+      "required": false,
+      "options": { "maxSelect": 1 }
+    }
+  ],
+}
+```
+
+<small class="text-right italic opacity-75">
+  This is a simplified version of the schema in PocketBase 0.22, containing only
+  the relevant parts.
+</small>
+
+If you want to see the schema of your own PocketBase instance, you can login, go to "Settings / Export collections" and view or download the JSON file that contains the schema.
+This can also be useful if you want to duplicate your setup to another PocketBase instance.
+
+After reading the schema from PocketBase, we can generate the zod schema like this:
+
+```typescript
+const fields: Record<string, z.ZodZype> = {};
+for (const field of collection.schema) {
+  let fieldType;
+
+  switch (field.type) {
+    case "bool":
+      fieldType = z.coerce.boolean();
+      break;
+    case "date":
+      fieldType = z.coerce.date();
+      break;
+    case "select":
+      const values = z.enum(field.options.values);
+      if (field.options.maxSelect === 1) {
+        fieldType = values;
+      } else {
+        fieldType = z.array(values);
+      }
+      break;
+    /* and so on */
+    default:
+      fieldType = z.string();
+      break;
+  }
+
+  if (!field.required) {
+    fieldType = z.optional(fieldType);
+  }
+
+  fields[field.name] = fieldType;
+}
+```
+
+Let's break this down:
+We first create an empty object `fields` that will hold the zod schema.
+Then we iterate over each field in the schema given by PocketBase.
+Depending on the type of the field, we create the corresponding zod type.
+
+To correctly handle dates and other "non string" types, we use the `z.coerce` helper function.
+This function will try to convert the values to the correct type.
+This is especially useful for dates, where PocketBase returns a string and which will automatically be converted to a `Date` object that we can use in our components.
+
+For select fields, we can use the `z.enum()` function to create a new enum for the possible values of our select field.
+This again makes sure that the logic in our components is typesafe and correct.
+If the select field allows multiple values, we also wrap the enum in an array.
+
+As a fallback, we use `z.string()` for all other types that don't need special handling.
+
+Finally, we check if the field is required or optional.
+It it's optional, we wrap the field in `z.optional()` to make sure that the field can be `undefined`.
+
+#### Adding the base schema
+
+Every PocketBase collection has a few fields that are always present.
+These fields include e.g. the `id` of the entry, the `created` date and the `updated` date[^2] (which will become very important later).
+We can add these fields to the parsed schema like this:
+
+[^2]:
+    With PocketBase version 0.23, `updated` and `created` can be left out of the schema.
+    For this post we will assume that these fields are always present like in older version.
+
+```typescript
+const schema = z.object({
+  ...fields,
+  id: z.string().length(15),
+  created: z.coerce.date(),
+  updated: z.coerce.date(),
+});
+```
+
+#### Transforming file fields
+
+One tricky part of the schema is the handling of file fields.
+When you upload a file to an entry in PocketBase, the entry will only contain the name of the file (or names if the field allows multiple files).
+So when you upload a file called "logo.png", the API will later return the value "logo_sBiw61IQov.png".
+To get the actual file URL, we need to transform this value and build out the full URL.
+Unfortunately, this full URL also contains the id of the entry, which is not part of the schema.
+
+So we need to be a bit creative here.
+Zod allows us to transform the values of a field using the `transform` function.
+This still isn't enough when only looking at the file field itself.
+But when we look at the schema for the whole entry, we can transform the whole entry and have access to all fields.
+
+So this is what we do:
+
+```typescript
+// Get all fields of type file
+const fileFields = collection.schema.filter((field) => field.type === "file");
+
+// Transform the whole entry
+schema.transform((entry) => {
+  for (const field of fileFields) {
+    // Check if the field contains only one file or multiple files
+    if (field.options.maxSelect === 1) {
+      // Transform the filename to the full URL
+      entry[field.name] =
+        `<base-url>/api/files/${entry.collectionName}/${entry.id}/${entry[field.name]}`;
+    } else {
+      // Transform all filenames to full URLs
+      entry[field.name] = entry[field.name].map(
+        (file) =>
+          `<base-url>/api/files/${entry.collectionName}/${entry.id}/${file}`,
+      );
+    }
+  }
+});
+```
+
+Even though we don't have any real values yet, we can use this transform function to **modify the values of the entries when they are loaded** later.
+This makes `transform` a very powerful function for our schema generator.
+
+Now that we have a function that generates the TypeScript types for our content, we can move on to
+
+### The load function
+
+The load function is called during the build process and is responsible for fetching the content from the source and putting it into a collection.
+For this, it receives a `LoaderContext` object that contains the collection name, the `DataStore`, a `MetaStore` and a lot of other useful stuff.
+
+Let's start with the general structure of the load function:
+
+```typescript
+async function load(context: LoaderContext): Promise<void> {
+  // Check when the collection was last updated
+  const lastUpdated = context.meta.get("last-modified");
+
+  // Clear out deleted entries
+  await cleanupEntries(context);
+
+  // Load all (updated) entries from PocketBase
+  await loadEntries(context, lastUpdated);
+
+  // Save the last update time
+  context.meta.set("last-modified", new Date().toISOString());
+}
+```
+
+As you can see, the main function is really simple.
+We first check when the collection was last updated.
+Then we call two helper functions to clean up deleted entries and load all (updated) entries from PocketBase.
+Finally, we save the current time as the last update time.
+
+#### Cleaning up deleted entries
+
+By default, Astro creates a cache of the content during the build process.
+So when you rebuild your site, Astro can restore the content from the cache if it hasn't changed since the last build.
+While this is great for performance, since we don't have to fetch all content every time, it can lead to problems when entries are deleted.
+
+The most simple solution is to just clear the whole cache every time we build the site.
+Obviously, this is not a great solution, since it defeats the purpose of the cache.
+So we need to find a way to only delete the entries that were deleted in PocketBase.
+
+To do this, we first fetch all ids of current entries in the collection from PocketBase.
+Then we loop over all the cached entries, check if the id is still present in the updated list and delete the entry if the id can't be found.
+
+```typescript
+async function cleanupEntries(context: LoaderContext): Promise<void> {
+  // Get all ids of the current entries
+  const request = await fetch(
+    `<base-url>/api/collections/<collection-name>/records?fields=id`,
+  );
+  const response = await request.json();
+
+  // Build a set of all ids
+  const ids = new Set(response.items.map((entry) => entry.id));
+
+  // Loop over all cached entries
+  for (const id of context.store.keys()) {
+    // Delete the entry if the id is not in the updated list
+    if (!ids.has(id)) {
+      context.store.delete(id);
+    }
+  }
+}
+```
+
+#### Loading (updated) entries
+
+Let's move on to the most important part of the loader: loading the entries from PocketBase.
+This is again a simple function.
+
+```typescript
+async function loadEntries(
+  context: Context,
+  lastUpdated: string | undefined,
+): Promise<void> {
+  let url = `<base-url>/api/collections/<collection-name>/records`;
+
+  // Add a filter to only load updated entries
+  if (lastUpdated) {
+    url += `?filter=(updated>"${lastUpdated}")`;
+  }
+
+  // Fetch the entries
+  const request = await fetch(url);
+  const response = await request.json();
+
+  // Add the entries to the collection
+  for (const entry of response.items) {
+    await parseEntry(entry, context);
+  }
+}
+```
+
+We first build the URL to fetch the entries.
+Depending on if we have a `lastUpdated` date, we add a filter to only load the entries that were updated after this date.
+We can rely on the `updated` field that is always present[^2] for PocketBase entries and is automatically updated when the entry is modified.
+
+Then we fetch the (updated) entries and loop over them, calling another custom helper function `parseEntry`.
+This function is responsible for parsing the entry and putting it into the collection.
+
+The parser has to do a few things with each entry:
+
+- Parse the entry using the zod schema (which was generated earlier).
+  This will transform the values of the entry to the correct types, including transforming file names to full URLs.
+- Generate a "digest" of the entry.
+  This is a 16 character hash of the entry that is used to check if the entry has changed since the last build.
+  Since we know that the `updated` field is always updated when the entry is changed, we can use this field to generate the hash.
+- Build the HTML content that Astro can use to render the page.
+
+```typescript
+async function parseEntry(
+  entry: PocketBaseEntry,
+  context: LoaderContext,
+): Promise<void> {
+  // Parse the entry using the zod schema
+  const data = await context.parseData([
+    id: entry.id,
+    data: entry,
+  ]);
+
+  // Generate a digest of the entry
+  const digest = context.generateDigest(entry.updated);
+
+  // Build the HTML content
+  const content = entry["<content-field>"];
+
+  // Put the entry into the collection
+  context.store.set({
+    id: entry.id,
+    data,
+    digest,
+    rendered: {
+      html: content,
+    },
+  });
+}
+```
+
+In this case, we only use one content field that contains the HTML content.
+In the real package, you can define an array of fields that will be concatenated to build the full content.
+
+```typescript
+const content = contentFields
+  .map((field) => entry[field])
+  .map((content) => `<section>${content}</section>`)
+  .join("");
+```
+
+But what are these "content fields"?
+
+In the context of this loader, a content field is a field in the PocketBase schema that should be used as the content of the entry.
+This content is then displayed when using the `render` function in your Astro components (more on that later).
+
+One great thing about PocketBase is that there is a special "editor" field type, that allows you to edit the content of the field using a rich text editor.
+In the background, this content is stored as HTML.
+So you can use this field as your "content field" in the loader and directly display the HTML content from PocketBase on your website.
+**This is why PocketBase is the perfect companion for content management in Astro!**
+
+### And that's it!
+
+With these three parts, we have built a custom loader for Astro that allows us to load content from PocketBase.
+Obviously, there are a lot of details that I left out, like error handling, logging, local schemas, authentication and so on.
+If you're interested in these details, I recommend checking out the [GitHub repository](https://github.com/pawcoding/astro-loader-pocketbase) for the full souce code.
+Of course, you can use this repository as a starting point for your own custom loader.
+Or you can contribute to the project and help me improve the loader.
+
+But before you do that, let's see how you can use the loader in your own projects.
+
+## Using the loader in your project
+
+To use the loader for your Astro website, you first need to install the package from npm:
+
+```bash
+npm install astro-loader-pocketbase
+```
+
+### Setting up the collection
+
+Then in your Astro content config file, you can add the loader like this:
+
+```typescript
+// src/content/config.ts
+import { pocketbaseLoader } from "astro-loader-pocketbase";
+import { defineCollection } from "astro:content";
+
+const posts = defineCollection({
+  loader: pocketbaseLoader({
+    url: "<your-pocketbase-url>",
+    collectionName: "<collection-in-pocketbase>",
+    content: "<field-in-collection>", // or an array of field names
+  }),
+});
+
+export const collections = { posts };
+```
+
+This is one of the most basic setups, already including a content field to render HTML content.
+While this is enough to get you started, you most likely want to enable the zod schema generation.
+
+To do this, you can pass a path to the `localSchema` options.
+This path should point to a file containing your PocketBase schema, which is then used to generate the types.
+
+Another option would be to pass admin credentials to the loader.
+This way the loader can directly fetch the schema from your live PocketBase instance and also access the content if the collection is not public.
+
+_Unfortunately, PocketBase doesn't support API keys (yet), so you have to use your admin credentials for now.
+Astro also has a new [API for typesafe environment variables](https://astro.build/blog/astro-5-beta/#stable-astroenv) in version 5, but I still have to figure out if this can be used to store the credentials more securely._
+
+### Using the content collection
+
+You can now use the content collection in your Astro components like any other collection.
+
+To generate a list of all posts e.g. on your homepage, you use the `getCollection` function from Astro:
+
+```astro
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+posts.sort((a, b) => b.data.updated.getTime() - a.data.updated.getTime());
+---
+
+<ul>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={"/posts/" + post.id}>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.updated.toDateString()}</p>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+```
+
+To generate a list of all URLs for your posts, you also use the `getCollection` function:
+
+```astro
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+---
+```
+
+And to get the content of a single post, you can either use the `getEntry` function or directly access the entry from the given props (recommended).
+You can then use the `render` function to render the configured content field into HTML.
+
+```astro
+---
+import { getEntry, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const entry = await getEntry("posts", "<id>");
+const { Content } = await render(entry);
+// or
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<article>
+  <h1>{post.data.title}</h1>
+  <Content />
+</article>
+```
+
+And that's it!
+
+You now have a fully functional content loader for Astro that allows you to load content from PocketBase.
+Complete with:
+
+- Typesafe content using zod schemas
+- Rendered HTML content
+- Incremental builds
+- Automatic file URL transformation
+- Access to private collections (with admin credentials)
+- Support for all types of PocketBase collection (including view collections)
+
+## Conclusion
+
+Building this custom loader for Astro was a lot of fun.
+It's amazing how easy it is to extend Astro this way and how powerful the new Content Layer API is.
+The package is still in an early stage and there are a lot of things that I want to improve.
+But it's already perfectly usable and I will publish a version 1.0 as soon as Astro 5 is out of beta.
+
+If you want to use the loader in your own projects, you can already install it from [npm](https://www.npmjs.com/package/astro-loader-pocketbase).
+_Keep in mind though that you also have to use the Astro 5 beta for now._
+
+If you notice any bugs or have feature requests, feel free to open an issue on [GitHub](https://github.com/pawcoding/astro-loader-pocketbase) or even create a pull request with your changes.
+I'm always happy to get feedback, am open to contributions and exited to see what you build with the loader.

@@ -23,6 +23,20 @@ export default defineConfig({
       ],
     ],
     remarkPlugins: [calculateReadingTime],
+    shikiConfig: {
+      themes: {
+        light: "github-light-default",
+        dark: "github-dark-dimmed",
+      },
+    },
+    remarkRehype: {
+      footnoteBackContent: "Back to the content",
+      footnoteLabel: "Footnotes",
+      footnoteLabelTagName: "h3",
+      footnoteLabelProperties: {
+        className: "",
+      },
+    },
   },
   integrations: [
     tailwind(),
@@ -32,6 +46,8 @@ export default defineConfig({
       host: "https://analytics.apps.pawcode.de/",
       siteId: 9,
       disableCookies: true,
+      heartBeatTimer: 15,
+      preconnect: true,
     }),
     sitemap({
       changefreq: "monthly",
