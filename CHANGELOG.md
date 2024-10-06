@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/pawcoding/astro-blog/compare/v1.6.4...v1.7.0) (2024-10-06)
+
+
+### Bug Fixes
+
+* **matomo:** enable heart beat timer and preconnect ([ded613d](https://github.com/pawcoding/astro-blog/commit/ded613dd59eac0090ef3532b7cb6085664ac2051))
+* **article:** update frontmatter config and correctly type Article component ([b5c57bb](https://github.com/pawcoding/astro-blog/commit/b5c57bbc2fa90066e9e235311b21904359bb0253))
+
+
+### Features
+
+* **posts:** configure style of footnotes ([2181a5f](https://github.com/pawcoding/astro-blog/commit/2181a5f17af3eeca2bf1414630df74eb0ff6e113))
+* **code:** update shiki config to support light and dark mode ([e39351a](https://github.com/pawcoding/astro-blog/commit/e39351a4c9298e964a80489d8bcf565ef5ab97d0))
+
 ## [1.6.4](https://github.com/pawcoding/astro-blog/compare/v1.6.3...v1.6.4) (2024-09-15)
 
 
