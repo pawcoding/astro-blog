@@ -29,6 +29,14 @@ export default defineConfig({
         dark: "github-dark-dimmed",
       },
     },
+    remarkRehype: {
+      footnoteBackContent: "Back to the content",
+      footnoteLabel: "Footnotes",
+      footnoteLabelTagName: "h3",
+      footnoteLabelProperties: {
+        className: "",
+      },
+    },
   },
   integrations: [
     tailwind(),
