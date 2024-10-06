@@ -1,26 +1,26 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import Article from "../components/Article.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-let posts: Array<{
-  data: any;
-  slug: string;
-  render: () => Promise<{ remarkPluginFrontmatter: { minutesRead: string } }>;
-  readingTime: string;
-}> = [];
+let posts: Array<
+  CollectionEntry<"posts"> & {
+    readingTime: string;
+  }
+> = [];
 try {
-  posts = (await getCollection("posts")) as any;
-  posts.sort((a, b) => {
-    return (
+  posts = await getCollection("posts");
+  posts.sort(
+    (a, b) =>
       new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-    );
-  });
+  );
+
   await Promise.all(
     posts.map(async (post) => {
       const { remarkPluginFrontmatter } = await post.render();
       post.readingTime = remarkPluginFrontmatter.minutesRead;
-    }),
+    })
   );
 } catch (error) {
   console.error("No posts found");
@@ -47,21 +47,7 @@ try {
     </p>
 
     <section class="flex flex-col gap-4">
-      {
-        posts.map((post) => (
-          <Article
-            icon={post.data.icon}
-            title={post.data.title}
-            description={post.data.description}
-            image={post.data.image}
-            pubDate={post.data.pubDate}
-            color={post.data.color}
-            url={`/posts/${post.slug}`}
-            readingTime={post.readingTime}
-            slug={post.slug}
-          />
-        ))
-      }
+      {posts.map((post) => <Article post={post} />)}
     </section>
   </div>
 </BaseLayout>

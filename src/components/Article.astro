@@ -1,17 +1,17 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 
-const {
-  icon,
-  title,
-  description,
-  image,
-  pubDate,
-  color,
-  url,
-  readingTime,
-  slug,
-} = Astro.props;
+interface Props {
+  post: CollectionEntry<"posts"> & {
+    readingTime: string;
+  };
+}
+
+const { post } = Astro.props;
+const { data, readingTime, slug } = post;
+const { title, description, image, pubDate, color } = data;
+const url = `/posts/${slug}`;
 ---
 
 <article
@@ -33,20 +33,9 @@ const {
           />
         )
       }
-
-      {
-        icon && (
-          <span class="absolute left-0 top-0 ml-4 mt-4 inline-flex items-center justify-center rounded bg-blue-600 p-2 text-white transition-all @sm:ml-6 @sm:mt-6 @3xl:p-4">
-            <img src={icon} class="transition-all @3xl:scale-150" />
-          </span>
-        )
-      }
     </section>
 
-    <section
-      class={"p-4 @sm:p-6 " +
-        (icon && !image ? "mt-14 @lg:mt-0 @lg:ml-16" : "")}
-    >
+    <section class="p-4 @sm:p-6">
       <h3
         class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
         transition:name={"title" + slug}
