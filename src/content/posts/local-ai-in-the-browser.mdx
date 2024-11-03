@@ -3,6 +3,7 @@ title: "Integrating local AI into Rainbow Palette"
 description: "Google announced a local Gemini Nano model inside Chrome that can be used by websites directly in the browser. I tried to integrate this experimental feature into Rainbow Palette to generate color palettes. Let's see how it works and how you can use it yourself!"
 image: "/images/local-ai-in-the-browser.webp"
 pubDate: 2024-07-07T18:30:00
+modDate: 2024-11-03T13:00:00
 tags: ["web development", "rainbow palette", "ai", "llm", "google chrome"]
 ---
 
@@ -140,9 +141,11 @@ To then activate the model inside your browser you need to activate both of the 
 - [`#prompt-api-for-gemini-nano`](chrome://flags/#prompt-api-for-gemini-nano) (Enabled)
 - [`#optimization-guide-on-device-model`](chrome://flags/#optimization-guide-on-device-model) (Enabled BypassPerfRequirement)
 
-After that you also need to go to [chrome://components](chrome://components/), search for `Optimization Guide On Device Model` and click on `Check for update`.
+~~After that you also need to go to [chrome://components](chrome://components/), search for `Optimization Guide On Device Model` and click on `Check for update`.
 Maybe you need to restart your browser in between for this to appear or maybe it doesn't appear at all (for me it didn't appear on my Linux machine, but only on my Windows laptop).
-But if you can see it, click on `Check for update` and wait for the model to be downloaded.
+But if you can see it, click on `Check for update` and wait for the model to be downloaded.~~
+
+**November update:** The component is not available anymore, but the model can be downloaded automatically now.
 
 Then you should be ready to go and can start using the model in your browser.
 
@@ -153,11 +156,11 @@ The prompt has to be sent to a session, so we first have to create one.
 This can be done via the `window.ai` object in the browser like this:
 
 ```javascript
-const session = await window.ai.createTextSession();
+const session = await window.ai.languageModel.create();
 ```
 
 This creates a new text session with some default options.
-You can also pass some options to the `createTextSession` function to customize the session, but we will not do this for now.
+You can also pass some options to the `create` function to customize the session, but we will not do this for now.
 
 But now that we have a session, we can start sending prompts to it:
 
@@ -193,7 +196,7 @@ It's not the fastest model and depending on your hardware and the prompt it may 
 But it's fun to play around with it.
 Since the model is running locally on your device, you can also use it offline!
 
-Until now, the only sort of documentation I found for this API is this [type declaration file](https://github.com/jeasonstudio/chrome-ai/blob/02defd3c2eb0e85c0770114b3e30ab29184cbe71/src/global.d.ts) used in the [`chrome-ai`](https://www.npmjs.com/package/chrome-ai) npm package.
+Until now, the only sort of documentation I found for this API is this [type declaration file](https://github.com/jeasonstudio/chrome-ai/blob/main/src/global.d.ts) used in the [`chrome-ai`](https://www.npmjs.com/package/chrome-ai) npm package.
 This package is a wrapper around the API to make it easier to use.
 This also allows you to easily intergrate the model with the [`ai`](https://www.npmjs.com/package/ai) package, which is a more general wrapper around different AI models.
 For now though I'll stick with the raw API.
@@ -225,17 +228,15 @@ async function createSession(): Promise<ChromeAISession> {
    * Some other checks
    */
 
-  const canCreateTextSession = await window.ai.canCreateTextSession();
-  if (canCreateTextSession === "readily") {
-    const options = await window.ai.defaultTextSessionOptions();
-    return await window.ai.createTextSession({
-      ...options,
+  const capabilities = await window.ai.languageModel.capabilities();
+  if (capabilities.available === "readily") {
+    return await window.ai.languageModel.create({
       temperature: 0.6,
     });
   }
 
   /*
-   * Check for generic session as a fallback or throw error
+   * Some fallback stuff
    */
 }
 ```
