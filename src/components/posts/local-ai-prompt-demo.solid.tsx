@@ -2,24 +2,30 @@ import { Show, createSignal, type JSX } from "solid-js";
 
 declare global {
   interface Window {
-    ai: {
-      createTextSession: () => Promise<ChromeAISession>;
+    ai?: {
+      languageModel?: ChromeLanguageModel;
+      assistant?: ChromeLanguageModel;
     };
   }
 }
 
-type ChromeAISession = {
+type ChromeLanguageModel = {
+  capabilities: () => Promise<{ available: 'no' | 'after-download' | 'readily' }>
+  create: () => Promise<ChromeAIAssistant>;
+}
+
+type ChromeAIAssistant = {
   promptStreaming: (prompt: string) => ReadableStream<string>;
 };
 
 export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
-  const isAvailable = !!window.ai;
+  const isAvailable = !!window.ai && (!!window.ai.languageModel || !!window.ai.assistant);
 
   const [prompt, setPrompt] = createSignal("");
   const [response, setResponse] = createSignal("");
   const [error, setError] = createSignal("");
   const [generating, setGenerating] = createSignal(false);
-  let session: ChromeAISession | undefined = undefined;
+  let session: ChromeAIAssistant | undefined = undefined;
 
   async function run() {
     if (generating()) return;
@@ -28,7 +34,25 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
 
     try {
       if (!session) {
-        session = await window.ai.createTextSession();
+        let model: ChromeLanguageModel;
+        if (window.ai?.languageModel) {
+          model = window.ai.languageModel;
+        } else if (window.ai?.assistant) {
+          model = window.ai.assistant;
+        } else {
+          throw new Error("no model detected");
+        }
+
+        const capabilities = await model.capabilities();
+        if (capabilities.available === "no") {
+          throw new Error("no model available");
+        } else if (capabilities.available === "after-download") {
+          if (!confirm("The model will be downloaded. This might take a while. Do you want to continue?")) {
+            throw new Error("download request was denied")
+          }
+        }
+
+        session = await model.create();
       }
 
       setResponse("");
@@ -38,7 +62,6 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
       const stream = session.promptStreaming(
         prompt() + "\n\nResponse in 3 to 5 sentences.",
       );
-      // @ts-ignore - This actually works so I don't know why it's complaining
       for await (const chunk of stream) {
         setResponse(chunk);
       }
