@@ -1,0 +1,168 @@
+---
+title: "Yearly review: Looking back at 2024"
+description: "It's time to look back at the year 2024 and see how my websites performed this time. I hope you enjoy these insights and have a great year 2025!"
+image: "/images/yearly-review-2023.webp"
+pubDate: 2025-01-06T19:00:00
+tags: ["yearly-review"]
+---
+
+import blogDeviceType from "../../assets/images/yearly-review-2024/blog_device_type.svg";
+import blogLanguage from "../../assets/images/yearly-review-2024/blog_language.svg";
+import blogPostViews from "../../assets/images/yearly-review-2024/blog_post_views.svg";
+import blogUptime from "../../assets/images/yearly-review-2024/blog_uptime.svg";
+import blogVisitsPerMonth from "../../assets/images/yearly-review-2024/blog_visits_per_month.svg";
+import portfolioDeviceType from "../../assets/images/yearly-review-2024/portfolio_device_type.svg";
+import portfolioLanguage from "../../assets/images/yearly-review-2024/portfolio_language.svg";
+import portfolioProjectViews from "../../assets/images/yearly-review-2024/portfolio_project_views.svg";
+import portfolioTheme from "../../assets/images/yearly-review-2024/portfolio_theme.svg";
+import portfolioUptime from "../../assets/images/yearly-review-2024/portfolio_uptime.svg";
+import portfolioVisitsPerMonth from "../../assets/images/yearly-review-2024/portfolio_visits_per_month.svg";
+import Figure from "../../components/Figure.astro";
+
+Like last year, I want to share some insights on how the year 2024 went for my websites.
+If you are interested in how the data collection works or you want to compare the numbers to last year, you can read [last year's review](/posts/yearly-review-2023).
+
+But without further ado, let's look at the numbers:
+
+## My portfolio: _pawcode.de_
+
+[pawcode.de](https://pawcode.de/?mtm_campaign=Blog&mtm_source=pawcode&mtm_placement=year2024Review) is my personal portfolio where I showcase my projects.
+Even though I did not get the urge to rewrite it again (yet), I am still working on it from time to time.
+My main focus was to keep all dependencies up to date and try to improve the performance of the website.
+The next upcoming update will upgrade the project to Angular 19, introducing [incremental hydration](https://angular.dev/guide/incremental-hydration).
+This results in even less JavaScript being sent to the client, since parts of the website do not get hydrated at all!
+
+### Visits, views and other general stats
+
+The website had **520 visitors** in the last year with a total of **717 page views**.
+The average number of visits per month is hovering around **45 - 50**.
+I am happy with these numbers, but I would like to see them grow again in the future.
+Here is a graph of these visits per month:
+
+<Figure
+  src={portfolioVisitsPerMonth}
+  label="Visits per month on my portfolio"
+  loading="eager"
+/>
+
+_Unfortunately there was a bug in my tracking code between mit July and August, so the numbers are missing._
+
+Another interesting thing to know is how many views each project has.
+This year my focus was on my open source projects, spending less time building websites for clients.
+This is also reflected in the views of my projects on my portfolio, grouped by their category.
+Switching percentages, **Open Source (73.8%)** is the most viewed category, followed by **Websites (23.0%)** and **Legacy Android Apps (3.3%)**.
+Even my most recent project, [astro-integration-pocketbase](https://pawcode.de/projekte/moj0ytekbodk08h/?mtm_campaign=Blog&mtm_source=pawcode&mtm_placement=year2024Review), which also marks my first npm package, already has some views.
+
+Here are the top 5 projects (by their views):
+
+<Figure src={portfolioProjectViews} label="Top 10 projects on my portfolio" />
+
+_I kept the colors grouped by category similar to how they are on my website._
+
+One last statistic before we move on to the users: the uptime of my website (and other services).
+In an ideal world, programs would never crash and servers would never go down with a 100% uptime.
+But unfortunately, we live in the real world and things break or need to be updated.
+And so here is a graph of the uptime of my websites:
+
+<Figure src={portfolioUptime} label="Uptime of my portfolio (since October)" />
+
+Last year my goal was to have an uptime of at least 99.95% (which is 21.92 minutes of downtime per month).
+As you can see, I mostly achieved this goal with nearly all the services.
+
+### Users and their preferences
+
+Now that we looked at what people do on my website, let's take a shallow look at who these people are and what they prefer.
+_I am not tracking any personal data, just some general information (e.g. browser used, preferred language)._
+In other words, just stuff that is already sent to the server with every request anyways.
+I also do not use this data for marketing or advertising.
+Instead I use it to get a better understanding of how people use my websites and what I could do to improve their experience.
+
+To not go into too much detail with 100 different screen sizes, here is a graph of the different device types instead:
+
+<Figure src={portfolioDeviceType} label="Device type of visitors" />
+
+This year, even more people are using a desktop (or laptop) to visit my website.
+But again, the website is optimized for desktop viewing.
+
+One surprising thing is again the preferred theme of my visitors.
+My portfolio still only has a light theme, but apparently this is in line with the preferences of my visitors.
+Even more people are using a light theme in their browser / on their device.
+
+<Figure src={portfolioTheme} label="Preferred browser theme of visitors" />
+
+The last thing I want to talk about (for my portfolio) is the preferred language of my visitors.
+I am a native German speaker, living in Germany with mostly German customers, so I decided to also create my portfolio in German.
+Let's see how that worked out this year:
+
+<Figure src={portfolioLanguage} label="Preferred language of visitors" />
+
+The number of German visitors increased by almost 100% and is now at **31.2%**.
+Still the majority of my visitors would prefer to read my website in English, so I definitely need to do something about that this year.
+
+One thing that is already written in English is:
+
+## My blog: _blog.pawcode.de_
+
+At the end of 2023, I started this blog to share some of my experiments and background information on my projects.
+Over the last year, I added a few more articles, trying out [integrating local AI into Rainbow Palette](/posts/local-ai-in-the-browser) or [building my first npm package](/posts/building-an-astro-loader).
+Let's see how these new posts performed:
+
+### Visits and views
+
+Over the last year, I had **191 visitors** with a total of **208 page views**.
+The average number of visits per month was slightly short of 16, but overall I'm really happy with these numbers.
+Here is a graph of these visits per month:
+
+<Figure src={blogVisitsPerMonth} label="Visits per month on my blog" />
+
+Mimicking the format of my portfolio, I also tracked the views of each of my posts.
+This year I got more than only the one post of 2023, so the chart is a bit more interesting.
+
+<Figure src={blogPostViews} label="Top 6 posts on my blog" />
+
+_The colors are randomly assigned and do not have any meaning this time._
+
+The first and oldest post is still the most viewed one.
+But I'm happy to see that the effort I put into the article about [local AI in Rainbow Pallette](/posts/local-ai-in-the-browser), creating interactive examples and demos, paid off.
+This was my favorite post to write this year and I'm already looking forward to create more interactive posts like this one.
+
+And to finish the general stats, here is the uptime of my blog:
+
+<Figure src={blogUptime} label="Uptime of my blog" />
+
+Not much to say here, since I don't host the blog myself.
+
+Where it gets more interesting though is:
+
+### Users and their preferences
+
+<Figure src={blogDeviceType} label="Device type of visitors" />
+
+Starting with device type (again), you can see that the split was around **90/10 between desktop and mobile**.
+Still surprising but a better ratio than last year.
+
+One thing that I'd like to do is to include some kind of tracking pixel.
+This would allow me to also see how many people are using some kind of RSS reader without executing any JavaScript.
+
+The last thing I want to talk about is the preferred language of my readers here.
+When I started building this blog, I decided to write all posts in English rather then German like on my portfolio.
+Since the content is more technical and English is the language of developers, I thought it would be better to write in English to reach a wider audience.
+
+<Figure src={blogLanguage} label="Preferred language of visitors" />
+
+Again this was a good decision since **46.6% of my visitors prefer English**, while the rest hopefully can read English as well.
+
+## What's next?
+
+I am still very happy with the results of the last two years and I will continue to collect data on my websites in the future.
+I'll continue my plan to write this yearly review and I hope you enjoyed reading it.
+
+For the near future, I want to enable incremental hydration on my portfolio with Angular 19.
+This can hopefully improve the performance of the website and make it a bit faster.
+Besides that, I'll probably look into internationalization to als make my portfolio available in English.
+
+This blog will also get some updates, waiting for its upgrade to Astro 5.0 and a few new (interactive) posts.
+
+Hope you enjoyed these insights and have a great year 2025 🚀!
+
+_Want to see the insights of the year 2023? [Read the review of 2023](/posts/yearly-review-2023)._
