@@ -10,16 +10,19 @@ declare global {
 }
 
 type ChromeLanguageModel = {
-  capabilities: () => Promise<{ available: 'no' | 'after-download' | 'readily' }>
+  capabilities: () => Promise<{
+    available: "no" | "after-download" | "readily";
+  }>;
   create: () => Promise<ChromeAIAssistant>;
-}
+};
 
 type ChromeAIAssistant = {
   promptStreaming: (prompt: string) => ReadableStream<string>;
 };
 
 export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
-  const isAvailable = !!window.ai && (!!window.ai.languageModel || !!window.ai.assistant);
+  const isAvailable =
+    !!window.ai && (!!window.ai.languageModel || !!window.ai.assistant);
 
   const [prompt, setPrompt] = createSignal("");
   const [response, setResponse] = createSignal("");
@@ -47,8 +50,12 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
         if (capabilities.available === "no") {
           throw new Error("no model available");
         } else if (capabilities.available === "after-download") {
-          if (!confirm("The model will be downloaded. This might take a while. Do you want to continue?")) {
-            throw new Error("download request was denied")
+          if (
+            !confirm(
+              "The model will be downloaded. This might take a while. Do you want to continue?",
+            )
+          ) {
+            throw new Error("download request was denied");
           }
         }
 

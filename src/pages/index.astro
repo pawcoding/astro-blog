@@ -13,14 +13,14 @@ try {
   posts = await getCollection("posts");
   posts.sort(
     (a, b) =>
-      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   );
 
   await Promise.all(
     posts.map(async (post) => {
       const { remarkPluginFrontmatter } = await post.render();
       post.readingTime = remarkPluginFrontmatter.minutesRead;
-    })
+    }),
   );
 } catch (error) {
   console.error("No posts found");
@@ -30,7 +30,6 @@ try {
 <BaseLayout
   title="Blog"
   description="Here you can find all my articles. I write about interesting stuff I came across while working on projects or just for fun as well as small tutorials and guides. I hope you enjoy reading them as much as I enjoyed writing and researching them."
-  image="/images/introduction-to-htmx.webp"
 >
   <div class="mx-auto max-w-3xl p-4">
     <h2

@@ -4,17 +4,19 @@ import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-const { title, description, pubTime, modTime, author, tags, post, slug } =
-  Astro.props as {
-    title: string;
-    description: string;
-    pubTime?: string;
-    modTime?: string;
-    author?: string;
-    tags?: string[];
-    post?: boolean;
-    slug?: string;
-  };
+interface Props {
+  title: string;
+  description: string;
+  pubDate?: Date;
+  modDate?: Date;
+  author?: string;
+  tags?: string[];
+  post?: boolean;
+  slug?: string;
+}
+
+const { title, description, pubDate, modDate, author, tags, post, slug } =
+  Astro.props;
 ---
 
 <html lang="en">
@@ -43,8 +45,8 @@ const { title, description, pubTime, modTime, author, tags, post, slug } =
         },
         article: post
           ? {
-              publishedTime: pubTime,
-              modifiedTime: modTime,
+              publishedTime: pubDate?.toISOString(),
+              modifiedTime: modDate?.toISOString(),
               authors: author ? [author] : undefined,
               tags: tags,
             }
