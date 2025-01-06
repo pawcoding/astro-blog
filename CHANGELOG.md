@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/pawcoding/astro-blog/compare/v1.7.0...v1.8.0) (2025-01-06)
+
+
+### Bug Fixes
+
+* **home:** make entire article clickable ([e0d08da](https://github.com/pawcoding/astro-blog/commit/e0d08da7bfa134dd9756fda13cee024ab50a9444))
+
+
+### Features
+
+* **matomo:** add tracking pixel when JS is disabled ([5b0496a](https://github.com/pawcoding/astro-blog/commit/5b0496a7f8508ebe6c15f41a762effc6a12812e9))
+
 # [1.7.0](https://github.com/pawcoding/astro-blog/compare/v1.6.4...v1.7.0) (2024-10-06)
 
 
