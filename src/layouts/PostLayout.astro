@@ -1,7 +1,19 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  frontmatter: CollectionEntry<"posts">["data"];
+  slug: string;
+  readingTime: string;
+}
+
 const { frontmatter, slug, readingTime } = Astro.props;
+
+const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&send_image=0&action_name=${encodeURIComponent(
+  frontmatter.title,
+)}`;
 ---
 
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
@@ -84,7 +96,7 @@ const { frontmatter, slug, readingTime } = Astro.props;
           frontmatter.modDate && (
             <time datetime={formatDateMachine(frontmatter.modDate)}>
               {" "}
-              (Updated: <span>{formatDate(frontmatter.updatedDate)}</span>)
+              (Updated: <span>{formatDate(frontmatter.modDate)}</span>)
             </time>
           )
         }
@@ -98,4 +110,8 @@ const { frontmatter, slug, readingTime } = Astro.props;
       </section>
     </section>
   </div>
+
+  <noscript>
+    <img class="opacity-0 w-0 h-0" src={pixelUrl} />
+  </noscript>
 </BaseLayout>

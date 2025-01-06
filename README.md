@@ -21,9 +21,9 @@ To see the blog in action, visit [blog.pawcode.de](https://blog.pawcode.de/?mtm_
 ### Latest blog posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Yearly review: Looking back at 2024](https://blog.pawcode.de/posts/yearly-review-2024/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 - [Building an Astro Loader](https://blog.pawcode.de/posts/building-an-astro-loader/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 - [Integrating local AI into Rainbow Palette](https://blog.pawcode.de/posts/local-ai-in-the-browser/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
-- [Automatic deployment with webhooks](https://blog.pawcode.de/posts/automatic-deployment-with-webhooks/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 <!-- BLOG-POST-LIST:END -->
 
 ---
