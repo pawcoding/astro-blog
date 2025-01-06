@@ -18,65 +18,66 @@ const url = `/posts/${slug}`;
   id={slug}
   class="p-0 relative block overflow-hidden rounded-lg border border-neutral-300 shadow-sm transition @container hover:shadow-lg dark:shadow-none dark:bg-neutral-800 dark:border-neutral-800"
 >
-  <span
-    class="absolute inset-x-0 bottom-0 h-2 dark:invert dark:hue-rotate-180"
-    style={`background-color: ${color}`}></span>
+  <a href={url} class="group">
+    <span
+      class="absolute inset-x-0 bottom-0 h-2 dark:invert dark:hue-rotate-180"
+      style={`background-color: ${color}`}></span>
 
-  <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
-    <section class="relative block">
-      {
-        image && (
-          <img
-            src={image}
-            alt={title}
-            class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-left-top"
-          />
-        )
-      }
-    </section>
+    <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
+      <section class="relative block">
+        {
+          image && (
+            <img
+              src={image}
+              alt={title}
+              class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-left-top"
+            />
+          )
+        }
+      </section>
 
-    <section class="p-4 @sm:p-6">
-      <h3
-        class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
-        transition:name={"title" + slug}
-      >
-        {title}
-      </h3>
-
-      <div
-        class="mt-2 line-clamp-6 text-sm/relaxed text-neutral-500 dark:text-neutral-300"
-      >
-        {description}
-      </div>
-
-      <div class="mt-4 flex items-baseline justify-between text-sm">
-        <a
-          href={url}
-          class="group inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400"
+      <section class="p-4 @sm:p-6">
+        <h3
+          class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
+          transition:name={"title" + slug}
         >
-          Read more
+          {title}
+        </h3>
 
+        <div
+          class="mt-2 line-clamp-6 text-sm/relaxed text-neutral-500 dark:text-neutral-300"
+        >
+          {description}
+        </div>
+
+        <div class="mt-4 flex items-baseline justify-between text-sm">
           <span
-            aria-hidden="true"
-            class="block transition-all group-hover:ms-0.5 ease-spring"
+            class="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400"
           >
-            &rarr;
-          </span>
-        </a>
+            Read more
 
-        <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
-          <span transition:name={"reading" + slug}>
-            {readingTime}
+            <span
+              aria-hidden="true"
+              class="block transition-all group-hover:ms-0.5 ease-spring"
+            >
+              &rarr;
+            </span>
           </span>
-          •
-          <time
-            datetime={formatDateMachine(pubDate)}
-            transition:name={"date" + slug}
-          >
-            {pubDate && formatDate(pubDate)}
-          </time>
-        </span>
-      </div>
-    </section>
-  </div>
+
+          <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
+            <span transition:name={"reading" + slug}>
+              {readingTime}
+            </span>
+            •
+            <time
+              datetime={formatDateMachine(pubDate)}
+              transition:name={"date" + slug}
+            >
+              {pubDate && formatDate(pubDate)}
+            </time>
+          </span>
+        </div>
+      </section>
+    </div>
+  </a>
 </article>
