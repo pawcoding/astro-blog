@@ -1,7 +1,7 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import matomo from "astro-matomo";
 import astroMetaTags from "astro-meta-tags";
@@ -39,7 +39,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    tailwind(),
     mdx(),
     matomo({
       enabled: import.meta.env.PROD,
@@ -59,4 +58,7 @@ export default defineConfig({
     robotsTxt(),
     solidJs(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

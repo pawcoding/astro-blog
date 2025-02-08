@@ -34,7 +34,7 @@ export default function ColorWheelDemo() {
   }
 
   return (
-    <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md dark:bg-black">
+    <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-xs dark:shadow-none rounded-md dark:bg-black">
       <div class="wheel">
         <label class="font-semibold text-lg" for="wheel">
           Degree on color wheel: {Math.round(wheel())}°

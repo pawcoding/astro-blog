@@ -244,7 +244,7 @@ To sum it up, here is the complete tech stack of the website:
 <Figure
   src={architecture}
   label="All software components running on the server"
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 - **Nginx** as a reverse proxy, cache and file server
@@ -274,7 +274,7 @@ After everything is done, the HTML gets sent to the user's browser where the web
 <Figure
   src={flowVisitMiss}
   label="Traffic flow when the requested page is not in the cache"
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 When the initial load is done, the browser gets to work.
@@ -304,7 +304,7 @@ Pretty neat, right?
   src={flowVisitHit}
   label="Traffic flow when the requested page is in the cache"
   width={50}
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 Nearly the same happens when an author visits the development instance of the website.
@@ -316,7 +316,7 @@ This way, the authors can see the changes they make immediately and don't have t
   src={flowVisitDev}
   label="Traffic flow when an author visits the development instance"
   width={85}
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 I also use this instance for testing new features in a production environment with SSL encryption and real data.
@@ -341,7 +341,7 @@ PocketBase then resolves the file path and sends the file back to the user.
   src={flowDownload}
   label="Traffic flow when a user downloads a pdf worksheet"
   width={50}
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 Now that I think about it, API requests are also handled this way.
@@ -355,7 +355,7 @@ The client / browser requests the file from the server, Nginx looks up the file 
   src={flowMediaStream}
   label="Traffic flow when a user watches a video or listens to a podcast"
   width={50}
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 To not download the whole file at once, the video player only requests metadata for the video first.
@@ -372,7 +372,7 @@ And as you can see in the flow chart, it actually involves a lot of different se
 <Figure
   src={flowMediaUpload}
   label="Traffic flow when an author uploads a new video or podcast"
-  tailwind="!shadow-none"
+  tailwind="shadow-none!"
 />
 
 First the author visits the file upload dashboard and selects the material they want to upload the file for.
