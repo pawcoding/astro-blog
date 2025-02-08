@@ -9,7 +9,7 @@
     "update-blog-list": "node ./scripts/update-blog-list.js",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write ./src --plugin=prettier-plugin-astro",
+    "prettier": "prettier --write ./src --cache",
     "semantic-release": "semantic-release",
     "upgrade": "pnpm dlx @astrojs/upgrade && pnpm up -i"
   },
@@ -33,7 +33,6 @@
     "astro-seo": "^0.8.4",
     "hast": "^1.0.0",
     "mdast-util-to-string": "^4.0.0",
-    "prettier-plugin-organize-imports": "^4.1.0",
     "reading-time": "^1.5.0",
     "satori": "^0.12.1",
     "sharp": "^0.33.5",
@@ -43,13 +42,10 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^7.0.3",
-    "@semantic-release/git": "^10.0.1",
     "@types/hast": "^3.0.4",
     "astro-meta-tags": "^0.3.1",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
-    "semantic-release": "^24.2.1"
+    "prettier-plugin-organize-imports": "^4.1.0"
   }
 }
