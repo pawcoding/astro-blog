@@ -9,13 +9,13 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { data, readingTime, slug } = post;
+const { data, readingTime, id } = post;
 const { title, description, image, pubDate, color } = data;
-const url = `/posts/${slug}`;
+const url = `/posts/${id}`;
 ---
 
 <article
-  id={slug}
+  id={id}
   class="p-0 relative block overflow-hidden rounded-lg border border-neutral-300 shadow-xs transition @container hover:shadow-lg dark:shadow-none dark:bg-neutral-800 dark:border-neutral-800"
 >
   <a href={url} class="group">
@@ -39,7 +39,7 @@ const url = `/posts/${slug}`;
       <section class="p-4 @sm:p-6">
         <h3
           class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
-          transition:name={"title" + slug}
+          transition:name={"title" + id}
         >
           {title}
         </h3>
@@ -65,13 +65,13 @@ const url = `/posts/${slug}`;
           </span>
 
           <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
-            <span transition:name={"reading" + slug}>
+            <span transition:name={"reading" + id}>
               {readingTime}
             </span>
             •
             <time
               datetime={formatDateMachine(pubDate)}
-              transition:name={"date" + slug}
+              transition:name={"date" + id}
             >
               {pubDate && formatDate(pubDate)}
             </time>

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-let latestArticle: { data: any; slug: string } | undefined;
+let latestArticle: { data: any; id: string } | undefined;
 try {
   const articles = await getCollection("posts");
   articles.sort((a, b) => {
@@ -13,7 +13,7 @@ try {
 } catch (e) {
   console.error("No posts found");
 }
-const url = `${Astro.site?.origin}/${latestArticle?.slug ? `posts/${latestArticle.slug}` : ""}`;
+const url = `${Astro.site?.origin}/${latestArticle?.id ? `posts/${latestArticle.id}` : ""}`;
 ---
 
 <head>
