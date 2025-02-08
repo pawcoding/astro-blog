@@ -12,7 +12,7 @@ interface Props {
 const { frontmatter, slug, readingTime } = Astro.props;
 
 const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&send_image=0&action_name=${encodeURIComponent(
-  frontmatter.title
+  frontmatter.title,
 )}`;
 ---
 

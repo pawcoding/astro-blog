@@ -1,6 +1,6 @@
 ---
 import { SEO } from "astro-seo";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
@@ -22,6 +22,8 @@ const { title, description, pubDate, modDate, author, tags, post, slug } =
 
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+
     <!-- SEO -->
     <link
       rel="alternate"
@@ -116,7 +118,7 @@ const { title, description, pubDate, modDate, author, tags, post, slug } =
     <link rel="shortcut icon" href="/brand/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="/brand/favicon.ico" />
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
 
   <body

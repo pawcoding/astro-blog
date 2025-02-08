@@ -26,6 +26,9 @@ importers:
       '@astrojs/solid-js':
         specifier: ^5.0.4
         version: 5.0.4(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.1)(solid-js@1.9.4)(yaml@2.5.1)
+      '@astrojs/ts-plugin':
+        specifier: ^1.10.4
+        version: 1.10.4
       '@iconify-json/heroicons':
         specifier: ^1.2.2
         version: 1.2.2
@@ -198,6 +201,9 @@ packages:
   '@astrojs/telemetry@3.2.0':
     resolution: {integrity: sha512-wxhSKRfKugLwLlr4OFfcqovk+LIFtKwLyGPqMsv+9/ibqqnW3Gv7tBhtKEb0gAyUAC4G9BTVQeQahqnQAhd6IQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
+
+  '@astrojs/ts-plugin@1.10.4':
+    resolution: {integrity: sha512-rapryQINgv5VLZF884R/wmgX3mM9eH1PC/I3kkPV9rP6lEWrRN1YClF3bGcDHFrf8EtTLc0Wqxne1Uetpevozg==}
 
   '@astrojs/yaml2ts@0.2.1':
     resolution: {integrity: sha512-CBaNwDQJz20E5WxzQh4thLVfhB3JEEGz72wRA+oJp6fQR37QLAqXZJU0mHC+yqMOQ6oj0GfRPJrz6hjf+zm6zA==}
@@ -4238,6 +4244,16 @@ snapshots:
       which-pm-runs: 1.1.0
     transitivePeerDependencies:
       - supports-color
+
+  '@astrojs/ts-plugin@1.10.4':
+    dependencies:
+      '@astrojs/compiler': 2.10.3
+      '@astrojs/yaml2ts': 0.2.2
+      '@jridgewell/sourcemap-codec': 1.5.0
+      '@volar/language-core': 2.4.11
+      '@volar/typescript': 2.4.11
+      semver: 7.7.1
+      vscode-languageserver-textdocument: 1.0.11
 
   '@astrojs/yaml2ts@0.2.1':
     dependencies:
