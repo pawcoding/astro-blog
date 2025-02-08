@@ -15,8 +15,8 @@ export async function GET(context: { site: string }): Promise<Response> {
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
-      description: `${post.data.description} You can read the full article on https://blog.pawcode.de/posts/${post.slug}/`,
-      link: `/posts/${post.slug}`,
+      description: `${post.data.description} You can read the full article on https://blog.pawcode.de/posts/${post.id}/`,
+      link: `/posts/${post.id}`,
       pubDate: post.data.pubDate,
       author: "pawcode",
     })),

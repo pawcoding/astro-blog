@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Article from "../components/Article.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
@@ -18,7 +18,7 @@ try {
 
   await Promise.all(
     posts.map(async (post) => {
-      const { remarkPluginFrontmatter } = await post.render();
+      const { remarkPluginFrontmatter } = await render(post);
       post.readingTime = remarkPluginFrontmatter.minutesRead;
     }),
   );

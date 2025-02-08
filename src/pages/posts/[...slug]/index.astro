@@ -1,22 +1,27 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import PostLayout from "../../../layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
+  posts.sort((a, b) => {
+    return (
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+    );
+  });
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await post.render();
+const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
 <PostLayout
   frontmatter={post.data}
-  slug={post.slug}
+  slug={post.id}
   readingTime={remarkPluginFrontmatter.minutesRead}
 >
   <Content />

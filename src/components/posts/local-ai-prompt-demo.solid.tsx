@@ -83,7 +83,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
   }
 
   return (
-    <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md dark:bg-black">
+    <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-xs dark:shadow-none rounded-md dark:bg-black">
       <Show
         when={isAvailable}
         fallback={
@@ -108,7 +108,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
             disabled={generating()}
             value={prompt()}
             onInput={(e) => setPrompt(e.currentTarget.value)}
-            class="grow bg-neutral-100 rounded px-3 py-1 dark:bg-neutral-600"
+            class="grow bg-neutral-100 rounded-sm px-3 py-1 dark:bg-neutral-600"
             placeholder="Enter your prompt here..."
             onKeyDown={(e) => {
               e.key === "Enter" && run();
@@ -117,7 +117,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
           <button
             disabled={generating()}
             onClick={() => run()}
-            class="bg-neutral-200 rounded px-3 py-1 dark:bg-neutral-700"
+            class="bg-neutral-200 rounded-sm px-3 py-1 dark:bg-neutral-700"
           >
             Run
           </button>

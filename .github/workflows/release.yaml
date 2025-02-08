@@ -28,33 +28,18 @@ jobs:
         with:
           persist-credentials: false
 
+      # Install pnpm
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       # Setup Node
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-
-      # Install pnpm
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-          run_install: false
-
-      # Get pnpm store directory
-      - name: 📦 Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      # Setup pnpm cache
-      - name: 📦 Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: "pnpm"
 
       # Install dependencies
       - name: 📦 Install dependencies
@@ -63,6 +48,12 @@ jobs:
 
       # Create semantic release
       - name: 🚀 Create semantic release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24
+          extra_plugins: |
+            - "@semantic-release/changelog"
+            - "@semantic-release/git"
+            - "@semantic-release/exec"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: pnpm run semantic-release

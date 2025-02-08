@@ -96,7 +96,7 @@ But have you noticed that the yellow-greens seem to be much lighter than the blu
 This is because the perceived brightness of colors is not the same as the technical luminosity of the color.
 
 <figure>
-  <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md dark:bg-black">
+  <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-xs dark:shadow-none rounded-md dark:bg-black">
     <span class="font-semibold text-lg">Same luminosity (L: 50%)</span>
     <div class="grid grid-cols-4 h-20 w-full gap-4 text-center text-black">
       <span class="flex items-center justify-center" style="background-color: hsl(0 75 50); color: white">Red (L:&nbsp;50%)</span>
@@ -179,7 +179,7 @@ Feel free to play around with it yourself in the console of your browser or try 
   <LocalAiPromptDemo client:only="solid-js">
     <Image
       alt="Screenshot of demo to prompt the local AI model in the browser"
-      class="!m-0 !border-none !shadow-none"
+      class="m-0! border-none! shadow-none!"
       decoding="async"
       loading="lazy"
       src={promptDemoFallback}
