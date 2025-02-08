@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/pawcoding/astro-blog/compare/v1.8.0...v2.0.0) (2025-02-08)
+
+
+### Build System
+
+* **deps:** update dependencies ([463ba9e](https://github.com/pawcoding/astro-blog/commit/463ba9ed12c98ec8f6be32ebea23a61ea4b39644))
+
+
+### BREAKING CHANGES
+
+* **deps:** This upgrades the whole project to Astro v5
+
 # [1.8.0](https://github.com/pawcoding/astro-blog/compare/v1.7.0...v1.8.0) (2025-01-06)
 
 
