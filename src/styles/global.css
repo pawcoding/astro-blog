@@ -21,7 +21,11 @@
   }
 
   .prose *:not(pre) code {
-    @apply before:content-none after:content-none rounded-md px-1 py-0.5 bg-neutral-300 dark:bg-neutral-700;
+    @apply before:content-none! after:content-none! rounded-md px-1 py-0.5 bg-neutral-300 dark:bg-neutral-700;
+  }
+
+  .prose kbd:has(kbd) {
+    @apply shadow-none! p-0!;
   }
 
   .prose a[target="_blank"]::after {
