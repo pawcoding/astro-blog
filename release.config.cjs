@@ -28,6 +28,7 @@ const config = {
         releaseRules: [
           { type: "docs", scope: "README", release: "patch" },
           { type: "refactor", release: "patch" },
+          { type: "build", scope: "deps", release: "patch" },
           { type: "style", release: "patch" },
         ],
         parserOpts: {

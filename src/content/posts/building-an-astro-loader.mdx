@@ -32,7 +32,7 @@ In this post, I want to show you how the Astro loader works under the hood and h
 
 If you don't know what content is in Astro, I highly recommend reading [this section](https://astro.build/blog/content-layer-deep-dive/#what-is-the-content-layer) of the announcement post for the Content Layer API.
 The tl;dr is that content in Astro is stored in a collection where e.g. each markdown file is a document.
-During the build process, Astro reads the content from these documents, parses the frontmatter (in a typesafe way) and transforms the markdown content into HTML.
+During the build process, Astro reads the content from these documents, parses the frontmatter (in a type-safe way) and transforms the markdown content into HTML.
 You then have access to the frontmatter e.g. displaying the publication date or tags on your website and rendering the HTML content for the actual page.
 This is exactly how this very blog post is loaded and rendered.
 
@@ -53,7 +53,7 @@ Let's go through these parts one by one, starting with
 
 This is a [zod](https://zod.dev/) schema that defines the types of your content.
 Astro uses this schema to generate TypeScript types for your content.
-This way you can access the content in a typesafe way in your components.
+This way you can access the content in a type-safe way in your components.
 
 _The following code snippets are simplified versions of the actual code to make it easier to understand.
 If you want to see the full code, check out the [GitHub repository](https://github.com/pawcoding/astro-loader-pocketbase)._
@@ -110,7 +110,7 @@ This can also be useful if you want to duplicate your setup to another PocketBas
 After reading the schema from PocketBase, we can generate the zod schema like this:
 
 ```typescript
-const fields: Record<string, z.ZodZype> = {};
+const fields: Record<string, z.ZodType> = {};
 for (const field of collection.schema) {
   let fieldType;
 
@@ -153,7 +153,7 @@ This function will try to convert the values to the correct type.
 This is especially useful for dates, where PocketBase returns a string and which will automatically be converted to a `Date` object that we can use in our components.
 
 For select fields, we can use the `z.enum()` function to create a new enum for the possible values of our select field.
-This again makes sure that the logic in our components is typesafe and correct.
+This again makes sure that the logic in our components is type-safe and correct.
 If the select field allows multiple values, we also wrap the enum in an array.
 
 As a fallback, we use `z.string()` for all other types that don't need special handling.
@@ -382,7 +382,7 @@ So you can use this field as your "content field" in the loader and directly dis
 
 With these three parts, we have built a custom loader for Astro that allows us to load content from PocketBase.
 Obviously, there are a lot of details that I left out, like error handling, logging, local schemas, authentication and so on.
-If you're interested in these details, I recommend checking out the [GitHub repository](https://github.com/pawcoding/astro-loader-pocketbase) for the full souce code.
+If you're interested in these details, I recommend checking out the [GitHub repository](https://github.com/pawcoding/astro-loader-pocketbase) for the full source code.
 Of course, you can use this repository as a starting point for your own custom loader.
 Or you can contribute to the project and help me improve the loader.
 
@@ -426,7 +426,7 @@ Another option would be to pass admin credentials to the loader.
 This way the loader can directly fetch the schema from your live PocketBase instance and also access the content if the collection is not public.
 
 _Unfortunately, PocketBase doesn't support API keys (yet), so you have to use your admin credentials for now.
-Astro also has a new [API for typesafe environment variables](https://astro.build/blog/astro-5-beta/#stable-astroenv) in version 5, but I still have to figure out if this can be used to store the credentials more securely._
+Astro also has a new [API for type-safe environment variables](https://astro.build/blog/astro-5-beta/#stable-astroenv) in version 5, but I still have to figure out if this can be used to store the credentials more securely._
 
 ### Using the content collection
 
@@ -502,7 +502,7 @@ And that's it!
 You now have a fully functional content loader for Astro that allows you to load content from PocketBase.
 Complete with:
 
-- Typesafe content using zod schemas
+- Type-safe content using zod schemas
 - Rendered HTML content
 - Incremental builds
 - Automatic file URL transformation
