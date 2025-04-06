@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/pawcoding/astro-blog/compare/v2.0.0...v2.0.1) (2025-04-06)
+
+
+### Bug Fixes
+
+* **style:** fix minor styling issues ([6495234](https://github.com/pawcoding/astro-blog/commit/649523423cefd3d8bb9cc1b622521a85fa0703f6))
+
 # [2.0.0](https://github.com/pawcoding/astro-blog/compare/v1.8.0...v2.0.0) (2025-02-08)
 
 
