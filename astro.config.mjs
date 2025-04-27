@@ -6,9 +6,13 @@ import icon from "astro-icon";
 import matomo from "astro-matomo";
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
-import { defineConfig } from "astro/config";
+import { webVitalsIntegration } from "astro-web-vitals-pocketbase";
+import { defineConfig, envField } from "astro/config";
+import { loadEnv } from "vite";
 import { externalLink } from "./src/utils/external-link";
 import { calculateReadingTime } from "./src/utils/reading-time";
+
+const env = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,12 +42,21 @@ export default defineConfig({
       },
     },
   },
+  env: {
+    schema: {
+      PB_URL: envField.string({ context: "client", access: "public" }),
+      PB_EMAIL: envField.string({ context: "server", access: "secret" }),
+      PB_PASSWORD: envField.string({ context: "server", access: "secret" }),
+      MATOMO_URL: envField.string({ context: "client", access: "public" }),
+      MATOMO_SITE_ID: envField.number({ context: "client", access: "public" }),
+    },
+  },
   integrations: [
     mdx(),
     matomo({
       enabled: import.meta.env.PROD,
-      host: "https://analytics.apps.pawcode.de/",
-      siteId: 9,
+      host: env.MATOMO_URL,
+      siteId: parseInt(env.MATOMO_SITE_ID),
       disableCookies: true,
       heartBeatTimer: 15,
       preconnect: true,
@@ -57,6 +70,13 @@ export default defineConfig({
     astroMetaTags(),
     robotsTxt(),
     solidJs(),
+    webVitalsIntegration({
+      url: env.PB_URL,
+      superuserCredentials: {
+        email: env.PB_EMAIL,
+        password: env.PB_PASSWORD,
+      },
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
