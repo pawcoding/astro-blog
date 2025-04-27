@@ -60,8 +60,8 @@ importers:
         specifier: ^0.8.4
         version: 0.8.4(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(typescript@5.8.3)
       astro-web-vitals-pocketbase:
-        specifier: 0.0.0
-        version: 0.0.0(astro@5.6.1(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(web-vitals@4.2.4)
+        specifier: 0.0.0-dev.0
+        version: 0.0.0-dev.0(astro@5.6.1(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(web-vitals@4.2.4)
       hast:
         specifier: ^1.0.0
         version: 1.0.0
@@ -1159,8 +1159,8 @@ packages:
   astro-seo@0.8.4:
     resolution: {integrity: sha512-Ou1vzQSXAxa0K8rtNtXNvSpYqOGEgMhh0immMxJeXmbVZac3UKCNWAoXWyOQDFYsZvBugCRSg0N1phBqPMVgCw==}
 
-  astro-web-vitals-pocketbase@0.0.0:
-    resolution: {integrity: sha512-0p7dVuluthyh/OROSrVsD0cb3Uk4Y4Iz5Z0BCOe1WznHzf9SVUUgEHsTthJ4UBfPhFgiSmjCAk5B939zcZq0bQ==}
+  astro-web-vitals-pocketbase@0.0.0-dev.0:
+    resolution: {integrity: sha512-xUdgHHlesYHcfjxSZNKfYZuc6l7iMMAirrbKNAbOsxiFNrSluGiyhjGl8nNl+BB74MPTAm2EY8aAom4WGkFNVw==}
     peerDependencies:
       astro: ^5.0.0
       web-vitals: ^4.0.0
@@ -4232,7 +4232,7 @@ snapshots:
       - prettier-plugin-astro
       - typescript
 
-  astro-web-vitals-pocketbase@0.0.0(astro@5.6.1(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(web-vitals@4.2.4):
+  astro-web-vitals-pocketbase@0.0.0-dev.0(astro@5.6.1(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1))(web-vitals@4.2.4):
     dependencies:
       astro: 5.6.1(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.0)(typescript@5.8.3)(yaml@2.5.1)
       web-vitals: 4.2.4
