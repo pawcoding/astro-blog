@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/pawcoding/astro-blog/compare/v2.0.1...v2.1.0) (2025-05-04)
+
+
+### Features
+
+* add `astro-web-vitals-pocketbase` integration ([a1edc75](https://github.com/pawcoding/astro-blog/commit/a1edc7589d9e6d78f24806907c90e82d6de5b5dc))
+
 ## [2.0.1](https://github.com/pawcoding/astro-blog/compare/v2.0.0...v2.0.1) (2025-04-06)
 
 
