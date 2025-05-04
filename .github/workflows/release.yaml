@@ -55,3 +55,8 @@ jobs:
             - "@semantic-release/exec"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          PB_URL: ${{ vars.PB_URL }}
+          PB_EMAIL: ${{ secrets.PB_EMAIL }}
+          PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
+          MATOMO_URL: ${{ vars.MATOMO_URL }}
+          MATOMO_SITE_ID: ${{ vars.MATOMO_SITE_ID }}
