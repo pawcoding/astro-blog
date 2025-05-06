@@ -24,7 +24,6 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     >
       <h1
         class="pb-4 pt-8 text-3xl font-bold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-4xl dark:text-neutral-200"
-        transition:name={"title" + slug}
       >
         {frontmatter.title}
       </h1>
@@ -33,10 +32,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
         {frontmatter.tags?.map((tag) => <Tag label={tag} size="medium" />)}
       </div>
 
-      <p
-        class="text-sm text-right text-neutral-500 dark:text-neutral-300"
-        transition:name={"reading" + slug}
-      >
+      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
         {readingTime}
       </p>
     </section>
@@ -45,10 +41,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       <slot />
 
       <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
-        <time
-          datetime={formatDateMachine(frontmatter.pubDate)}
-          transition:name={"date" + slug}
-        >
+        <time datetime={formatDateMachine(frontmatter.pubDate)}>
           {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
         </time>
 
