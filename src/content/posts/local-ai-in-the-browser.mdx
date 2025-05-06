@@ -20,7 +20,7 @@ Back at this years Google I/O, it was announced that Google will include a [loca
 This can then be used by websites directly in the browser.
 Completely local and offline, without any network requests being made.
 Users also don't have to wait for the model to be downloaded, since it's already living on their device.
-Even though I was a bit sceptical at first (like with all products calling "Hey, we have AI now!"), I was very impressed by the first demos.
+Even though I was a bit skeptical at first (like with all products calling "Hey, we have AI now!"), I was very impressed by the first demos.
 The results themselves were not that impressive, but the ease of use and integration into websites seemed pretty good.
 
 So I wanted to try it out myself and experiment with it.
@@ -47,7 +47,7 @@ The code was completely rewritten, building a solid foundation for more features
 If all of this sounds interesting to you, you can [try it out here](https://rainbow-palette.app/) and come back later.
 
 Traditionally I've used some basic algorithms (which grew more complex over time) for the generation.
-These algorithms can be categoritzed into two parts:
+These algorithms can be categorized into two parts:
 
 1. **Palette generation**: Starting with one color, the program generates a whole palette of fitting colors.
    A user can pick between different schemes like complementary, triadic, rainbow, etc. and the program uses color theory to generate the additional colors.
@@ -198,7 +198,7 @@ Since the model is running locally on your device, you can also use it offline!
 
 Until now, the only sort of documentation I found for this API is this [type declaration file](https://github.com/jeasonstudio/chrome-ai/blob/main/src/global.d.ts) used in the [`chrome-ai`](https://www.npmjs.com/package/chrome-ai) npm package.
 This package is a wrapper around the API to make it easier to use.
-This also allows you to easily intergrate the model with the [`ai`](https://www.npmjs.com/package/ai) package, which is a more general wrapper around different AI models.
+This also allows you to easily integrate the model with the [`ai`](https://www.npmjs.com/package/ai) package, which is a more general wrapper around different AI models.
 For now though I'll stick with the raw API.
 
 ## Generating color palettes with generative AI
@@ -386,7 +386,7 @@ Why three tries?
 Because as I mentioned in the previous section, the model can sometimes take too long to respond or throw some errors.
 So I give it multiple tries to actually generate a palette.
 
-I then create a random scheme name to prime the AI and nodge it into the right direction.
+I then create a random scheme name to prime the AI and nudge it into the right direction.
 This scheme is then included in the prompt, which gets sent to the model through the `prompt` function we defined before.
 
 My prompt currently looks like this:
@@ -447,7 +447,7 @@ Otherwise if something went wrong, I retry the prompt and hope for the best.
 
 ## Conclusion
 
-As you can see, integrating a local AI model into your website is very easy whith this new experimental API.
+As you can see, integrating a local AI model into your website is very easy with this new experimental API.
 Building a ChatGPT like interface just for prompting some questions like a conversation can be done in a couple of minutes.
 For this you can also use the `promptStreaming` function to stream in the answer token by token to make it feel more responsive for longer sentences and texts (like in the interactive demo above).
 
