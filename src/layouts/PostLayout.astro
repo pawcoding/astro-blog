@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
 
@@ -27,6 +28,10 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       >
         {frontmatter.title}
       </h1>
+
+      <div class="flex flex-wrap items-center gap-1 pb-4">
+        {frontmatter.tags?.map((tag) => <Tag label={tag} size="medium" />)}
+      </div>
 
       <p
         class="text-sm text-right text-neutral-500 dark:text-neutral-300"

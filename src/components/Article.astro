@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDate, formatDateMachine } from "../utils/format-date";
+import Tag from "./Tag.astro";
 
 interface Props {
   post: CollectionEntry<"posts"> & {
@@ -48,6 +49,10 @@ const url = `/posts/${id}`;
           class="mt-2 line-clamp-6 text-sm/relaxed text-neutral-500 dark:text-neutral-300"
         >
           {description}
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1 mt-4">
+          {data.tags?.map((tag) => <Tag label={tag} />)}
         </div>
 
         <div class="mt-4 flex items-baseline justify-between text-sm">
