@@ -54,7 +54,9 @@ const url = `/posts/${id}`;
           {data.tags?.map((tag) => <Tag label={tag} />)}
         </div>
 
-        <div class="mt-4 flex items-baseline justify-between text-sm">
+        <div
+          class="@container mt-4 flex items-baseline justify-between text-sm"
+        >
           <span
             class="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400"
           >
@@ -68,11 +70,11 @@ const url = `/posts/${id}`;
             </span>
           </span>
 
-          <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
-            <span>
+          <span class="text-neutral-500 dark:text-neutral-300">
+            <span class="hidden @xs:inline">
               {readingTime}
+              •
             </span>
-            •
             <time datetime={formatDateMachine(pubDate)}>
               {pubDate && formatDate(pubDate)}
             </time>
