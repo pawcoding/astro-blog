@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDate, formatDateMachine } from "../utils/format-date";
+import Tag from "./Tag.astro";
 
 interface Props {
   post: CollectionEntry<"posts"> & {
@@ -39,7 +40,6 @@ const url = `/posts/${id}`;
       <section class="p-4 @sm:p-6">
         <h3
           class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
-          transition:name={"title" + id}
         >
           {title}
         </h3>
@@ -50,7 +50,13 @@ const url = `/posts/${id}`;
           {description}
         </div>
 
-        <div class="mt-4 flex items-baseline justify-between text-sm">
+        <div class="flex flex-wrap items-center gap-1 mt-4">
+          {data.tags?.map((tag) => <Tag label={tag} />)}
+        </div>
+
+        <div
+          class="@container mt-4 flex items-baseline justify-between text-sm"
+        >
           <span
             class="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400"
           >
@@ -64,15 +70,12 @@ const url = `/posts/${id}`;
             </span>
           </span>
 
-          <span class="hidden text-neutral-500 @xs:block dark:text-neutral-300">
-            <span transition:name={"reading" + id}>
+          <span class="text-neutral-500 dark:text-neutral-300">
+            <span class="hidden @xs:inline">
               {readingTime}
+              •
             </span>
-            •
-            <time
-              datetime={formatDateMachine(pubDate)}
-              transition:name={"date" + id}
-            >
+            <time datetime={formatDateMachine(pubDate)}>
               {pubDate && formatDate(pubDate)}
             </time>
           </span>

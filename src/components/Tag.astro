@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  label: string;
+  size?: "small" | "medium";
+}
+
+let { label, size } = Astro.props;
+const text = label.replace(/\s/g, "-").toLowerCase();
+---
+
+<span
+  class=`px-2 py-0.5 gap-1 overflow-clip font-mono rounded-full select-none inline-flex items-center border-neutral-300 dark:border-neutral-800 justify-center text-neutral-800 bg-neutral-200 dark:text-neutral-300 dark:bg-neutral-700 ${size === "medium" ? "border" : ""}`
+  title={text}
+>
+  <Icon
+    aria-hidden="true"
+    name="heroicons:hashtag"
+    size={size === "medium" ? "1rem" : "0.75rem"}
+  />
+
+  <p
+    class=`whitespace-nowrap text-sm ${size === "medium" ? "font-bold" : "font-semibold"}`
+  >
+    {text}
+  </p>
+</span>

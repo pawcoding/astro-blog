@@ -6,7 +6,11 @@ import Navigation from "./Navigation.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header aria-label="Header" class="bg-neutral-100 dark:bg-neutral-900">
+<header
+  aria-label="Header"
+  class="bg-neutral-100 dark:bg-neutral-900"
+  transition:persist="header"
+>
   <div
     class="mx-auto max-w-screen-xl border-b border-neutral-200 px-4 sm:px-6 lg:px-8 dark:border-neutral-800"
   >

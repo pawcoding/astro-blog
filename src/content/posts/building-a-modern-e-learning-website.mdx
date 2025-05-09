@@ -12,11 +12,9 @@ tags:
     "pocketbase",
     "ssr",
     "hydration",
-    "micro-service",
     "nginx",
     "pm2",
     "content management",
-    "content delivery",
   ]
 ---
 
@@ -101,7 +99,7 @@ Since I am very familiar with [Angular](https://angular.dev/) from my day job an
 Angular is a great framework for building large scale applications and it has a lot of features that make it easy to build a maintainable and scalable application.
 With all this I was able to build the frontend of the website in just a few weeks.
 
-Having such a content heavy website, I wanted to squeeze every bit of search enging optimization (SEO) out of it.
+Having such a content heavy website, I wanted to squeeze every bit of search engine optimization (SEO) out of it.
 Angular is (or at least was) not the best framework for SEO, because it renders the website on the client side / in the browser.
 Being a single page application (SPA) at its core, search engines have a harder time to index the website, because they can't see the content directly when they crawl the website (even though major search engines are getting better at this).
 This is why I decided to add Angular Universal (this was still in the Angular 16 days) to the project.
@@ -148,7 +146,7 @@ Since the website is the same for every user, I can cache all the responses for 
 This way, the load on the server-side rendering is reduced and the website loads significantly faster on recurring requests.
 Invalidating the cache is not a big problem, since the content of the website doesn't change that often.
 On the other hand, requests going directly to the API are not cached to always be up to date.
-Our API respondes really fast, so there is no need to cache it.
+Our API responds really fast, so there is no need to cache it.
 Nginx also does one more thing but more on that later.
 
 Next up is the database.
@@ -185,7 +183,7 @@ In addition to that, the browser first loads only the metadata of the video, to 
 One could argue that using a CDN would be a better solution for this, but since the website is only used in Germany and the server is located here as well, the latency is not a big problem.
 Since we have enough storage for the files and the server is not under heavy load, we saved a lot of money by not using a CDN.
 Using YouTube for this streaming infrastructure would be nice as well (since it's free, fast and provides multiple bitrates).
-But some interviewies were not comfortable with their content being on YouTube, and so we created this custom solution.
+But some interviewees were not comfortable with their content being on YouTube, and so we created this custom solution.
 
 <Figure src={fileUpload} label="File upload dashboard for the authors" />
 
@@ -385,7 +383,7 @@ This makes the file instantly available on the website and the author doesn't ha
 
 Great, now we have the new file on the server, the database has a reference to it and visitors can watch or listen to it.
 But uploading a bunch of files for the same material can fill up the limited storage on the server really fast.
-To prevent this, the dashbard also tries to delete the old file after a new one was uploaded and linked.
+To prevent this, the dashboard also tries to delete the old file after a new one was uploaded and linked.
 We have the original file name saved temporarily and thus can make a request again to "forum-files".
 The service then simply deletes the old file and frees up storage.
 
@@ -394,7 +392,7 @@ The service then simply deletes the old file and frees up storage.
 That's basically how the website works behind the scenes.
 
 Building the "Forum für Antike und Gesellschaft" was a great experience for me.
-I learned a lot about architecting a website for a specific use case and how to optimize it for the requirements of the project.
+I learned a lot about designing a website for a specific use case and how to optimize it for the requirements of the project.
 Even though I had to learn a lot of new things, configuring Nginx took a while for example, I am really happy with the resulting project.
 I even wrote my Bachelor thesis about the project, building a custom load generator to test the servers performance under heavy load.
 But this is a topic for another article.

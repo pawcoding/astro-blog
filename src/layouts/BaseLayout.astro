@@ -118,7 +118,7 @@ const { title, description, pubDate, modDate, author, tags, post, slug } =
     <link rel="shortcut icon" href="/brand/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="/brand/favicon.ico" />
 
-    <ClientRouter />
+    <ClientRouter fallback="none" />
   </head>
 
   <body
@@ -127,7 +127,7 @@ const { title, description, pubDate, modDate, author, tags, post, slug } =
     <div class="flex min-h-screen flex-col justify-between">
       <Header />
 
-      <main>
+      <main transition:animate="slide">
         <slot />
       </main>
 

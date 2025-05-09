@@ -329,7 +329,7 @@ When this anchor tag is clicked, it will send a request to the /list endpoint, w
 This process is consistent with what we've seen before.
 
 However, there's a new attribute to consider here: the hx-indicator.
-Retrieving the list of links might take some time (in this case the server repondes after 2 seconds), so it's crucial to provide feedback to the user and show that their click is being processed.
+Retrieving the list of links might take some time (in this case the server responds after 2 seconds), so it's crucial to provide feedback to the user and show that their click is being processed.
 With the hx-indicator tag, we can specify which element should be displayed as a loading indicator while the request is being handled.
 This enhances the user experience by providing visual feedback during potentially longer loading times.
 
@@ -403,7 +403,7 @@ Here is the complete architecture:
 
 - We can send a GET request to first load the basic page with the HTMX script tag and the stylesheet.
 - We then load the creation form with an automatic GET request to the new endpoint.
-- When sending the form data with a POST request to the new endpoint, the server respondes with the details about the created link.
+- When sending the form data with a POST request to the new endpoint, the server responds with the details about the created link.
 - The person who opens the link will be redirected to the page that the first user specified.
 - To get the list of all created links with their usage data, we can send a GET request to the list endpoint.
 - And lastly, if we click the delete button and confirm the action, the browser sends a DELETE request, the server deletes the link and responds with an empty body to hide the table row.

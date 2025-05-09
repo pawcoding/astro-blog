@@ -117,7 +117,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
           <button
             disabled={generating()}
             onClick={() => run()}
-            class="bg-neutral-200 rounded-sm px-3 py-1 dark:bg-neutral-700"
+            class="bg-neutral-200 cursor-pointer rounded-sm px-3 py-1 dark:bg-neutral-700"
           >
             Run
           </button>
