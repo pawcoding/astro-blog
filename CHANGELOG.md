@@ -1,3 +1,19 @@
+# [2.2.0](https://github.com/pawcoding/astro-blog/compare/v2.1.0...v2.2.0) (2025-05-11)
+
+
+### Bug Fixes
+
+* **article:** hide reading time when not enouch screen space ([184e564](https://github.com/pawcoding/astro-blog/commit/184e564dd48db241ec63daf1902a8aa6a5ca71d9))
+* show pointer for every button ([07a9e00](https://github.com/pawcoding/astro-blog/commit/07a9e003051b5ccdae713218e9b7f81352d6f2b9))
+* **header:** update scripts to run with view transitions ([19dd10a](https://github.com/pawcoding/astro-blog/commit/19dd10a1ee60699b86d5063c7e8aa4ed4d8c9663))
+
+
+### Features
+
+* enable view transitions ([994247b](https://github.com/pawcoding/astro-blog/commit/994247b5533c768334d6d72eac5f9463533ad28e))
+* **articles:** show associated tags ([641b6f4](https://github.com/pawcoding/astro-blog/commit/641b6f40fd47eafd45c7e53e6b9ba8abbb2a3156))
+* **tailwind:** use data-theme instead of class ([7f2db22](https://github.com/pawcoding/astro-blog/commit/7f2db2289467c83e5238e69d510054592124aeb2))
+
 # [2.1.0](https://github.com/pawcoding/astro-blog/compare/v2.0.1...v2.1.0) (2025-05-04)
 
 
