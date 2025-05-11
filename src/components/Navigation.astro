@@ -5,12 +5,12 @@ import { Icon } from "astro-icon/components";
 <button
   type="button"
   id="nav-button"
-  title="Navigation öffnen"
+  title="Open navigation"
   aria-controls="navigation"
-  class="inline-flex items-center justify-center focus:outline-hidden md:hidden"
+  class="inline-flex items-center cursor-pointer justify-center focus:outline-hidden md:hidden"
   aria-expanded="false"
 >
-  <span class="sr-only">Navigation öffnen</span>
+  <span class="sr-only">Open navigation</span>
   <Icon name="heroicons:bars-3-bottom-right" size={28} />
 </button>
 
@@ -78,52 +78,48 @@ import { Icon } from "astro-icon/components";
   </ul>
 </nav>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    function openNav() {
-      const navButton = document.getElementById("nav-button");
-      navButton?.setAttribute("aria-expanded", "true");
-      navButton?.setAttribute("title", "Navigation schließen");
+<script is:inline>
+  function openNav() {
+    const navButton = document.getElementById("nav-button");
+    navButton?.setAttribute("aria-expanded", "true");
+    navButton?.setAttribute("title", "Close navigation");
 
-      const navButtonText = navButton?.querySelector("span");
-      if (navButtonText) {
-        navButtonText.innerHTML = "Navigation schließen";
-      }
-
-      const navigation = document.getElementById("navigation");
-      navigation?.classList.add("max-md:max-h-24", "max-md:pt-4");
-      navigation?.classList.remove("max-md:max-h-0");
+    const navButtonText = navButton?.querySelector("span");
+    if (navButtonText) {
+      navButtonText.innerHTML = "Close navigation";
     }
 
-    function closeNav() {
-      const navButton = document.getElementById("nav-button");
-      navButton?.setAttribute("aria-expanded", "false");
-      navButton?.setAttribute("title", "Navigation öffnen");
+    const navigation = document.getElementById("navigation");
+    navigation?.classList.add("max-md:max-h-24", "max-md:pt-4");
+    navigation?.classList.remove("max-md:max-h-0");
+  }
 
-      const navButtonText = navButton?.querySelector("span");
-      if (navButtonText) {
-        navButtonText.innerHTML = "Navigation öffnen";
-      }
+  function closeNav() {
+    const navButton = document.getElementById("nav-button");
+    navButton?.setAttribute("aria-expanded", "false");
+    navButton?.setAttribute("title", "Open navigation");
 
-      const navigation = document.getElementById("navigation");
-      navigation?.classList.add("max-md:max-h-0");
-      navigation?.classList.remove("max-md:max-h-24", "max-md:pt-4");
+    const navButtonText = navButton?.querySelector("span");
+    if (navButtonText) {
+      navButtonText.innerHTML = "Open navigation";
     }
 
-    document
-      .getElementById("nav-button")
-      ?.addEventListener("click", function () {
-        if (this.getAttribute("aria-expanded") === "true") {
-          closeNav();
-        } else {
-          openNav();
-        }
-      });
+    const navigation = document.getElementById("navigation");
+    navigation?.classList.add("max-md:max-h-0");
+    navigation?.classList.remove("max-md:max-h-24", "max-md:pt-4");
+  }
 
-    document.querySelectorAll("nav li").forEach((li) => {
-      li.addEventListener("click", () => {
-        closeNav();
-      });
+  document.getElementById("nav-button")?.addEventListener("click", function () {
+    if (this.getAttribute("aria-expanded") === "true") {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  document.querySelectorAll("nav li").forEach((li) => {
+    li.addEventListener("click", () => {
+      closeNav();
     });
   });
 </script>
