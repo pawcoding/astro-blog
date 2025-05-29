@@ -16,6 +16,10 @@
 }
 
 @layer base {
+  .prose {
+    @apply text-pretty;
+  }
+
   .prose img {
     @apply border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md;
   }
