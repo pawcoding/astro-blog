@@ -13,6 +13,16 @@
   --min-height-screen: 100svh;
 
   --ease-spring: cubic-bezier(0.4, 1.75, 0.6, 1);
+
+  --font-sans:
+    "Source Sans 3 Variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif:
+    "Source Serif 4 Variable", ui-serif, Georgia, Cambria, "Times New Roman",
+    Times, serif;
+  --font-mono:
+    "Source Code Pro Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @layer base {
@@ -25,7 +35,7 @@
   }
 
   .prose *:not(pre) code {
-    @apply before:content-none! after:content-none! rounded-md px-1 py-0.5 bg-neutral-300 dark:bg-neutral-700;
+    @apply before:content-none! after:content-none! rounded-md px-1 py-0.5 bg-neutral-200 dark:bg-neutral-700;
   }
 
   .prose kbd:has(kbd) {
@@ -68,7 +78,7 @@
   }
 
   html[data-font="serif"] #content {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     @apply font-serif;
   }
 }
