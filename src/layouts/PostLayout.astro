@@ -38,7 +38,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     </section>
 
     <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
-      <slot />
+      <div id="content">
+        <slot />
+      </div>
 
       <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
         <time datetime={formatDateMachine(frontmatter.pubDate)}>

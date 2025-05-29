@@ -62,4 +62,9 @@
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
+
+  html[data-font="serif"] #content {
+    font-size: 1.2rem;
+    @apply font-serif;
+  }
 }

@@ -17,6 +17,17 @@ import { Icon } from "astro-icon/components";
   />
 </button>
 
+<button
+  type="button"
+  id="fontToggle"
+  title="Toggle font"
+  class="inline-flex items-center justify-center cursor-pointer focus:outline-hidden md:text-neutral-600 md:hover:text-neutral-600/75 dark:text-neutral-300 dark:hover:text-neutral-300/75"
+>
+  <span class="sr-only">Toggle font</span>
+
+  <Icon name="heroicons:bold" class="w-7 h-7 md:w-6 md:h-6" />
+</button>
+
 <script is:inline>
   function getTheme() {
     const localStorageTheme = localStorage.getItem("theme");
@@ -30,6 +41,14 @@ import { Icon } from "astro-icon/components";
     return "light";
   }
 
+  function getFont() {
+    const localStorageFont = localStorage.getItem("font");
+    if (typeof localStorage !== "undefined" && localStorageFont !== null) {
+      return localStorageFont;
+    }
+    return "sans";
+  }
+
   function setTheme(document, toggle = false) {
     let theme = getTheme();
     if (toggle) {
@@ -40,13 +59,28 @@ import { Icon } from "astro-icon/components";
     window.localStorage.setItem("theme", theme);
   }
 
+  function setFont(document, toggle = false) {
+    let font = getFont();
+    if (toggle) {
+      font = font === "sans" ? "serif" : "sans";
+    }
+
+    document.documentElement.dataset.font = font;
+    window.localStorage.setItem("font", font);
+  }
+
   setTheme(document);
+  setFont(document);
 
   document.addEventListener("astro:before-swap", (event) => {
     setTheme(event.newDocument);
+    setFont(event.newDocument);
   });
 
   document.getElementById("themeToggle")?.addEventListener("click", () => {
     setTheme(document, true);
+  });
+  document.getElementById("fontToggle")?.addEventListener("click", () => {
+    setFont(document, true);
   });
 </script>
