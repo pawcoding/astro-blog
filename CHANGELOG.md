@@ -1,3 +1,18 @@
+# [2.3.0](https://github.com/pawcoding/astro-blog/compare/v2.2.0...v2.3.0) (2025-05-31)
+
+
+### Bug Fixes
+
+* **styles:** apply dark mode for code blocks ([1218d08](https://github.com/pawcoding/astro-blog/commit/1218d08e2e4f099a4e987c7085dbd1fdac078894))
+* **header:** make header sticky ([ff23a62](https://github.com/pawcoding/astro-blog/commit/ff23a626bbcd75309809d8beca79da9cb4eced13))
+
+
+### Features
+
+* **font:** add option to read posts in serif font ([ad03ef3](https://github.com/pawcoding/astro-blog/commit/ad03ef3d82dd8bc2c56a02f6a52510f98f5aa71e))
+* **post:** make paragraphs "pretty" ([75788a4](https://github.com/pawcoding/astro-blog/commit/75788a46ca639a6eb1779b4157b2c371785a2f8b))
+* **font:** use nicer fonts ([0c5beec](https://github.com/pawcoding/astro-blog/commit/0c5beec4ff940a43c695f718979b07b1c663e931))
+
 # [2.2.0](https://github.com/pawcoding/astro-blog/compare/v2.1.0...v2.2.0) (2025-05-11)
 
 
