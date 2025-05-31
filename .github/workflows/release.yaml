@@ -6,12 +6,11 @@ on:
       - master
       - staging
 
+env:
+  HUSKY: 0
+
 permissions:
   contents: read
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
-  cancel-in-progress: true
 
 jobs:
   release:
@@ -21,6 +20,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+
     steps:
       # Checkout repository
       - name: 📥 Checkout code
@@ -36,13 +36,21 @@ jobs:
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
+          node-version-file: .nvmrc
           cache: "pnpm"
 
       # Install dependencies
       - name: 📦 Install dependencies
         run: |
           pnpm install --frozen-lockfile --prefer-frozen-lockfile
+
+      # Restore cache
+      - name: 📦 Restore cache
+        uses: actions/cache@v4
+        with:
+          key: astro-cache
+          path: |
+            .astro
 
       # Create semantic release
       - name: 🚀 Create semantic release

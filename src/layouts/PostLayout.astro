@@ -1,4 +1,5 @@
 ---
+import "@fontsource-variable/source-serif-4";
 import type { CollectionEntry } from "astro:content";
 import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
@@ -37,8 +38,12 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       </p>
     </section>
 
-    <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
-      <slot />
+    <section
+      class="prose prose-neutral prose-code:text-sm prose-lg mt-4 max-w-screen-md dark:prose-invert"
+    >
+      <div id="content">
+        <slot />
+      </div>
 
       <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
         <time datetime={formatDateMachine(frontmatter.pubDate)}>
@@ -57,7 +62,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 
       <hr class="mt-8" />
 
-      <section class="prose lg:prose-lg mt-4 max-w-screen-md dark:prose-invert">
+      <section
+        class="prose lg:prose-lg prose-neutral mt-4 max-w-screen-md dark:prose-invert"
+      >
         If you have any questions or other feedback, feel free to reach out to
         me on the social media platforms listed below.
       </section>

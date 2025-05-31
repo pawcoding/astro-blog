@@ -1,0 +1,63 @@
+name: 🆙 Update dependencies
+# Run this every saturday
+on:
+  schedule:
+    - cron: '0 4 * * 6'
+permissions:
+  contents: read
+jobs:
+  update:
+    # Use the latest version of Ubuntu
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      # Checkout repository
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 'master'
+
+      # Install pnpm
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+
+      # Setup Node
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'pnpm'
+
+      # Update dependencies
+      - name: 🆙 Update dependencies
+        run: |
+          pnpm up
+
+      # Check Astro
+      - name: 🧪 Check Astro
+        run: pnpm run prebuild
+        env:
+          PB_URL: ${{ vars.PB_URL }}
+          PB_EMAIL: ${{ secrets.PB_EMAIL }}
+          PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
+          MATOMO_URL: ${{ vars.MATOMO_URL }}
+          MATOMO_SITE_ID: ${{ vars.MATOMO_SITE_ID }}
+
+      # Create pull request
+      - name: 🚀 Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'build(deps): update dependencies'
+          signoff: true
+          branch: 'build/update-dependencies'
+          delete-branch: true
+          base: 'master'
+          title: 'Update dependencies'
+          body: 'This PR updates dependencies.'
+          labels: 'priority/medium,status/testing,team/internal,type/maintenance'
+          reviewers: 'pawcoding'

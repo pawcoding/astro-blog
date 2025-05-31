@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle.astro";
 
 <header
   aria-label="Header"
-  class="bg-neutral-100 dark:bg-neutral-900"
+  class="sticky top-0 z-50 bg-neutral-100 dark:bg-neutral-900"
   transition:persist="header"
 >
   <div
@@ -37,7 +37,7 @@ import ThemeToggle from "./ThemeToggle.astro";
         </a>
       </div>
 
-      <div class="h-7 w-7 md:order-3 md:w-6 md:h-6 md:ml-4">
+      <div class="flex gap-2 h-7 md:order-3 md:h-6 md:ml-4">
         <ThemeToggle />
       </div>
 
