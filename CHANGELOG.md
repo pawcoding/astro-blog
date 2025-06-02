@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/pawcoding/astro-blog/compare/v2.3.0...v2.3.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* **theme-toggle:** correctly set font theme ([40670c6](https://github.com/pawcoding/astro-blog/commit/40670c6df0e43469a1ae5038a22b83ce6ec93cf2))
+
 # [2.3.0](https://github.com/pawcoding/astro-blog/compare/v2.2.0...v2.3.0) (2025-05-31)
 
 
