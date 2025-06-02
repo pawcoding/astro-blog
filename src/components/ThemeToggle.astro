@@ -46,7 +46,7 @@ import { Icon } from "astro-icon/components";
 
   function getFont() {
     const localStorageFont = localStorage.getItem("font");
-    if (typeof localStorageTheme !== "undefined" && localStorageFont !== null) {
+    if (typeof localStorageFont !== "undefined" && localStorageFont !== null) {
       return localStorageFont;
     }
     return "sans";
