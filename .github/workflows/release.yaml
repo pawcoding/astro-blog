@@ -54,6 +54,7 @@ jobs:
 
       # Create semantic release
       - name: 🚀 Create semantic release
+        id: release
         uses: cycjimmy/semantic-release-action@v4
         with:
           semantic_version: 24
@@ -68,3 +69,15 @@ jobs:
           PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
           MATOMO_URL: ${{ vars.MATOMO_URL }}
           MATOMO_SITE_ID: ${{ vars.MATOMO_SITE_ID }}
+
+      # Update project on website
+      - name: 🖥️ Update website
+        if: steps.release.outputs.new_release_published == 'true' && !steps.release.outputs.new_release_channel  && steps.release.outputs.new_release_patch_version == '0'
+        uses: pawcoding/update-project-action@v0.0.2
+        with:
+          pocketbase-url: ${{ vars.PB_URL }}
+          collection-id: ${{ vars.PB_COLLECTION }}
+          record-id: ${{ vars.PB_RECORD }}
+        env:
+          PB_EMAIL: ${{ secrets.PB_EMAIL }}
+          PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
