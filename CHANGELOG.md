@@ -1,3 +1,5 @@
+## [2.3.7](https://github.com/pawcoding/astro-blog/compare/v2.3.6...v2.3.7) (2025-07-12)
+
 ## [2.3.6](https://github.com/pawcoding/astro-blog/compare/v2.3.5...v2.3.6) (2025-07-05)
 
 ## [2.3.5](https://github.com/pawcoding/astro-blog/compare/v2.3.4...v2.3.5) (2025-06-28)
