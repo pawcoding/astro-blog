@@ -6,7 +6,6 @@ import icon from "astro-icon";
 import matomo from "astro-matomo";
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
-import { webVitalsIntegration } from "astro-web-vitals-pocketbase";
 import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
 import { externalLink } from "./src/utils/external-link";
@@ -44,9 +43,6 @@ export default defineConfig({
   },
   env: {
     schema: {
-      PB_URL: envField.string({ context: "client", access: "public" }),
-      PB_EMAIL: envField.string({ context: "server", access: "secret" }),
-      PB_PASSWORD: envField.string({ context: "server", access: "secret" }),
       MATOMO_URL: envField.string({ context: "client", access: "public" }),
       MATOMO_SITE_ID: envField.number({ context: "client", access: "public" }),
     },
@@ -70,13 +66,6 @@ export default defineConfig({
     astroMetaTags(),
     robotsTxt(),
     solidJs(),
-    webVitalsIntegration({
-      url: env.PB_URL,
-      superuserCredentials: {
-        email: env.PB_EMAIL,
-        password: env.PB_PASSWORD,
-      },
-    }),
   ],
   vite: {
     plugins: [tailwindcss()],
