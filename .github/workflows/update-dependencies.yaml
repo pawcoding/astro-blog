@@ -2,7 +2,7 @@ name: 🆙 Update dependencies
 # Run this every saturday
 on:
   schedule:
-    - cron: '0 4 * * 6'
+    - cron: "0 4 * * 6"
 permissions:
   contents: read
 jobs:
@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: 'master'
+          ref: "master"
 
       # Install pnpm
       - name: 📦 Install pnpm
@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: 'pnpm'
+          cache: "pnpm"
 
       # Update dependencies
       - name: 🆙 Update dependencies
@@ -41,9 +41,6 @@ jobs:
       - name: 🧪 Check Astro
         run: pnpm run prebuild
         env:
-          PB_URL: ${{ vars.PB_URL }}
-          PB_EMAIL: ${{ secrets.PB_EMAIL }}
-          PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
           MATOMO_URL: ${{ vars.MATOMO_URL }}
           MATOMO_SITE_ID: ${{ vars.MATOMO_SITE_ID }}
 
@@ -52,12 +49,12 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'build(deps): update dependencies'
+          commit-message: "build(deps): update dependencies"
           signoff: true
-          branch: 'build/update-dependencies'
+          branch: "build/update-dependencies"
           delete-branch: true
-          base: 'master'
-          title: 'Update dependencies'
-          body: 'This PR updates dependencies.'
-          labels: 'priority/medium,status/testing,team/internal,type/maintenance'
-          reviewers: 'pawcoding'
+          base: "master"
+          title: "Update dependencies"
+          body: "This PR updates dependencies."
+          labels: "priority/medium,status/testing,team/internal,type/maintenance"
+          reviewers: "pawcoding"

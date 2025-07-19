@@ -64,20 +64,16 @@ jobs:
             - "@semantic-release/exec"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          PB_URL: ${{ vars.PB_URL }}
-          PB_EMAIL: ${{ secrets.PB_EMAIL }}
-          PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
           MATOMO_URL: ${{ vars.MATOMO_URL }}
           MATOMO_SITE_ID: ${{ vars.MATOMO_SITE_ID }}
 
       # Update project on website
       - name: 🖥️ Update website
         if: steps.release.outputs.new_release_published == 'true' && !steps.release.outputs.new_release_channel  && steps.release.outputs.new_release_patch_version == '0'
-        uses: pawcoding/update-project-action@v0.0.2
+        uses: pawcoding/update-project-action@v0.0.3
         with:
           pocketbase-url: ${{ vars.PB_URL }}
           collection-id: ${{ vars.PB_COLLECTION }}
           record-id: ${{ vars.PB_RECORD }}
         env:
-          PB_EMAIL: ${{ secrets.PB_EMAIL }}
-          PB_PASSWORD: ${{ secrets.PB_PASSWORD }}
+          PB_TOKEN: ${{ secrets.PB_TOKEN }}
