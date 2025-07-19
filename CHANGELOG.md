@@ -1,3 +1,10 @@
+## [2.3.9](https://github.com/pawcoding/astro-blog/compare/v2.3.8...v2.3.9) (2025-07-19)
+
+
+### Bug Fixes
+
+* **footer:** update snapAddy icon ([9d504c4](https://github.com/pawcoding/astro-blog/commit/9d504c4900b0fbb965e461fd67dd6beba5f94124))
+
 ## [2.3.8](https://github.com/pawcoding/astro-blog/compare/v2.3.7...v2.3.8) (2025-07-19)
 
 ## [2.3.7](https://github.com/pawcoding/astro-blog/compare/v2.3.6...v2.3.7) (2025-07-12)
