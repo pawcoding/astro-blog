@@ -1,3 +1,10 @@
+## [2.3.11](https://github.com/pawcoding/astro-blog/compare/v2.3.10...v2.3.11) (2025-08-02)
+
+
+### Bug Fixes
+
+* **og-image:** resolve type errors ([694c194](https://github.com/pawcoding/astro-blog/commit/694c194db688300d4242e738535b3ccdb336fd4e))
+
 ## [2.3.10](https://github.com/pawcoding/astro-blog/compare/v2.3.9...v2.3.10) (2025-07-26)
 
 ## [2.3.9](https://github.com/pawcoding/astro-blog/compare/v2.3.8...v2.3.9) (2025-07-19)
