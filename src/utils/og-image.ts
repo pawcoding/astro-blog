@@ -2,7 +2,10 @@ import fs from "fs/promises";
 import satori from "satori";
 import sharp from "sharp";
 
-export async function generateOgImage(title: string, subtitle?: string) {
+export async function generateOgImage(
+  title: string,
+  subtitle?: string,
+): Promise<Buffer> {
   const font = await fs.readFile("./public/fonts/Roboto-Regular.ttf");
   const logo = await fs.readFile("./public/brand/pawcode-logo.png");
 

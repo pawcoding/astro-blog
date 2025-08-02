@@ -16,7 +16,7 @@ export const GET: APIRoute = async function get({ props }): Promise<Response> {
     props.post.data.author,
   );
 
-  return new Response(png, {
+  return new Response(Buffer.from(png), {
     headers: {
       "Content-Type": "image/png",
     },
