@@ -18,6 +18,33 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
+# Check if commit is a update commit
+git show --oneline -s HEAD | grep 'build(deps):' 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    # Build if update commit
+    echo "✅ - Build can proceed"
+    exit 1
+fi
+
+# Check if commit is vercel commit
+git show --oneline -s HEAD | grep 'ci(vercel):' 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    # Build if vercel commit
+    echo "✅ - Build can proceed"
+    exit 1
+fi
+
+# Check if commit contains [deploy]
+git show --oneline -s HEAD | grep '\[deploy\]' 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    # Build if deploy commit
+    echo "✅ - Build can proceed"
+    exit 1
+fi
+
 # Cancel build if not release commit
 echo "🛑 - Master build, cancelled"
 exit 0
