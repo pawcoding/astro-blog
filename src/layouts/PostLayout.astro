@@ -1,10 +1,10 @@
 ---
 import "@fontsource-variable/source-serif-4";
+import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
-import { Icon } from "astro-icon/components";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
@@ -112,7 +112,15 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
             await navigator.share({ title, url });
             return;
           } catch (err) {
-            console.error("Share cancelled or failed:", err);
+            if (
+              err &&
+              typeof err === "object" &&
+              "name" in err &&
+              err.name === "AbortError"
+            ) {
+              return;
+            }
+            console.error("Share failed:", err);
           }
         }
 
