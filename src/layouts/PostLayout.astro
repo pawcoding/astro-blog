@@ -20,12 +20,12 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 ---
 
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
-  <div class="mx-auto max-w-screen-md p-4 @container">
+  <div class="@container mx-auto max-w-screen-md p-4">
     <section
       class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
     >
       <div
-        class="pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200 flex items-center justify-between"
+        class="flex items-center justify-between pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
       >
         <h1
           class="text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
@@ -37,19 +37,19 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
           type="button"
           id="shareButton"
           title="Share post"
-          class="inline-flex items-center justify-center cursor-pointer focus:outline-hidden md:text-neutral-600 md:hover:text-neutral-600/75 dark:text-neutral-300 dark:hover:text-neutral-300/75"
+          class="inline-flex cursor-pointer items-center justify-center focus:outline-hidden md:text-neutral-600 md:hover:text-neutral-600/75 dark:text-neutral-300 dark:hover:text-neutral-300/75"
         >
           <span class="sr-only">Share post</span>
 
           <Icon
             id="shareIcon"
             name="heroicons:share"
-            class="w-7 h-7 md:w-6 md:h-6"
+            class="h-7 w-7 md:h-6 md:w-6"
           />
           <Icon
             id="copyIcon"
             name="heroicons:clipboard-document-check"
-            class="w-7 h-7 md:w-6 md:h-6 hidden"
+            class="hidden h-7 w-7 md:h-6 md:w-6"
           />
         </button>
       </div>
@@ -58,19 +58,19 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
         {frontmatter.tags?.map((tag) => <Tag label={tag} size="medium" />)}
       </div>
 
-      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
+      <p class="text-right text-sm text-neutral-500 dark:text-neutral-300">
         {readingTime}
       </p>
     </section>
 
     <section
-      class="prose prose-neutral prose-code:text-sm prose-lg mt-4 max-w-screen-md dark:prose-invert"
+      class="prose prose-neutral prose-code:text-sm prose-lg dark:prose-invert mt-4 max-w-screen-md"
     >
       <div id="content">
         <slot />
       </div>
 
-      <p class="text-sm text-right text-neutral-500 dark:text-neutral-300">
+      <p class="text-right text-sm text-neutral-500 dark:text-neutral-300">
         <time datetime={formatDateMachine(frontmatter.pubDate)}>
           {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
         </time>
@@ -88,7 +88,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       <hr class="mt-8" />
 
       <section
-        class="prose lg:prose-lg prose-neutral mt-4 max-w-screen-md dark:prose-invert"
+        class="prose lg:prose-lg prose-neutral dark:prose-invert mt-4 max-w-screen-md"
       >
         If you have any questions or other feedback, feel free to reach out to
         me on the social media platforms listed below.
@@ -97,7 +97,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
   </div>
 
   <noscript>
-    <img class="opacity-0 w-0 h-0" src={pixelUrl} />
+    <img class="h-0 w-0 opacity-0" src={pixelUrl} />
   </noscript>
 
   <script>

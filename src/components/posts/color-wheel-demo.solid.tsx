@@ -34,9 +34,9 @@ export default function ColorWheelDemo() {
   }
 
   return (
-    <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-xs dark:shadow-none rounded-md dark:bg-black">
+    <section class="flex flex-col gap-4 rounded-md border-neutral-200 bg-white p-4 shadow-xs dark:border-neutral-800 dark:bg-black dark:shadow-none">
       <div class="wheel">
-        <label class="font-semibold text-lg" for="wheel">
+        <label class="text-lg font-semibold" for="wheel">
           Degree on color wheel: {Math.round(wheel())}°
         </label>
         <input
@@ -53,12 +53,12 @@ export default function ColorWheelDemo() {
       </div>
 
       <div class="hue">
-        <label class="font-semibold text-lg" for="hue">
+        <label class="text-lg font-semibold" for="hue">
           Hue on HSL: {Math.round(hue())}°
         </label>
         <input
           style={{ "--hue": hue() }}
-          class="block mb-2"
+          class="mb-2 block"
           id="hue"
           min={0}
           max={359}
