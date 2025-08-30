@@ -31,15 +31,15 @@
   }
 
   .prose img {
-    @apply border-neutral-200 dark:border-neutral-800 shadow-sm dark:shadow-none rounded-md;
+    @apply rounded-md border-neutral-200 shadow-sm dark:border-neutral-800 dark:shadow-none;
   }
 
   .prose *:not(pre) code {
-    @apply before:content-none! after:content-none! rounded-md px-1 py-0.5 bg-neutral-200 dark:bg-neutral-700;
+    @apply rounded-md bg-neutral-200 px-1 py-0.5 before:content-none! after:content-none! dark:bg-neutral-700;
   }
 
   .prose kbd:has(kbd) {
-    @apply shadow-none! p-0!;
+    @apply p-0! shadow-none!;
   }
 
   .prose a[target="_blank"]::after {

@@ -83,12 +83,12 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
   }
 
   return (
-    <section class="flex flex-col gap-4 p-4 bg-white border-neutral-200 dark:border-neutral-800 shadow-xs dark:shadow-none rounded-md dark:bg-black">
+    <section class="flex flex-col gap-4 rounded-md border-neutral-200 bg-white p-4 shadow-xs dark:border-neutral-800 dark:bg-black dark:shadow-none">
       <Show
         when={isAvailable}
         fallback={
           <>
-            <span class="text-sm italic mb-2">
+            <span class="mb-2 text-sm italic">
               This demo is only available when you activated the AI with the
               instructions in the last chapter. Depending on your browser or
               device it may not be available at all.
@@ -108,7 +108,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
             disabled={generating()}
             value={prompt()}
             onInput={(e) => setPrompt(e.currentTarget.value)}
-            class="grow bg-neutral-100 rounded-sm px-3 py-1 dark:bg-neutral-600"
+            class="grow rounded-sm bg-neutral-100 px-3 py-1 dark:bg-neutral-600"
             placeholder="Enter your prompt here..."
             onKeyDown={(e) => {
               e.key === "Enter" && run();
@@ -117,7 +117,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
           <button
             disabled={generating()}
             onClick={() => run()}
-            class="bg-neutral-200 cursor-pointer rounded-sm px-3 py-1 dark:bg-neutral-700"
+            class="cursor-pointer rounded-sm bg-neutral-200 px-3 py-1 dark:bg-neutral-700"
           >
             Run
           </button>
@@ -125,7 +125,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
 
         <Show when={response() || generating()}>
           <div class="text-neutral-600 dark:text-neutral-300">
-            <span class="block font-semibold text-lg">Response:</span>
+            <span class="block text-lg font-semibold">Response:</span>
             <Show when={response()}>
               <span>{response()}</span>
             </Show>
@@ -137,7 +137,7 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
 
         <Show when={error()}>
           <div class="text-red-500 dark:text-red-400">
-            <span class="block font-semibold text-lg">
+            <span class="block text-lg font-semibold">
               There was an error when generating the response. Please try again
               or write me a message. Maybe the API changed in the meantime.
             </span>
