@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
@@ -23,11 +24,35 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     <section
       class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
     >
-      <h1
-        class="pb-4 pt-8 text-3xl font-bold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-4xl dark:text-neutral-200"
+      <div
+        class="pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200 flex items-center justify-between"
       >
-        {frontmatter.title}
-      </h1>
+        <h1
+          class="text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
+        >
+          {frontmatter.title}
+        </h1>
+
+        <button
+          type="button"
+          id="shareButton"
+          title="Share post"
+          class="inline-flex items-center justify-center cursor-pointer focus:outline-hidden md:text-neutral-600 md:hover:text-neutral-600/75 dark:text-neutral-300 dark:hover:text-neutral-300/75"
+        >
+          <span class="sr-only">Share post</span>
+
+          <Icon
+            id="shareIcon"
+            name="heroicons:share"
+            class="w-7 h-7 md:w-6 md:h-6"
+          />
+          <Icon
+            id="copyIcon"
+            name="heroicons:clipboard-document-check"
+            class="w-7 h-7 md:w-6 md:h-6 hidden"
+          />
+        </button>
+      </div>
 
       <div class="flex flex-wrap items-center gap-1 pb-4">
         {frontmatter.tags?.map((tag) => <Tag label={tag} size="medium" />)}
@@ -74,4 +99,41 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
   <noscript>
     <img class="opacity-0 w-0 h-0" src={pixelUrl} />
   </noscript>
+
+  <script>
+    const shareButton = document.getElementById("shareButton");
+    if (shareButton) {
+      shareButton.addEventListener("click", async () => {
+        const url = window.location.href;
+        const title = document.title;
+
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, url });
+            return;
+          } catch (err) {
+            console.error("Share cancelled or failed:", err);
+          }
+        }
+
+        try {
+          await navigator.clipboard.writeText(url);
+
+          // Show a temporary success icon
+          const shareIcon = shareButton.querySelector("#shareIcon");
+          shareIcon?.classList.add("hidden");
+          const copyIcon = shareButton.querySelector("#copyIcon");
+          copyIcon?.classList.remove("hidden");
+
+          setTimeout(() => {
+            copyIcon?.classList.add("hidden");
+            shareIcon?.classList.remove("hidden");
+          }, 3000);
+        } catch (err) {
+          console.error("Could not copy URL:", err);
+          alert("Could not copy URL.");
+        }
+      });
+    }
+  </script>
 </BaseLayout>
