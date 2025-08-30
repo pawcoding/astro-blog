@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/pawcoding/astro-blog/compare/v2.3.15...v2.4.0) (2025-08-30)
+
+
+### Features
+
+* **post:** add share button ([cea8e30](https://github.com/pawcoding/astro-blog/commit/cea8e301bd7f10047314a289b9f4d274ee3d35ba))
+
 ## [2.3.15](https://github.com/pawcoding/astro-blog/compare/v2.3.14...v2.3.15) (2025-08-30)
 
 ## [2.3.14](https://github.com/pawcoding/astro-blog/compare/v2.3.13...v2.3.14) (2025-08-23)
