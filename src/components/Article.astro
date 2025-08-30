@@ -17,11 +17,11 @@ const url = `/posts/${id}`;
 
 <article
   id={id}
-  class="p-0 relative block overflow-hidden rounded-lg border border-neutral-300 shadow-xs transition @container hover:shadow-lg dark:shadow-none dark:bg-neutral-800 dark:border-neutral-800"
+  class="@container relative block overflow-hidden rounded-lg border border-neutral-300 p-0 shadow-xs transition hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-800 dark:shadow-none"
 >
   <a href={url} class="group">
     <span
-      class="absolute inset-x-0 bottom-0 h-2 dark:invert dark:hue-rotate-180"
+      class="absolute inset-x-0 bottom-0 h-2 dark:hue-rotate-180 dark:invert"
       style={`background-color: ${color}`}></span>
 
     <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
@@ -39,7 +39,7 @@ const url = `/posts/${id}`;
 
       <section class="p-4 @sm:p-6">
         <h3
-          class="pb-3 pt-6 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
+          class="pt-6 pb-3 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
         >
           {title}
         </h3>
@@ -50,7 +50,7 @@ const url = `/posts/${id}`;
           {description}
         </div>
 
-        <div class="flex flex-wrap items-center gap-1 mt-4">
+        <div class="mt-4 flex flex-wrap items-center gap-1">
           {data.tags?.map((tag) => <Tag label={tag} />)}
         </div>
 
@@ -64,7 +64,7 @@ const url = `/posts/${id}`;
 
             <span
               aria-hidden="true"
-              class="block transition-all group-hover:ms-0.5 ease-spring"
+              class="ease-spring block transition-all group-hover:ms-0.5"
             >
               &rarr;
             </span>
