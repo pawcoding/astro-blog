@@ -12,8 +12,6 @@
 
   --min-height-screen: 100svh;
 
-  --ease-spring: cubic-bezier(0.4, 1.75, 0.6, 1);
-
   --font-sans:
     "Source Sans 3 Variable", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

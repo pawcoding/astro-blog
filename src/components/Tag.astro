@@ -8,12 +8,17 @@ interface Props {
 
 let { label, size } = Astro.props;
 const text = label.replace(/\s/g, "-").toLowerCase();
+
+const classes = [
+  "px-2 py-0.5 gap-1 overflow-clip font-mono rounded-full select-none inline-flex items-center justify-center ",
+  "border-black/10 dark:border-black/40 text-neutral-800 dark:text-neutral-300 bg-black/10 dark:bg-white/8",
+];
+if (size === "medium") {
+  classes.push("border");
+}
 ---
 
-<span
-  class=`px-2 py-0.5 gap-1 overflow-clip font-mono rounded-full select-none inline-flex items-center border-neutral-300 dark:border-neutral-800 justify-center text-neutral-800 bg-neutral-200 dark:text-neutral-300 dark:bg-neutral-700 ${size === "medium" ? "border" : ""}`
-  title={text}
->
+<span class={classes.join(" ")} title={text}>
   <Icon
     aria-hidden="true"
     name="heroicons:hashtag"
