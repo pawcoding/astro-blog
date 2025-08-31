@@ -1,0 +1,80 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import Article from "../../components/Article.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostLayout from "../../layouts/PostLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  // Get all unique tags from all posts using flatMap
+  const allTags = new Set(posts.flatMap((post) => post.data.tags || []));
+
+  // Create paths for each tag with filtered posts
+  return Array.from(allTags).map((tag) => {
+    // Filter posts that have the current tag
+    const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag));
+
+    // Sort by publication date (newest first)
+    filteredPosts.sort(
+      (a, b) =>
+        new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+    );
+
+    return {
+      params: {
+        tag: tag.replace(/\s/g, "-").replace(/\//g, "-").toLowerCase(),
+      },
+      props: {
+        posts: filteredPosts,
+        tag,
+      },
+    };
+  });
+}
+
+const { posts: propsPosts, tag } = Astro.props;
+
+// Add reading time to each post
+let posts: Array<
+  CollectionEntry<"posts"> & {
+    readingTime: string;
+  }
+> = [];
+try {
+  posts = await Promise.all(
+    propsPosts.map(async (post) => {
+      const { remarkPluginFrontmatter } = await render(post);
+
+      return {
+        ...post,
+        readingTime: remarkPluginFrontmatter.minutesRead,
+      };
+    }),
+  );
+} catch (error) {
+  console.error("Error loading posts:", error);
+}
+---
+
+<BaseLayout
+  title={`Posts tagged with #${tag}`}
+  description={`Here you can find all articles tagged with #${tag}. Browse through ${posts.length} article${posts.length === 1 ? "" : "s"} on this topic.`}
+>
+  <div class="mx-auto max-w-3xl p-4">
+    <h2
+      class="3xl:text-4xl pb-4 text-center font-mono text-3xl font-bold text-neutral-900 dark:text-neutral-200"
+    >
+      #{tag}
+    </h2>
+
+    <p class="mb-8 text-center dark:text-neutral-300">
+      {posts.length} article{posts.length === 1 ? "" : "s"} found with this tag.
+    </p>
+
+    <section class="flex flex-col gap-4">
+      {posts.map((post) => <Article post={post} />)}
+    </section>
+  </div>
+</BaseLayout>
