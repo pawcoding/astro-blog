@@ -4,6 +4,7 @@
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant hocus (&:hover, &:focus);
 
 @theme {
   --breakpoint-xs: 475px;
