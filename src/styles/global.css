@@ -10,6 +10,7 @@
   --breakpoint-xs: 475px;
 
   --height-screen-95: 95svh;
+  --max-width-table-of-contents: calc((100svw - 48rem) / 2);
 
   --min-height-screen: 100svh;
 
@@ -25,6 +26,14 @@
 }
 
 @layer base {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  html {
+    @apply not-motion-reduce:scroll-smooth;
+  }
+
   .prose {
     @apply text-pretty;
   }
@@ -79,5 +88,38 @@
   html[data-font="serif"] #content {
     font-size: 1.1rem;
     @apply font-serif;
+  }
+
+  [id]::before {
+    content: "";
+    display: block;
+    height: 75px;
+    margin-top: -75px;
+    visibility: hidden;
+  }
+
+  details {
+    --details-animation-duration: 0.5s;
+    overflow: hidden;
+
+    &::details-content {
+      block-size: 0;
+      transition:
+        block-size var(--details-animation-duration),
+        content-visibility var(--details-animation-duration);
+      transition-behavior: allow-discrete;
+    }
+
+    &:open {
+      &::details-content {
+        block-size: auto;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    details {
+      --details-animation-duration: 0s;
+    }
   }
 }
