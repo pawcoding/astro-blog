@@ -7,18 +7,26 @@ interface Props {
 }
 
 let { label, size } = Astro.props;
-const text = label.replace(/\s/g, "-").toLowerCase();
+const normalizedText = label
+  .replace(/\s/g, "-")
+  .replace(/\//g, "-")
+  .toLowerCase();
 
 const classes = [
   "px-2 py-0.5 gap-1 overflow-clip font-mono rounded-full select-none inline-flex items-center justify-center ",
   "border-black/10 dark:border-black/40 text-neutral-800 dark:text-neutral-300 bg-black/10 dark:bg-white/8",
+  "hover:bg-black/15 dark:hover:bg-white/12 transition-colors cursor-pointer",
 ];
 if (size === "medium") {
   classes.push("border");
 }
 ---
 
-<span class={classes.join(" ")} title={text}>
+<a
+  href={`/tags/${normalizedText}`}
+  class={classes.join(" ")}
+  title={`View all posts tagged with #${label}`}
+>
   <Icon
     aria-hidden="true"
     name="heroicons:hashtag"
@@ -28,6 +36,6 @@ if (size === "medium") {
   <p
     class=`whitespace-nowrap text-sm ${size === "medium" ? "font-bold" : "font-semibold"}`
   >
-    {text}
+    {label}
   </p>
-</span>
+</a>
