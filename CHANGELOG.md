@@ -1,3 +1,17 @@
+# [2.5.0](https://github.com/pawcoding/astro-blog/compare/v2.4.0...v2.5.0) (2025-09-01)
+
+
+### Bug Fixes
+
+* **a11y:** add focus styles ([dc59ea0](https://github.com/pawcoding/astro-blog/commit/dc59ea0cfae187eb42b50dbe3944d06706b67b92))
+
+
+### Features
+
+* **rss:** add category tags ([2909d20](https://github.com/pawcoding/astro-blog/commit/2909d20ade2c70cd6158066184584c5faf8eff96))
+* **tags:** add page for each tag with filtered posts [deploy] ([752697e](https://github.com/pawcoding/astro-blog/commit/752697ec77c9d5dd21679bd6d8311b348de3bcb5))
+* **post:** add table of contents [deploy] ([c7e9503](https://github.com/pawcoding/astro-blog/commit/c7e9503a68fa283d99f23fa8b03ae108fa174b47))
+
 # [2.4.0](https://github.com/pawcoding/astro-blog/compare/v2.3.15...v2.4.0) (2025-08-30)
 
 
