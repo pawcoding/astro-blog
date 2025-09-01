@@ -2,6 +2,7 @@
 import "@fontsource-variable/source-serif-4";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
+import TableOfContents from "../components/TableOfContents.astro";
 import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
@@ -10,9 +11,10 @@ interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
   slug: string;
   readingTime: string;
+  headings: Array<{ depth: number; slug: string; text: string }>;
 }
 
-const { frontmatter, slug, readingTime } = Astro.props;
+const { frontmatter, slug, readingTime, headings } = Astro.props;
 
 const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&send_image=0&action_name=${encodeURIComponent(
   frontmatter.title,
@@ -20,7 +22,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 ---
 
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
-  <div class="@container mx-auto max-w-screen-md p-4">
+  <div
+    class="@container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl"
+  >
     <section
       class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
     >
@@ -29,6 +33,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       >
         <h1
           class="text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
+          id="title"
         >
           {frontmatter.title}
         </h1>
@@ -37,7 +42,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
           type="button"
           id="shareButton"
           title="Share post"
-          class="inline-flex cursor-pointer items-center justify-center focus:outline-hidden md:text-neutral-600 md:hover:text-neutral-600/75 dark:text-neutral-300 dark:hover:text-neutral-300/75"
+          class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300"
         >
           <span class="sr-only">Share post</span>
 
@@ -63,10 +68,12 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       </p>
     </section>
 
+    <TableOfContents headings={headings} title={frontmatter.title} />
+
     <section
       class="prose prose-neutral prose-code:text-sm prose-lg dark:prose-invert mt-4 max-w-screen-md"
     >
-      <div id="content">
+      <div>
         <slot />
       </div>
 

@@ -1,0 +1,61 @@
+---
+export interface Props {
+  headings: Array<{ depth: number; slug: string; text: string }>;
+  title: string;
+}
+
+const { headings, title } = Astro.props;
+
+// Filter headings to only include h2 and h3 (depth 2 and 3)
+const filteredHeadings = headings.filter(
+  (heading) => heading.depth === 2 || heading.depth === 3,
+);
+---
+
+{
+  filteredHeadings.length > 0 && (
+    <>
+      <nav aria-label="Table of contents">
+        <details class="hocus:bg-black/5 dark:hocus:bg-white/5 mt-8 rounded-lg border border-neutral-200 transition-colors 2xl:hidden dark:border-neutral-800">
+          <summary class="cursor-pointer rounded-t-lg p-4 text-lg font-semibold text-neutral-900 select-none dark:text-neutral-200">
+            Table of contents
+          </summary>
+
+          <ul class="space-y-2 px-4 pb-4 text-neutral-600 dark:text-neutral-400">
+            {filteredHeadings.map((heading) => (
+              <li class={heading.depth === 3 ? "ml-4" : ""}>
+                <a class="hover:underline" href={`#${heading.slug}`}>
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </nav>
+
+      <nav
+        aria-label="Table of contents"
+        class="max-w-table-of-contents fixed top-17 right-0 z-40 hidden overflow-y-auto p-4 2xl:block"
+      >
+        <h3 class="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-200">
+          Table of Contents
+        </h3>
+
+        <ul class="space-y-1 text-sm/7 text-neutral-600 dark:text-neutral-400">
+          <li>
+            <a href="#title" class="hover:underline">
+              {title}
+            </a>
+          </li>
+          {filteredHeadings.map((heading) => (
+            <li class={heading.depth === 3 ? "ml-4" : ""}>
+              <a href={`#${heading.slug}`} class="hover:underline">
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  )
+}

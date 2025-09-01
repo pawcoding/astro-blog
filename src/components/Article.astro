@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import Tag from "./Tag.astro";
@@ -16,71 +17,83 @@ const url = `/posts/${id}`;
 ---
 
 <article
+  transition:name={id}
+  transition:persist
   id={id}
-  class="@container relative block overflow-hidden rounded-lg border border-neutral-300 p-0 shadow-xs transition hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-800 dark:shadow-none"
+  class="@container relative block overflow-hidden rounded-lg border border-neutral-300 p-0 shadow-xs transition focus-within:border-neutral-800 focus-within:shadow-lg hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-800 dark:shadow-none dark:focus-within:border-neutral-200"
+  style={`background-color: ${color}08`}
 >
-  <a href={url} class="group">
-    <span
-      class="absolute inset-x-0 bottom-0 h-2 dark:hue-rotate-180 dark:invert"
-      style={`background-color: ${color}`}></span>
+  <span
+    class="absolute inset-x-0 bottom-0 h-2 dark:hue-rotate-180 dark:invert"
+    style={`background-color: ${color}`}></span>
 
-    <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
-      <section class="relative block">
-        {
-          image && (
+  <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
+    <section class="relative block">
+      {
+        image && (
+          <a href={url} tabindex="-1">
             <img
               src={image}
               alt={title}
               class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-left-top"
             />
-          )
-        }
-      </section>
+          </a>
+        )
+      }
+    </section>
 
-      <section class="p-4 @sm:p-6">
+    <section class="p-4 @sm:p-6">
+      <a href={url} class="focus:outline-none">
         <h3
-          class="pt-6 pb-3 text-2xl font-semibold text-neutral-900 first:pt-0 last:pb-0 @3xl:text-3xl dark:text-neutral-200"
+          class="pb-2 text-2xl font-semibold text-neutral-900 @3xl:text-3xl dark:text-neutral-200"
         >
           {title}
         </h3>
 
         <div
-          class="mt-2 line-clamp-6 text-base/relaxed text-neutral-500 dark:text-neutral-300"
+          class="line-clamp-6 text-base/relaxed text-neutral-600 dark:text-neutral-300"
         >
           {description}
         </div>
+      </a>
 
-        <div class="mt-4 flex flex-wrap items-center gap-1">
-          {data.tags?.map((tag) => <Tag label={tag} />)}
-        </div>
+      {
+        data.tags && (
+          <div class="mt-4 flex flex-wrap items-center gap-1">
+            {data.tags.map((tag) => (
+              <Tag label={tag} />
+            ))}
+          </div>
+        )
+      }
 
-        <div
-          class="@container mt-4 flex items-baseline justify-between text-sm"
-        >
-          <span
-            class="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400"
-          >
-            Read more
+      <div
+        class="@container mt-4 flex items-baseline justify-start gap-4 text-sm text-neutral-600 dark:text-neutral-100"
+      >
+        <span class="flex items-center gap-2">
+          <Icon
+            name="heroicons:calendar-days-16-solid"
+            class="size-5 dark:hue-rotate-180 dark:invert"
+            style={`color: ${color}`}
+          />
 
-            <span
-              aria-hidden="true"
-              class="ease-spring block transition-all group-hover:ms-0.5"
-            >
-              &rarr;
-            </span>
+          <time datetime={formatDateMachine(pubDate)} aria-label="Published on">
+            {formatDate(pubDate)}
+          </time>
+        </span>
+
+        <span class="flex items-center gap-2">
+          <Icon
+            name="heroicons:book-open"
+            class="size-5 dark:hue-rotate-180 dark:invert"
+            style={`color: ${color}`}
+          />
+
+          <span aria-label="Reading time">
+            {readingTime}
           </span>
-
-          <span class="text-neutral-500 dark:text-neutral-300">
-            <span class="hidden @xs:inline">
-              {readingTime}
-              •
-            </span>
-            <time datetime={formatDateMachine(pubDate)}>
-              {pubDate && formatDate(pubDate)}
-            </time>
-          </span>
-        </div>
-      </section>
-    </div>
-  </a>
+        </span>
+      </div>
+    </section>
+  </div>
 </article>
