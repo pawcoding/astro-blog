@@ -6,6 +6,7 @@ import TableOfContents from "../components/TableOfContents.astro";
 import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
+import Chat from "../components/chat.solid";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
@@ -23,7 +24,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
   <div
-    class="@container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl"
+    class="post-container @container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl"
   >
     <section
       class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
@@ -102,6 +103,8 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       </section>
     </section>
   </div>
+
+  <Chat client:only />
 
   <noscript>
     <img class="h-0 w-0 opacity-0" src={pixelUrl} />
