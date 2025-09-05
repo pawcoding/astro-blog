@@ -1,32 +1,31 @@
 import DOMPurify from "dompurify";
 import { marked } from "marked";
-import { HiSolidSparkles } from "solid-icons/hi";
+import { HiSolidSparkles, HiSolidXMark } from "solid-icons/hi";
 import { createEffect, createMemo, createSignal } from "solid-js";
+import type { SummaryType } from "../types/summarizer";
+import { createSummaryChat, getUserMessage } from "../utils/generate-summary";
 
-type ChatMessage = {
-  id: string;
-  actor: "ai" | "user";
-  content: string;
-};
-
+/**
+ * Component that displays a chat popup
+ */
 export default function Chat() {
   if (!("Summarizer" in self)) {
     return null;
   }
 
-  const [isOpen, setIsOpen] = createSignal(true);
-  const [messages, setMessages] = createSignal<Array<ChatMessage>>([
-    {
-      id: crypto.randomUUID(),
-      actor: "ai",
-      content:
-        "Hey there 👋!\n\nI'm an AI assistant 🤖 running **offline inside your browser** and have access to this post. I can help you summarize it for you.",
-    },
-  ]);
+  const [isOpen, setIsOpen] = createSignal(false);
+  const {
+    messages,
+    availability,
+    downloadProgress,
+    isGenerating,
+    generateSummary,
+  } = createSummaryChat();
 
   // Always scroll to the bottom when messages are added or updated
   createEffect(() => {
     messages();
+    isGenerating();
 
     const scrollContainer = document.querySelector(".scroll-container");
     scrollContainer?.scrollTo({
@@ -35,6 +34,9 @@ export default function Chat() {
     });
   });
 
+  /**
+   * Parsed markdown message in sanitized HTML
+   */
   const parsedMessages = createMemo(() => {
     return messages().map((message) => ({
       ...message,
@@ -44,57 +46,15 @@ export default function Chat() {
     }));
   });
 
-  function addMessage(actor: "ai" | "user", content: string): string {
-    const id = crypto.randomUUID();
-    setMessages([...messages(), { id, actor, content }]);
-    return id;
-  }
-
-  function updateMessage(id: string, content: string): void {
-    setMessages(
-      messages().map((message) =>
-        message.id === id ? { ...message, content } : message,
-      ),
-    );
-  }
-
-  async function generateSummary(
-    type: "tldr" | "teaser" | "key-points",
-  ): Promise<void> {
-    addMessage(
-      "user",
-      type === "tldr"
-        ? "Give me a TLDR"
-        : type === "key-points"
-          ? "Give me key points"
-          : "What's the most interesting part?",
-    );
-
-    // @ts-expect-error - Summarizer is not typed (yet)
-    const summarizer = await Summarizer.create({
-      sharedContext:
-        "This is a blog about different web development topics and little programming experiments",
-      type,
-      format: "markdown",
-      length: type === "tldr" ? "long" : "medium",
-    });
-
-    const messageId = addMessage("ai", "Generating summary...");
-
-    // @ts-expect-error - innerText is available so it's fine
-    const postContent = document.querySelector(".post-container")?.innerText;
-    const stream = summarizer.summarizeStreaming(postContent);
-    let output = "";
-    for await (const chunk of stream) {
-      output += chunk;
-      updateMessage(messageId, output);
-    }
-  }
+  const showSummaryButtons = () =>
+    availability() !== "downloading" || availability() !== "unavailable";
+  const showSkeleton = () =>
+    isGenerating() && messages().at(-1)?.actor === "user";
 
   return (
     <article class="fixed right-4 bottom-4 flex flex-col items-end gap-4">
       {isOpen() && (
-        <div class="flex w-96 flex-col gap-4 rounded-lg bg-white p-4 shadow-sm dark:border dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-none">
+        <div class="z-50 flex h-auto w-96 flex-col gap-4 overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all transition-discrete duration-500 motion-reduce:duration-0 dark:border dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-none starting:h-0">
           <section class="scroll-container max-h-128 space-y-4 overflow-y-auto">
             {parsedMessages().map((message) => (
               <div
@@ -113,7 +73,7 @@ export default function Chat() {
                   </span>
                   <div
                     class={
-                      "rounded-xl border border-neutral-200 bg-neutral-100 p-4 dark:border-neutral-600 dark:bg-neutral-700 " +
+                      "rounded-xl border border-neutral-200 bg-neutral-100 p-2 dark:border-neutral-600 dark:bg-neutral-700 " +
                       (message.actor === "user"
                         ? "rounded-tr-none"
                         : "rounded-tl-none")
@@ -123,30 +83,41 @@ export default function Chat() {
                 </div>
               </div>
             ))}
+
+            {showSkeleton() && (
+              <div role="status" class="w-full animate-pulse">
+                <div class="mx-auto h-3 w-4/5 rounded-full bg-neutral-200 dark:bg-neutral-700"></div>
+                <span class="sr-only">Generating response...</span>
+              </div>
+            )}
+
+            {availability() === "downloading" && (
+              <div>
+                <p>Downloading model...</p>
+                <div class="h-2.5 w-full rounded-full bg-neutral-200 dark:bg-neutral-700">
+                  <div
+                    class="h-2.5 rounded-full bg-blue-600"
+                    style={`width: ${Math.floor(downloadProgress() * 100)}%`}
+                  ></div>
+                </div>
+              </div>
+            )}
           </section>
 
-          <section class="flex flex-wrap justify-center gap-2">
-            <button
-              onClick={() => generateSummary("tldr")}
-              class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
-            >
-              Give me a TLDR
-            </button>
-
-            <button
-              onClick={() => generateSummary("key-points")}
-              class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
-            >
-              Give me some key points
-            </button>
-
-            <button
-              onClick={() => generateSummary("teaser")}
-              class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
-            >
-              What's the most interesting part?
-            </button>
-          </section>
+          {showSummaryButtons() && (
+            <section class="flex flex-wrap justify-center gap-2">
+              {(
+                ["tldr", "key-points", "teaser"] satisfies Array<SummaryType>
+              ).map((type) => (
+                <button
+                  onClick={() => generateSummary(type)}
+                  class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
+                >
+                  {getUserMessage(type)}
+                </button>
+              ))}
+            </section>
+          )}
         </div>
       )}
 
@@ -154,7 +125,11 @@ export default function Chat() {
         class="cursor-pointer rounded-full bg-blue-500 p-3 text-white"
         onClick={() => setIsOpen(!isOpen())}
       >
-        <HiSolidSparkles size="2rem" />
+        {isOpen() ? (
+          <HiSolidXMark size="2rem" />
+        ) : (
+          <HiSolidSparkles size="2rem" />
+        )}
       </button>
     </article>
   );
