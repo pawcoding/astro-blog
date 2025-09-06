@@ -1,3 +1,5 @@
+## [2.5.1](https://github.com/pawcoding/astro-blog/compare/v2.5.0...v2.5.1) (2025-09-06)
+
 # [2.5.0](https://github.com/pawcoding/astro-blog/compare/v2.4.0...v2.5.0) (2025-09-01)
 
 
