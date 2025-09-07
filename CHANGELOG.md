@@ -1,3 +1,11 @@
+# [2.6.0](https://github.com/pawcoding/astro-blog/compare/v2.5.1...v2.6.0) (2025-09-07)
+
+
+### Features
+
+* **categories:** add categories for posts ([42945e3](https://github.com/pawcoding/astro-blog/commit/42945e37138b92d40d37c74e8d0e1716095c7cdf))
+* **chat:** add chat with local ai summary ([91c83a9](https://github.com/pawcoding/astro-blog/commit/91c83a95d806f7d7503242773ecc321adff32db3))
+
 ## [2.5.1](https://github.com/pawcoding/astro-blog/compare/v2.5.0...v2.5.1) (2025-09-06)
 
 # [2.5.0](https://github.com/pawcoding/astro-blog/compare/v2.4.0...v2.5.0) (2025-09-01)

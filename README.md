@@ -21,9 +21,9 @@ To see the blog in action, visit [blog.pawcode.de](https://blog.pawcode.de/?mtm_
 ### Latest blog posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Building a local AI-powered Summarizer chat](https://blog.pawcode.de/posts/local-summarizer-chat/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 - [Building an Astro Integration](https://blog.pawcode.de/posts/building-an-astro-integration/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 - [Yearly review: Looking back at 2024](https://blog.pawcode.de/posts/yearly-review-2024/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
-- [Building an Astro Loader](https://blog.pawcode.de/posts/building-an-astro-loader/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 <!-- BLOG-POST-LIST:END -->
 
 ---
