@@ -19,7 +19,7 @@ export async function GET(context: { site: string }): Promise<Response> {
       link: `/posts/${post.id}`,
       pubDate: post.data.pubDate,
       author: "pawcode",
-      categories: post.data.tags,
+      categories: [post.data.category, ...(post.data.tags || [])],
     })),
   });
 }

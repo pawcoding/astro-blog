@@ -3,17 +3,15 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import Article from "../../components/Article.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { CATEGORIES } from "../../constants/categories";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
 
-  // Get all unique tags from all posts using flatMap
-  const allTags = new Set(posts.flatMap((post) => post.data.tags || []));
-
-  // Create paths for each tag with filtered posts
-  return Array.from(allTags).map((tag) => {
-    // Filter posts that have the current tag
-    const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag));
+  // Create paths for each category with filtered posts
+  return CATEGORIES.map((c) => {
+    // Filter posts that have the current category
+    const filteredPosts = posts.filter((post) => post.data.category === c.url);
 
     // Sort by publication date (newest first)
     filteredPosts.sort(
@@ -23,17 +21,17 @@ export async function getStaticPaths() {
 
     return {
       params: {
-        tag: tag.replace(/\s/g, "-").replace(/\//g, "-").toLowerCase(),
+        category: c.url,
       },
       props: {
         posts: filteredPosts,
-        tag,
+        category: c,
       },
     };
   });
 }
 
-const { posts: propsPosts, tag } = Astro.props;
+const { posts: propsPosts, category } = Astro.props;
 
 // Add reading time to each post
 let posts: Array<
@@ -58,18 +56,21 @@ try {
 ---
 
 <BaseLayout
-  title={`Posts tagged with #${tag}`}
-  description={`Here you can find all articles tagged with #${tag}. Browse through ${posts.length} article${posts.length === 1 ? "" : "s"} on this topic.`}
+  title={`Posts in category "${category.name}"`}
+  description={`Here you can find all articles in category ${category.name}. Browse through ${posts.length} article${posts.length === 1 ? "" : "s"}.`}
 >
   <div class="mx-auto max-w-3xl p-4">
     <h2
-      class="3xl:text-4xl pb-4 text-center font-mono text-3xl font-bold text-neutral-900 dark:text-neutral-200"
+      class="3xl:text-4xl pb-4 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-200"
     >
-      #{tag}
+      {category.name}
     </h2>
 
-    <p class="mb-8 text-center dark:text-neutral-300">
-      {posts.length} article{posts.length === 1 ? "" : "s"} found with this tag.
+    <p class="mb-8 dark:text-neutral-300">
+      {category.description}
+      <br />
+      There are currently {posts.length} article{posts.length === 1 ? "" : "s"} in
+      this category.
     </p>
 
     <section class="flex flex-col gap-4">

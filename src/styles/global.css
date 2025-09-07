@@ -76,6 +76,16 @@
     }
   }
 
+  .markdown {
+    ul {
+      @apply list-disc pl-4;
+    }
+
+    ol {
+      @apply list-decimal pl-4;
+    }
+  }
+
   html[data-theme="dark"] .astro-code,
   html[data-theme="dark"] .astro-code span {
     color: var(--shiki-dark) !important;
