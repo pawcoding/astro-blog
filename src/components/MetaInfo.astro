@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon/components";
+import { CATEGORIES } from "../constants/categories";
+import { formatDate, formatDateMachine } from "../utils/format-date";
+
+interface Props {
+  pubDate: Date;
+  readingTime: string;
+  category: string;
+  color: string;
+}
+
+const {
+  pubDate,
+  readingTime,
+  category: categoryURL,
+  color = "#4472c4",
+} = Astro.props;
+
+const category = CATEGORIES.find((cat) => cat.url === categoryURL);
+if (!category) {
+  throw new Error(`Category not found: ${categoryURL}`);
+}
+---
+
+<dl
+  class="@container flex items-baseline justify-start gap-4 text-sm text-neutral-600 dark:text-neutral-100"
+>
+  <div class="flex items-center gap-2 select-none">
+    <dt>
+      <Icon
+        name="heroicons:calendar-days-16-solid"
+        class="size-5 dark:hue-rotate-180 dark:invert"
+        style={`color: ${color}`}
+      />
+
+      <span class="sr-only">Published on</span>
+    </dt>
+
+    <dd>
+      <time datetime={formatDateMachine(pubDate)}>
+        {formatDate(pubDate)}
+      </time>
+    </dd>
+  </div>
+
+  <div class="flex items-center gap-2 select-none @max-sm:hidden">
+    <dt>
+      <Icon
+        name="heroicons:book-open"
+        class="size-5 dark:hue-rotate-180 dark:invert"
+        style={`color: ${color}`}
+      />
+
+      <span class="sr-only">Reading time</span>
+    </dt>
+
+    <dd>
+      {readingTime}
+    </dd>
+  </div>
+
+  <a
+    href={`/category/${category.url}`}
+    class="flex items-center gap-2"
+    title={category.description}
+  >
+    <dt>
+      <Icon
+        name="heroicons:tag-solid"
+        class="size-5 dark:hue-rotate-180 dark:invert"
+        style={`color: ${color}`}
+      />
+
+      <span class="sr-only">Category</span>
+    </dt>
+
+    <dd>
+      {category.name}
+    </dd>
+  </a>
+</dl>

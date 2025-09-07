@@ -1,8 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
-import { formatDate, formatDateMachine } from "../utils/format-date";
 import Tag from "./Tag.astro";
+import MetaInfo from "./MetaInfo.astro";
 
 interface Props {
   post: CollectionEntry<"posts"> & {
@@ -12,7 +11,7 @@ interface Props {
 
 const { post } = Astro.props;
 const { data, readingTime, id } = post;
-const { title, description, image, pubDate, color } = data;
+const { title, description, image, pubDate, category, color } = data;
 const url = `/posts/${id}`;
 ---
 
@@ -67,32 +66,13 @@ const url = `/posts/${id}`;
         )
       }
 
-      <div
-        class="@container mt-4 flex items-baseline justify-start gap-4 text-sm text-neutral-600 dark:text-neutral-100"
-      >
-        <span class="flex items-center gap-2">
-          <Icon
-            name="heroicons:calendar-days-16-solid"
-            class="size-5 dark:hue-rotate-180 dark:invert"
-            style={`color: ${color}`}
-          />
-
-          <time datetime={formatDateMachine(pubDate)} aria-label="Published on">
-            {formatDate(pubDate)}
-          </time>
-        </span>
-
-        <span class="flex items-center gap-2">
-          <Icon
-            name="heroicons:book-open"
-            class="size-5 dark:hue-rotate-180 dark:invert"
-            style={`color: ${color}`}
-          />
-
-          <span aria-label="Reading time">
-            {readingTime}
-          </span>
-        </span>
+      <div class="mt-4">
+        <MetaInfo
+          pubDate={pubDate}
+          readingTime={readingTime}
+          category={category}
+          color={color}
+        />
       </div>
     </section>
   </div>
