@@ -5,7 +5,7 @@ import { formatDate, formatDateMachine } from "../utils/format-date";
 
 interface Props {
   pubDate: Date;
-  readingTime: string;
+  readingTime?: string;
   category: string;
   color: string;
 }
@@ -44,21 +44,23 @@ if (!category) {
     </dd>
   </div>
 
-  <div class="flex items-center gap-2 select-none @max-sm:hidden">
-    <dt>
-      <Icon
-        name="heroicons:book-open"
-        class="size-5 dark:hue-rotate-180 dark:invert"
-        style={`color: ${color}`}
-      />
+  {
+    readingTime && (
+      <div class="flex items-center gap-2 select-none @max-sm:hidden">
+        <dt>
+          <Icon
+            name="heroicons:book-open"
+            class="size-5 dark:hue-rotate-180 dark:invert"
+            style={`color: ${color}`}
+          />
 
-      <span class="sr-only">Reading time</span>
-    </dt>
+          <span class="sr-only">Reading time</span>
+        </dt>
 
-    <dd>
-      {readingTime}
-    </dd>
-  </div>
+        <dd>{readingTime}</dd>
+      </div>
+    )
+  }
 
   <a
     href={`/category/${category.url}`}

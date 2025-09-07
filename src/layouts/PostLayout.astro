@@ -8,6 +8,8 @@ import MetaInfo from "../components/MetaInfo.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
 import Chat from "../components/chat.solid";
+import { getCollection } from "astro:content";
+import Article from "../components/Article.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
@@ -17,6 +19,20 @@ interface Props {
 }
 
 const { frontmatter, slug, readingTime, headings } = Astro.props;
+
+const posts = await getCollection("posts");
+posts.sort((a, b) => {
+  const dateA = new Date(a.data.pubDate);
+  const dateB = new Date(b.data.pubDate);
+  return dateB.getTime() - dateA.getTime();
+});
+
+const latestPost = posts[0].id === slug ? posts.at(1) : posts[0];
+const categoryPosts = posts.filter(
+  (post) => post.data.category === frontmatter.category,
+);
+const relatedPost =
+  categoryPosts[0].id === slug ? categoryPosts.at(1) : categoryPosts[0];
 
 const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&send_image=0&action_name=${encodeURIComponent(
   frontmatter.title,
@@ -96,17 +112,40 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
           )
         }
       </p>
+    </section>
 
-      <hr class="mt-8" />
+    <hr class="mt-8 border-neutral-300 dark:border-neutral-600" />
 
-      <section
-        class="prose lg:prose-lg prose-neutral dark:prose-invert mt-4 max-w-screen-md"
-      >
-        <small>
-          If you have any questions or other feedback, feel free to reach out to
-          me on the social media platforms listed below.
-        </small>
-      </section>
+    <section class="@container mt-4 max-w-screen-md">
+      <div class="flex gap-4 @max-2xl:flex-col">
+        {
+          latestPost && (
+            <div class="w-full">
+              <h4 class="mt-4 mb-2 text-xl font-semibold">Latest Post</h4>
+              <Article post={latestPost} />
+            </div>
+          )
+        }
+        {
+          relatedPost && (
+            <div class="w-full">
+              <h4 class="mt-4 mb-2 text-xl font-semibold">Related Post</h4>
+              <Article post={relatedPost} />
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <hr class="mt-8 border-neutral-300 dark:border-neutral-600" />
+
+    <section
+      class="prose lg:prose-lg prose-neutral dark:prose-invert mt-4 max-w-screen-md"
+    >
+      <small>
+        If you have any questions or other feedback, feel free to reach out to
+        me on the social media platforms listed below.
+      </small>
     </section>
   </div>
 
