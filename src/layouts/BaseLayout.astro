@@ -13,13 +13,23 @@ interface Props {
   pubDate?: Date;
   modDate?: Date;
   author?: string;
+  image?: string;
   tags?: string[];
   post?: boolean;
   slug?: string;
 }
 
-const { title, description, pubDate, modDate, author, tags, post, slug } =
-  Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  modDate,
+  author,
+  image,
+  tags,
+  post,
+  slug,
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -43,7 +53,7 @@ const { title, description, pubDate, modDate, author, tags, post, slug } =
         basic: {
           title: title,
           type: post ? "article" : "website",
-          image: slug ? `${slug}/og-image.png` : "/og-image.png",
+          image: image || (slug ? `${slug}/og-image.png` : "/og-image.png"),
         },
         optional: {
           siteName: "pawcode Development Blog",
