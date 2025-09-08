@@ -1,3 +1,18 @@
+# [2.7.0](https://github.com/pawcoding/astro-blog/compare/v2.6.0...v2.7.0) (2025-09-08)
+
+
+### Bug Fixes
+
+* **posts:** make footer hint smaller ([443e49f](https://github.com/pawcoding/astro-blog/commit/443e49fb9a44b0933b336f532d7e19d5ccc85a86))
+* **font:** re-enable serif font for articles ([d65fa17](https://github.com/pawcoding/astro-blog/commit/d65fa17aff4685e8d16855fe7abb68999154946d))
+* **view-transitions:** remove duplicate transition elements ([e0d4486](https://github.com/pawcoding/astro-blog/commit/e0d44861f05814ca3af4d5031492ea7b961a5cbd))
+
+
+### Features
+
+* **posts:** add latest / related post below content ([be3ec3b](https://github.com/pawcoding/astro-blog/commit/be3ec3bae102fd8c9d4c7a6d7fa6f685caa5f4c6))
+* **posts:** use post image when sending links ([19f39f4](https://github.com/pawcoding/astro-blog/commit/19f39f4603d0f576e3c4571a11222cca1133c2cd))
+
 # [2.6.0](https://github.com/pawcoding/astro-blog/compare/v2.5.1...v2.6.0) (2025-09-07)
 
 
