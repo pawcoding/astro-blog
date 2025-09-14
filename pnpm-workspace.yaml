@@ -1,4 +1,10 @@
 onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  - "@tailwindcss/oxide"
   - esbuild
   - sharp
+# Only install packages that are released within the last 24 hours
+minimumReleaseAge: 1440
+# Except my own packages
+minimumReleaseAgeExclude:
+  - astro-loader-pocketbase
+  - astro-integration-pocketbase
