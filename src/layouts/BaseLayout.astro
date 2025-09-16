@@ -92,44 +92,15 @@ const {
             name: "generator",
             content: Astro.generator,
           },
-          {
-            name: "msapplication-TileColor",
-            content: "#262626",
-          },
-          {
-            name: "msapplication-config",
-            content: "/brand/browserconfig.xml",
-          },
-          {
-            name: "theme-color",
-            content: "#262626",
-          },
         ],
       }}
     />
 
     <!-- Favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/brand/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/brand/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/brand/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/brand/site.webmanifest" />
-    <link rel="mask-icon" href="/brand/safari-pinned-tab.svg" color="#4472c4" />
-    <link rel="shortcut icon" href="/brand/favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="/brand/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/brand/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/brand/manifest.webmanifest" />
 
     <ClientRouter fallback="none" />
   </head>
