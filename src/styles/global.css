@@ -28,10 +28,26 @@
 @layer base {
   :root {
     interpolate-size: allow-keywords;
+
+    --details-animation-duration: 0.5s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --details-animation-duration: 0s;
+    }
   }
 
   html {
     @apply not-motion-reduce:scroll-smooth;
+
+    &[data-theme="dark"] {
+      color-scheme: dark;
+    }
+
+    &[data-theme="light"] {
+      color-scheme: light;
+    }
   }
 
   .prose {
@@ -109,7 +125,6 @@
   }
 
   details {
-    --details-animation-duration: 0.5s;
     overflow: hidden;
 
     &::details-content {
@@ -124,12 +139,6 @@
       &::details-content {
         block-size: auto;
       }
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    details {
-      --details-animation-duration: 0s;
     }
   }
 }
