@@ -1,0 +1,55 @@
+@layer components {
+  .baseline-status {
+    &::part(root) {
+      --color-outline--light: var(--color-neutral-200) !important;
+      --color-outline--dark: var(--color-neutral-700) !important;
+      --animation-duration: var(--details-animation-duration) !important;
+    }
+
+    &::part(details) {
+      overflow: clip;
+
+      --baseline-status-height: 0;
+      --baseline-status-padding-block: 0;
+      --baseline-status-content-visibility: hidden;
+    }
+
+    &::part(details):open {
+      --baseline-status-height: auto;
+      --baseline-status-padding-block: 0.5rem;
+      --baseline-status-content-visibility: visible;
+    }
+
+    &::part(details)::details-content {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+
+      height: var(--baseline-status-height);
+      padding-block: var(--baseline-status-padding-block);
+      content-visibility: var(--baseline-status-content-visibility);
+      transition-duration: var(--details-animation-duration);
+
+      transition-property: padding-block, height, content-visibility;
+      transition-behavior: allow-discrete;
+      transition-timing-function: ease-in-out;
+    }
+
+    &::part(description),
+    &::part(link-container) {
+      margin-block: 0;
+    }
+  }
+
+  .baseline-status:hover,
+  .baseline-status:focus-within {
+    &::part(root) {
+      --color-background--light: oklch(
+        from var(--color-black) l c h / 5%
+      ) !important;
+      --color-background--dark: oklch(
+        from var(--color-white) l c h / 5%
+      ) !important;
+    }
+  }
+}
