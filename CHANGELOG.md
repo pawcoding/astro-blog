@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/pawcoding/astro-blog/compare/v2.7.1...v2.7.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* **details:** add animation to baseline component ([e61f2d5](https://github.com/pawcoding/astro-blog/commit/e61f2d5f2059bce6dbb49dee49e1baf1c31f310b))
+
 ## [2.7.1](https://github.com/pawcoding/astro-blog/compare/v2.7.0...v2.7.1) (2025-09-13)
 
 # [2.7.0](https://github.com/pawcoding/astro-blog/compare/v2.6.0...v2.7.0) (2025-09-08)
