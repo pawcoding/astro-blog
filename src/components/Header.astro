@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import pawcodeDark from "../assets/pawcode-dark.svg";
-import pawcodeLight from "../assets/pawcode-light.svg";
+import pawcodeBlack from "../assets/pawcode-black.svg";
+import pawcodeWhite from "../assets/pawcode-white.svg";
 import Navigation from "./Navigation.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
@@ -20,7 +20,7 @@ import ThemeToggle from "./ThemeToggle.astro";
         <a class="block" href="/">
           <p class="sr-only">pawcode Development Blog</p>
           <Image
-            src={pawcodeDark}
+            src={pawcodeBlack}
             alt="pawcode Development"
             height="32"
             width="140"
@@ -28,7 +28,7 @@ import ThemeToggle from "./ThemeToggle.astro";
             class="dark:hidden"
           />
           <Image
-            src={pawcodeLight}
+            src={pawcodeWhite}
             alt="pawcode Development"
             height="32"
             width="140"
