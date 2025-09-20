@@ -1,3 +1,15 @@
+# [2.8.0](https://github.com/pawcoding/astro-blog/compare/v2.7.2...v2.8.0) (2025-09-20)
+
+
+### Features
+
+* **branding:** update branding ([0624df5](https://github.com/pawcoding/astro-blog/commit/0624df5858bae149d11c1f0e9b584e812ce330fb))
+
+
+### Performance Improvements
+
+* **branding:** optimize favicons ([70b2d33](https://github.com/pawcoding/astro-blog/commit/70b2d3394cb2fbc75c0fd4211ed01cee6f739bdf))
+
 ## [2.7.2](https://github.com/pawcoding/astro-blog/compare/v2.7.1...v2.7.2) (2025-09-17)
 
 
