@@ -9,20 +9,20 @@ const year = new Date().getFullYear();
 
 <footer
   aria-label="Footer"
-  class="bg-neutral-100 dark:bg-neutral-900"
+  class="bg-neutral-100 contrast-more:bg-white dark:bg-neutral-900 contrast-more:dark:bg-black"
   transition:name="footer"
   transition:persist
 >
   <div class="mx-auto max-w-screen-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8">
     <div
-      class="border-t border-neutral-200 pt-8 sm:flex sm:items-center sm:justify-between dark:border-neutral-800"
+      class="border-t border-neutral-200 pt-8 sm:flex sm:items-center sm:justify-between contrast-more:border-black dark:border-neutral-800 contrast-more:dark:border-white"
     >
       <nav aria-label="Footer Navigation">
         <ul class="flex flex-wrap justify-center gap-4 text-sm lg:justify-end">
           <li>
             <a
               href="https://pawcode.de/impressum#impressum?mtm_campaign=Blog&mtm_source=pawcode"
-              class="hocus:opacity-75 text-neutral-600 transition motion-reduce:duration-0 dark:text-neutral-300"
+              class="hocus:opacity-75 text-neutral-600 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black contrast-more:hover:underline dark:text-neutral-300 contrast-more:dark:text-white"
             >
               Imprint
             </a>
@@ -31,7 +31,7 @@ const year = new Date().getFullYear();
           <li>
             <a
               href="https://pawcode.de/impressum#datenschutz?mtm_campaign=Blog&mtm_source=pawcode"
-              class="hocus:opacity-75 text-neutral-600 transition motion-reduce:duration-0 dark:text-neutral-300"
+              class="hocus:opacity-75 text-neutral-600 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black contrast-more:hover:underline dark:text-neutral-300 contrast-more:dark:text-white"
             >
               Privacy
             </a>
@@ -39,13 +39,12 @@ const year = new Date().getFullYear();
         </ul>
       </nav>
 
-      <span
-        class="block cursor-default text-center text-sm text-neutral-600 max-sm:mt-8 dark:text-neutral-300"
+      <a
+        class="block cursor-default text-center text-sm text-neutral-600 max-sm:mt-8 contrast-more:text-black dark:text-neutral-300 contrast-more:dark:text-white"
+        href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode"
       >
-        <a href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode">
-          Version {version} - &copy; {year} pawcode Development
-        </a>
-      </span>
+        Version {version} - &copy; {year} pawcode Development
+      </a>
 
       <ul class="mt-8 flex justify-center gap-4 sm:mt-0 lg:justify-end">
         <li>
@@ -53,7 +52,7 @@ const year = new Date().getFullYear();
             href="/rss.xml"
             rel="noreferrer"
             target="_blank"
-            class="hocus:opacity-75 text-neutral-700 transition motion-reduce:duration-0 dark:invert"
+            class="hocus:opacity-75 text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert"
             title="RSS feed"
           >
             <span class="sr-only">RSS feed</span>
@@ -67,7 +66,7 @@ const year = new Date().getFullYear();
             href="https://github.com/pawcoding"
             rel="noreferrer"
             target="_blank"
-            class="hocus:opacity-75 text-neutral-700 transition motion-reduce:duration-0 dark:invert"
+            class="hocus:opacity-75 text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert"
             title="GitHub"
           >
             <span class="sr-only">GitHub</span>
@@ -81,7 +80,7 @@ const year = new Date().getFullYear();
             href="https://business-card.io/c/f6658706-c0bb-4352-9432-aebf7566da7c/"
             rel="noreferrer"
             target="_blank"
-            class="hocus:opacity-75 text-neutral-700 transition motion-reduce:duration-0 dark:invert"
+            class="hocus:opacity-75 text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:contrast-200 dark:invert"
             title="Business Card"
           >
             <span class="sr-only">Business Card</span>
@@ -102,7 +101,7 @@ const year = new Date().getFullYear();
             href="https://www.linkedin.com/in/luis-wolf-0a8a261b2/"
             rel="noreferrer"
             target="_blank"
-            class="hocus:opacity-75 text-neutral-700 transition motion-reduce:duration-0 dark:invert"
+            class="hocus:opacity-75 text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert"
             title="LinkedIn"
           >
             <span class="sr-only">LinkedIn</span>
@@ -116,7 +115,7 @@ const year = new Date().getFullYear();
             href="https://www.instagram.com/paw.coding/"
             rel="noreferrer"
             target="_blank"
-            class="hocus:opacity-75 text-neutral-700 transition motion-reduce:duration-0 dark:invert"
+            class="hocus:opacity-75 text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert"
             title="Instagram"
           >
             <span class="sr-only">Instagram</span>
@@ -130,7 +129,7 @@ const year = new Date().getFullYear();
             href="https://www.youtube.com/channel/UCMR0jp9jjK4ehhMNkVDGGRA"
             rel="noreferrer"
             target="_blank"
-            class="hocus:opacity-75 text-neutral-700 transition motion-reduce:duration-0 dark:invert"
+            class="hocus:opacity-75 text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert"
             title="YouTube"
           >
             <span class="sr-only">YouTube</span>
