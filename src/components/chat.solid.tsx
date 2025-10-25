@@ -40,7 +40,7 @@ export default function Chat() {
   return (
     <article class="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-4">
       {isOpen() && (
-        <div class="flex h-auto w-96 flex-col gap-4 overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all transition-discrete duration-500 motion-reduce:duration-0 dark:border dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-none starting:h-0">
+        <div class="flex h-auto w-96 flex-col gap-4 overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all transition-discrete duration-500 motion-reduce:duration-0 contrast-more:border-2! contrast-more:border-black dark:border dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-none contrast-more:dark:border-white contrast-more:dark:bg-black starting:h-0">
           <section class="scroll-container max-h-128 space-y-4 overflow-y-auto">
             {messages().map((message) => (
               <div
@@ -49,7 +49,7 @@ export default function Chat() {
                   (message.actor === "user" ? "flex-row-reverse" : "")
                 }
               >
-                <span class="flex size-10 items-center justify-center rounded-full bg-blue-200 text-sm dark:bg-neutral-900">
+                <span class="flex size-10 items-center justify-center rounded-full bg-blue-200 text-sm dark:bg-neutral-900 contrast-more:dark:bg-white">
                   {message.actor === "ai" ? "🤖" : "👤"}
                 </span>
 
@@ -59,7 +59,7 @@ export default function Chat() {
                   </span>
                   <div
                     class={
-                      "markdown rounded-xl border border-neutral-200 bg-neutral-100 p-2 dark:border-neutral-600 dark:bg-neutral-700 " +
+                      "markdown rounded-xl border border-neutral-200 bg-neutral-100 p-2 contrast-more:border-2 contrast-more:border-black contrast-more:bg-white dark:border-neutral-600 dark:bg-neutral-700 contrast-more:dark:border-white contrast-more:dark:bg-black " +
                       (message.actor === "user"
                         ? "rounded-tr-none"
                         : "rounded-tl-none")

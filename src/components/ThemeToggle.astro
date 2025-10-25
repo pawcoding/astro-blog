@@ -6,22 +6,19 @@ import { Icon } from "astro-icon/components";
   type="button"
   id="themeToggle"
   title="Toggle theme"
-  class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300"
+  class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center motion-reduce:duration-0 md:text-neutral-600 contrast-more:md:text-black dark:text-neutral-300 contrast-more:dark:text-white"
 >
   <span class="sr-only">Toggle theme</span>
 
-  <Icon name="heroicons:sun" class="h-7 w-7 md:h-6 md:w-6 dark:hidden" />
-  <Icon
-    name="heroicons:moon"
-    class="hidden h-7 w-7 md:h-6 md:w-6 dark:inline"
-  />
+  <Icon name="heroicons:moon" class="h-7 w-7 md:h-6 md:w-6 dark:hidden" />
+  <Icon name="heroicons:sun" class="hidden h-7 w-7 md:h-6 md:w-6 dark:inline" />
 </button>
 
 <button
   type="button"
   id="fontToggle"
   title="Toggle font"
-  class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300"
+  class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center motion-reduce:duration-0 md:text-neutral-600 contrast-more:md:text-black dark:text-neutral-300 contrast-more:dark:text-white"
 >
   <span class="sr-only">Toggle font</span>
 

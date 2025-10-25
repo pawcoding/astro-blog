@@ -18,7 +18,7 @@ const url = `/posts/${id}`;
 <article
   transition:name={id}
   id={id}
-  class="@container relative block overflow-hidden rounded-lg border border-neutral-300 p-0 shadow-xs transition focus-within:border-neutral-800 focus-within:shadow-lg hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-800 dark:shadow-none dark:focus-within:border-neutral-200"
+  class="@container relative block overflow-hidden rounded-lg border border-neutral-300 p-0 shadow-xs transition focus-within:border-neutral-800 focus-within:shadow-lg not-motion-reduce:hover:shadow-lg contrast-more:border-2 contrast-more:border-black dark:border-neutral-800 dark:bg-neutral-800 dark:shadow-none dark:focus-within:border-neutral-200 contrast-more:dark:border-white contrast-more:dark:bg-black"
   style={`background-color: ${color}08`}
 >
   <span
@@ -26,7 +26,12 @@ const url = `/posts/${id}`;
     style={`background-color: ${color}`}></span>
 
   <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
-    <section class="relative block">
+    <section
+      class={"relative block contrast-more:border-black contrast-more:dark:border-white " +
+        (image
+          ? "contrast-more:@max-lg:border-b-2 contrast-more:@lg:border-r-2"
+          : "")}
+    >
       {
         image && (
           <a href={url} tabindex="-1">
@@ -43,13 +48,13 @@ const url = `/posts/${id}`;
     <section class="p-4 @sm:p-6">
       <a href={url} class="focus:outline-none">
         <h3
-          class="pb-2 text-2xl font-semibold text-neutral-900 @3xl:text-3xl dark:text-neutral-200"
+          class="pb-2 text-2xl font-semibold text-neutral-900 contrast-more:text-black @3xl:text-3xl dark:text-neutral-200 contrast-more:dark:text-white"
         >
           {title}
         </h3>
 
         <div
-          class="line-clamp-6 text-base/relaxed text-neutral-600 dark:text-neutral-300"
+          class="line-clamp-6 text-base/relaxed text-neutral-600 contrast-more:text-neutral-900 dark:text-neutral-300 contrast-more:dark:text-neutral-100"
         >
           {description}
         </div>

@@ -62,7 +62,7 @@
     }
 
     img {
-      @apply rounded-md border-neutral-200 shadow-sm dark:border-neutral-800 dark:shadow-none;
+      @apply rounded-md border-neutral-200 shadow-sm contrast-more:border-2 contrast-more:border-black dark:border-neutral-800 dark:shadow-none contrast-more:dark:border-white;
     }
 
     *:not(pre) code {
@@ -79,6 +79,10 @@
       @apply ml-1 inline-block h-3 w-3 bg-contain bg-center bg-no-repeat;
     }
 
+    a {
+      @apply contrast-more:underline;
+    }
+
     sup a {
       @apply no-underline;
     }
@@ -89,7 +93,7 @@
   }
 
   .footnotes {
-    @apply mt-16 border-t border-neutral-200 dark:border-neutral-800;
+    @apply mt-16 border-t border-neutral-200 contrast-more:border-black dark:border-neutral-800 contrast-more:dark:border-white;
 
     li {
       @apply text-sm md:text-base;

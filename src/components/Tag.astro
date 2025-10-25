@@ -13,9 +13,11 @@ const normalizedText = label
   .toLowerCase();
 
 const classes = [
-  "px-2 py-0.5 gap-1 overflow-clip font-mono rounded-full select-none inline-flex items-center justify-center ",
+  "px-2 py-0.5 gap-1 overflow-clip font-mono rounded-full select-none inline-flex items-center justify-center",
   "border-black/10 dark:border-black/40 text-neutral-800 dark:text-neutral-300 bg-black/10 dark:bg-white/8",
-  "hover:bg-black/15 dark:hover:bg-white/12 transition-colors cursor-pointer",
+  "hover:bg-black/15 dark:hover:bg-white/12 not-motion-reduce:transition-colors cursor-pointer",
+  "contrast-more:border contrast-more:border-black contrast-more:text-black contrast-more:bg-white",
+  "contrast-more:dark:border-white contrast-more:dark:text-white contrast-more:dark:bg-black",
 ];
 if (size === "medium") {
   classes.push("border");
