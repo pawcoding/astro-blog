@@ -15,7 +15,7 @@
     "upgrade": "pnpm dlx @astrojs/upgrade && pnpm up -i"
   },
   "dependencies": {
-    "@astro-community/astro-embed-baseline-status": "^0.2.0",
+    "@astro-community/astro-embed-baseline-status": "^0.2.1",
     "@astrojs/check": "^0.9.5",
     "@astrojs/markdown-remark": "^6.3.8",
     "@astrojs/mdx": "^4.3.10",
@@ -27,11 +27,11 @@
     "@fontsource-variable/source-sans-3": "^5.2.9",
     "@fontsource-variable/source-serif-4": "^5.2.9",
     "@iconify-json/heroicons": "^1.2.3",
-    "@iconify-json/simple-icons": "^1.2.57",
+    "@iconify-json/simple-icons": "^1.2.58",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.15.4",
+    "astro": "^5.15.7",
     "astro-icon": "^1.1.5",
     "astro-matomo": "^1.9.0",
     "astro-robots-txt": "^1.0.0",
