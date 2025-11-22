@@ -1,3 +1,11 @@
+## [2.8.9](https://github.com/pawcoding/astro-blog/compare/v2.8.8...v2.8.9) (2025-11-22)
+
+
+### Bug Fixes
+
+* **a11y:** respect more contrast preference ([af43315](https://github.com/pawcoding/astro-blog/commit/af43315b03df114cbaada90cabf94524e5d55700))
+* **a11y:** respect reduced motion preference ([e31b720](https://github.com/pawcoding/astro-blog/commit/e31b720fbdfc7637d1bc8999dcd746ee9840cdcd))
+
 ## [2.8.8](https://github.com/pawcoding/astro-blog/compare/v2.8.7...v2.8.8) (2025-11-15)
 
 ## [2.8.7](https://github.com/pawcoding/astro-blog/compare/v2.8.6...v2.8.7) (2025-11-08)
