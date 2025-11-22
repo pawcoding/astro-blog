@@ -10,3 +10,4 @@ minimumReleaseAgeExclude:
   - "astro"
   - "astro-loader-pocketbase"
   - "astro-integration-pocketbase"
+trustPolicy: no-downgrade
