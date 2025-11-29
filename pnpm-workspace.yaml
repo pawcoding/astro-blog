@@ -11,3 +11,6 @@ minimumReleaseAgeExclude:
   - "astro-loader-pocketbase"
   - "astro-integration-pocketbase"
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3
+  - vite@6.4.1
