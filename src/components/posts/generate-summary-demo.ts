@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-import type { SummaryType } from "../../types/summarizer";
 import {
   getUserMessage,
   parseMarkdown,
@@ -7,7 +6,7 @@ import {
   type SummaryChat,
 } from "../../utils/generate-summary";
 
-const DEMO_SUMMARIES: Record<SummaryType, string> = {
+const DEMO_SUMMARIES: Record<SummarizerType, string> = {
   "key-points": `* Google Chrome has a built-in AI Summarizer API that allows users to summarize web pages locally without sending data to external AI providers. 🤖
 * The API is accessible via a ✨ button in the browser's bottom-right corner, offering TLDR, key points, teaser, and headline summaries. 📰
 * The API requires downloading a model (around 4GB) and is not yet perfectly stable across all devices. 💻
@@ -30,7 +29,7 @@ export function createSummaryChatDemo(): SummaryChat {
     },
   ]);
 
-  async function generateSummary(type: SummaryType): Promise<void> {
+  async function generateSummary(type: SummarizerType): Promise<void> {
     setMessages((messages) => [
       ...messages,
       {

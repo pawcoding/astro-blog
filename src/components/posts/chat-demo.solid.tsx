@@ -1,5 +1,4 @@
 import { createEffect } from "solid-js";
-import type { SummaryType } from "../../types/summarizer";
 import { getUserMessage } from "../../utils/generate-summary";
 import { createSummaryChatDemo } from "./generate-summary-demo";
 
@@ -68,7 +67,7 @@ export default function ChatDemo() {
 
       {showSummaryButtons() && (
         <menu class="flex flex-wrap justify-center gap-2">
-          {(["tldr", "key-points", "teaser"] satisfies Array<SummaryType>).map(
+          {(["tldr", "key-points", "teaser"] satisfies Array<SummarizerType>).map(
             (type) => (
               <button
                 onClick={() => generateSummary(type)}

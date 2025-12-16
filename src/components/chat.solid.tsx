@@ -1,6 +1,5 @@
 import { HiSolidSparkles, HiSolidXMark } from "solid-icons/hi";
 import { createEffect, createSignal } from "solid-js";
-import type { SummaryType } from "../types/summarizer";
 import { createSummaryChat, getUserMessage } from "../utils/generate-summary";
 
 /**
@@ -93,7 +92,7 @@ export default function Chat() {
           {showSummaryButtons() && (
             <menu class="flex flex-wrap justify-center gap-2">
               {(
-                ["tldr", "key-points", "teaser"] satisfies Array<SummaryType>
+                ["tldr", "key-points", "teaser"] satisfies Array<SummarizerType>
               ).map((type) => (
                 <button
                   onClick={() => generateSummary(type)}

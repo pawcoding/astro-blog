@@ -1,11 +1,6 @@
 import DOMPurify from "dompurify";
 import { marked } from "marked";
 import { createSignal } from "solid-js";
-import type {
-  Availability,
-  SummarizerInstance,
-  SummaryType,
-} from "../types/summarizer";
 
 /**
  * Message to be displayed in the chat
@@ -30,7 +25,7 @@ export type SummaryChat = {
   availability: () => Availability | undefined;
   downloadProgress: () => number;
   isGenerating: () => boolean;
-  generateSummary: (type: SummaryType) => Promise<void>;
+  generateSummary: (type: SummarizerType) => Promise<void>;
 };
 
 export function createSummaryChat(): SummaryChat {
@@ -49,17 +44,17 @@ export function createSummaryChat(): SummaryChat {
     },
   ]);
   let abortController: AbortController | undefined;
-  const summarizers = new Map<SummaryType, SummarizerInstance>();
+  const summarizers = new Map<SummarizerType, Summarizer>();
 
   async function createSummarizer(
-    type: SummaryType,
-  ): Promise<SummarizerInstance | undefined> {
+    type: SummarizerType,
+  ): Promise<Summarizer | undefined> {
     if (summarizers.has(type)) {
       return summarizers.get(type);
     }
 
     try {
-      const availability = await window.Summarizer.availability();
+      const availability = await Summarizer.availability();
       setAvailability(availability);
 
       if (availability === "unavailable") {
@@ -76,7 +71,7 @@ export function createSummaryChat(): SummaryChat {
         return undefined;
       }
 
-      const summarizer = await window.Summarizer.create({
+      const summarizer = await Summarizer.create({
         sharedContext:
           "This is a blog about different web development topics and little programming experiments.\nWhen creating a summary, make sure to include some emojis to make it more engaging.",
         type,
@@ -122,7 +117,7 @@ export function createSummaryChat(): SummaryChat {
     }
   }
 
-  async function generateSummary(type: SummaryType): Promise<void> {
+  async function generateSummary(type: SummarizerType): Promise<void> {
     if (abortController) {
       abortController.abort("New summary was requested");
     }
@@ -204,7 +199,7 @@ export function createSummaryChat(): SummaryChat {
   };
 }
 
-export function getUserMessage(type: SummaryType): string {
+export function getUserMessage(type: SummarizerType): string {
   switch (type) {
     case "tldr":
       return "Give me a TLDR";
