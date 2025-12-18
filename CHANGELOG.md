@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/pawcoding/astro-blog/compare/v2.9.0...v2.9.1) (2025-12-18)
+
+
+### Performance Improvements
+
+* load article pictures eagerly when not visible above the fold ([37ec4a4](https://github.com/pawcoding/astro-blog/commit/37ec4a430b441c5d0f2a8430349c6a744137354c))
+
 # [2.9.0](https://github.com/pawcoding/astro-blog/compare/v2.8.13...v2.9.0) (2025-12-18)
 
 
