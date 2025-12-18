@@ -2,8 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import Article from "../../components/Article.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
 import { CATEGORIES } from "../../constants/categories";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -74,7 +74,11 @@ try {
     </p>
 
     <section class="flex flex-col gap-4">
-      {posts.map((post) => <Article post={post} />)}
+      {
+        posts.map((post, index) => (
+          <Article post={post} loadImageEagerly={index < 3} />
+        ))
+      }
     </section>
   </div>
 </BaseLayout>

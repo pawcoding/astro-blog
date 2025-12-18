@@ -7,9 +7,10 @@ interface Props {
   post: CollectionEntry<"posts"> & {
     readingTime?: string;
   };
+  loadImageEagerly?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, loadImageEagerly } = Astro.props;
 const { data, readingTime, id } = post;
 const { title, description, image, pubDate, category, color } = data;
 const url = `/posts/${id}`;
@@ -38,7 +39,8 @@ const url = `/posts/${id}`;
             <img
               src={image}
               alt={title}
-              class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-left-top"
+              loading={loadImageEagerly ? "eager" : "lazy"}
+              class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-top-left"
             />
           </a>
         )

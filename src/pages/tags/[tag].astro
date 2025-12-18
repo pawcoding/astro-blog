@@ -73,7 +73,11 @@ try {
     </p>
 
     <section class="flex flex-col gap-4">
-      {posts.map((post) => <Article post={post} />)}
+      {
+        posts.map((post, index) => (
+          <Article post={post} loadImageEagerly={index < 3} />
+        ))
+      }
     </section>
   </div>
 </BaseLayout>
