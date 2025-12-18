@@ -22,7 +22,7 @@ jobs:
     steps:
       # Checkout repository
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -32,7 +32,7 @@ jobs:
 
       # Setup Node
       - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: 'pnpm'
@@ -44,7 +44,7 @@ jobs:
 
       # Restore cache
       - name: 📦 Restore cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           key: astro-cache
           path: |

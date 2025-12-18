@@ -24,7 +24,7 @@ jobs:
     steps:
       # Checkout repository
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -34,7 +34,7 @@ jobs:
 
       # Setup Node
       - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
@@ -46,7 +46,7 @@ jobs:
 
       # Restore cache
       - name: 📦 Restore cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           key: astro-cache
           path: |
@@ -55,9 +55,9 @@ jobs:
       # Create semantic release
       - name: 🚀 Create semantic release
         id: release
-        uses: cycjimmy/semantic-release-action@v4
+        uses: cycjimmy/semantic-release-action@v6
         with:
-          semantic_version: 24
+          semantic_version: 25
           extra_plugins: |
             - "@semantic-release/changelog"
             - "@semantic-release/git"

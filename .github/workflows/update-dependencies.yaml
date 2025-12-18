@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checkout repository
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
           ref: "master"
@@ -27,7 +27,7 @@ jobs:
 
       # Setup Node
       - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
@@ -36,6 +36,14 @@ jobs:
       - name: 🆙 Update dependencies
         run: |
           pnpm up
+
+      # Restore cache
+      - name: 📦 Restore cache
+        uses: actions/cache/restore@v5
+        with:
+          key: astro-cache
+          path: |
+            .astro
 
       # Check Astro
       - name: 🧪 Check Astro
@@ -46,11 +54,11 @@ jobs:
 
       # Create pull request
       - name: 🚀 Create pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "build(deps): update dependencies"
-          signoff: true
+          sign-commits: true
           branch: "build/update-dependencies"
           delete-branch: true
           base: "master"
