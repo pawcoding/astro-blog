@@ -2,10 +2,16 @@ import { createSignal } from "solid-js";
 import "./color-wheel-demo.solid.css";
 
 export default function ColorWheelDemo() {
+  let tracked = false;
   const [wheel, setWheel] = createSignal(10);
   const [hue, setHue] = createSignal(5);
 
   function updateWheel(value: number) {
+    if (!tracked) {
+      window._paq?.push(['trackEvent', 'Demo', 'Color Wheel', 'Interact']);
+      tracked = true;
+    }
+
     setWheel(value);
 
     if (value < 120) {
@@ -20,6 +26,11 @@ export default function ColorWheelDemo() {
   }
 
   function updateHue(value: number) {
+    if (!tracked) {
+      window._paq?.push(['trackEvent', 'Demo', 'Color Wheel', 'Interact']);
+      tracked = true;
+    }
+
     setHue(value);
 
     if (value < 60) {

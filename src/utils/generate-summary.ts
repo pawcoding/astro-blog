@@ -118,6 +118,8 @@ export function createSummaryChat(): SummaryChat {
   }
 
   async function generateSummary(type: SummarizerType): Promise<void> {
+    window._paq?.push(["trackEvent", "Summary", "Generate Summary", type]);
+
     if (abortController) {
       abortController.abort("New summary was requested");
     }

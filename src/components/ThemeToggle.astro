@@ -26,6 +26,9 @@ import { Icon } from "astro-icon/components";
 </button>
 
 <script is:inline>
+  // Ensure that window._paq is defined before using it
+  window._paq = window._paq || [];
+
   function getTheme() {
     const localStorageTheme = localStorage.getItem("theme");
     if (
@@ -57,6 +60,7 @@ import { Icon } from "astro-icon/components";
 
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("theme", theme);
+    window._paq?.push(["setCustomDimension", 1, theme]);
   }
 
   function setFont(document, toggle = false) {
@@ -67,6 +71,7 @@ import { Icon } from "astro-icon/components";
 
     document.documentElement.dataset.font = font;
     window.localStorage.setItem("font", font);
+    window._paq?.push(["setCustomDimension", 2, font]);
   }
 
   setTheme(document);
@@ -79,8 +84,10 @@ import { Icon } from "astro-icon/components";
 
   document.getElementById("themeToggle")?.addEventListener("click", () => {
     setTheme(document, true);
+    window._paq?.push(["trackEvent", "Theme", "Toggle", getTheme()]);
   });
   document.getElementById("fontToggle")?.addEventListener("click", () => {
     setFont(document, true);
+    window._paq?.push(["trackEvent", "Font", "Toggle", getFont()]);
   });
 </script>

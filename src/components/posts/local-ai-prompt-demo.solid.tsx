@@ -31,6 +31,8 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
   let session: ChromeAIAssistant | undefined = undefined;
 
   async function run() {
+    window._paq?.push(["trackEvent", "Demo", "Local AI Prompt", "Run"]);
+
     if (generating()) return;
     setGenerating(true);
     setError("");

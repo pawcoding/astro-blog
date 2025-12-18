@@ -163,6 +163,8 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
         const url = window.location.href;
         const title = document.title;
 
+        window._paq?.push(["trackEvent", "Share", "Share Button Click", title]);
+
         if (navigator.share) {
           try {
             await navigator.share({ title, url });

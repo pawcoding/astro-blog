@@ -30,6 +30,8 @@ export function createSummaryChatDemo(): SummaryChat {
   ]);
 
   async function generateSummary(type: SummarizerType): Promise<void> {
+    window._paq?.push(["trackEvent", "Demo", "Generate Summary", type]);
+
     setMessages((messages) => [
       ...messages,
       {

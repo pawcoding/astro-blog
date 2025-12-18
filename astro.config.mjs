@@ -56,6 +56,9 @@ export default defineConfig({
       disableCookies: true,
       heartBeatTimer: 15,
       preconnect: true,
+      viewTransition: {
+        contentElement: "main",
+      },
     }),
     sitemap({
       changefreq: "monthly",
