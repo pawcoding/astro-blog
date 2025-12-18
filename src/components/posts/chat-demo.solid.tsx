@@ -67,16 +67,16 @@ export default function ChatDemo() {
 
       {showSummaryButtons() && (
         <menu class="flex flex-wrap justify-center gap-2">
-          {(["tldr", "key-points", "teaser"] satisfies Array<SummarizerType>).map(
-            (type) => (
-              <button
-                onClick={() => generateSummary(type)}
-                class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
-              >
-                {getUserMessage(type)}
-              </button>
-            ),
-          )}
+          {(
+            ["tldr", "key-points", "teaser"] satisfies Array<SummarizerType>
+          ).map((type) => (
+            <button
+              onClick={() => generateSummary(type)}
+              class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
+            >
+              {getUserMessage(type)}
+            </button>
+          ))}
         </menu>
       )}
     </div>

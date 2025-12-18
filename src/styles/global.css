@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-@plugin '@tailwindcss/container-queries';
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/container-queries";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant hocus (&:hover, &:focus);

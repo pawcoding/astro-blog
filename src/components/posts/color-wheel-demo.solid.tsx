@@ -8,7 +8,7 @@ export default function ColorWheelDemo() {
 
   function updateWheel(value: number) {
     if (!tracked) {
-      window._paq?.push(['trackEvent', 'Demo', 'Color Wheel', 'Interact']);
+      window._paq?.push(["trackEvent", "Demo", "Color Wheel", "Interact"]);
       tracked = true;
     }
 
@@ -27,7 +27,7 @@ export default function ColorWheelDemo() {
 
   function updateHue(value: number) {
     if (!tracked) {
-      window._paq?.push(['trackEvent', 'Demo', 'Color Wheel', 'Interact']);
+      window._paq?.push(["trackEvent", "Demo", "Color Wheel", "Interact"]);
       tracked = true;
     }
 
