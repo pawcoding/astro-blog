@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/pawcoding/astro-blog/compare/v2.8.13...v2.9.0) (2025-12-18)
+
+
+### Features
+
+* **matomo:** setup custom dimensions and activities ([616b2ac](https://github.com/pawcoding/astro-blog/commit/616b2ac7151d8edee34ca4104c74e8cb467c40d8))
+
 ## [2.8.13](https://github.com/pawcoding/astro-blog/compare/v2.8.12...v2.8.13) (2025-12-16)
 
 ## [2.8.12](https://github.com/pawcoding/astro-blog/compare/v2.8.11...v2.8.12) (2025-12-13)
