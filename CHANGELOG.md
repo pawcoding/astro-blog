@@ -1,3 +1,10 @@
+## [2.9.2](https://github.com/pawcoding/astro-blog/compare/v2.9.1...v2.9.2) (2025-12-19)
+
+
+### Bug Fixes
+
+* **post:** always stack related posts ([7bf4ff8](https://github.com/pawcoding/astro-blog/commit/7bf4ff8c779f961d0882da80b4c56b4ec05a4701))
+
 ## [2.9.1](https://github.com/pawcoding/astro-blog/compare/v2.9.0...v2.9.1) (2025-12-18)
 
 
