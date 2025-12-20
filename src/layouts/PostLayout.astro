@@ -2,14 +2,14 @@
 import "@fontsource-variable/source-serif-4";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
-import TableOfContents from "../components/TableOfContents.astro";
-import Tag from "../components/Tag.astro";
-import MetaInfo from "../components/MetaInfo.astro";
-import { formatDate, formatDateMachine } from "../utils/format-date";
-import BaseLayout from "./BaseLayout.astro";
-import Chat from "../components/chat.solid";
 import { getCollection } from "astro:content";
 import Article from "../components/Article.astro";
+import Chat from "../components/chat.solid";
+import MetaInfo from "../components/MetaInfo.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import Tag from "../components/Tag.astro";
+import { formatDate, formatDateMachine } from "../utils/format-date";
+import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
@@ -47,10 +47,10 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
     >
       <div
-        class="flex items-center justify-between pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
+        class="flex items-center gap-2 pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
       >
         <h1
-          class="text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
+          class="grow text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200 print:text-black"
           id="title"
         >
           {frontmatter.title}
@@ -58,21 +58,32 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 
         <button
           type="button"
+          id="printButton"
+          title="Print post"
+          class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300 print:hidden"
+        >
+          <span class="sr-only">Print post</span>
+
+          <Icon name="heroicons:printer" class="size-7 md:size-6" />
+        </button>
+
+        <button
+          type="button"
           id="shareButton"
           title="Share post"
-          class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300"
+          class="md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75 inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300 print:hidden"
         >
           <span class="sr-only">Share post</span>
 
           <Icon
             id="shareIcon"
             name="heroicons:share"
-            class="h-7 w-7 md:h-6 md:w-6"
+            class="size-7 md:size-6"
           />
           <Icon
             id="copyIcon"
             name="heroicons:clipboard-document-check"
-            class="hidden h-7 w-7 md:h-6 md:w-6"
+            class="hidden size-7 md:size-6"
           />
         </button>
       </div>
@@ -92,14 +103,16 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     <TableOfContents headings={headings} title={frontmatter.title} />
 
     <section
-      class="prose prose-neutral prose-code:text-sm prose-lg dark:prose-invert mt-4 max-w-screen-md"
+      class="prose prose-neutral prose-code:text-sm prose-lg dark:not-print:prose-invert print:prose-sm mt-4 max-w-screen-md"
       id="content"
     >
       <div>
         <slot />
       </div>
 
-      <p class="text-right text-sm text-neutral-500 dark:text-neutral-300">
+      <p
+        class="text-right text-sm text-neutral-500 dark:text-neutral-300 print:text-gray-800"
+      >
         <time datetime={formatDateMachine(frontmatter.pubDate)}>
           {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
         </time>
@@ -115,9 +128,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       </p>
     </section>
 
-    <hr class="mt-8 border-neutral-300 dark:border-neutral-600" />
+    <hr class="mt-8 border-neutral-300 dark:border-neutral-600 print:hidden" />
 
-    <section class="@container mt-4 max-w-screen-md">
+    <section class="@container mt-4 max-w-screen-md print:hidden">
       <div class="flex flex-col gap-4">
         {
           latestPost && (
@@ -141,7 +154,7 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     <hr class="mt-8 border-neutral-300 dark:border-neutral-600" />
 
     <section
-      class="prose lg:prose-lg prose-neutral dark:prose-invert mt-4 max-w-screen-md"
+      class="prose lg:prose-lg prose-neutral dark:not-print:prose-invert print:prose-sm mt-4 max-w-screen-md"
     >
       <small>
         If you have any questions or other feedback, feel free to reach out to
@@ -157,49 +170,70 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
   </noscript>
 
   <script>
-    const shareButton = document.getElementById("shareButton");
-    if (shareButton) {
-      shareButton.addEventListener("click", async () => {
-        const url = window.location.href;
-        const title = document.title;
+    document.addEventListener("astro:page-load", () => {
+      const shareButton = document.getElementById("shareButton");
+      if (shareButton) {
+        shareButton.addEventListener("click", async () => {
+          const url = window.location.href;
+          const title = document.title;
 
-        window._paq?.push(["trackEvent", "Share", "Share Button Click", title]);
+          window._paq?.push([
+            "trackEvent",
+            "Share",
+            "Share Button Click",
+            title,
+          ]);
 
-        if (navigator.share) {
-          try {
-            await navigator.share({ title, url });
-            return;
-          } catch (err) {
-            if (
-              err &&
-              typeof err === "object" &&
-              "name" in err &&
-              err.name === "AbortError"
-            ) {
+          if (navigator.share) {
+            try {
+              await navigator.share({ title, url });
               return;
+            } catch (err) {
+              if (
+                err &&
+                typeof err === "object" &&
+                "name" in err &&
+                err.name === "AbortError"
+              ) {
+                return;
+              }
+              console.error("Share failed:", err);
             }
-            console.error("Share failed:", err);
           }
-        }
 
-        try {
-          await navigator.clipboard.writeText(url);
+          try {
+            await navigator.clipboard.writeText(url);
 
-          // Show a temporary success icon
-          const shareIcon = shareButton.querySelector("#shareIcon");
-          shareIcon?.classList.add("hidden");
-          const copyIcon = shareButton.querySelector("#copyIcon");
-          copyIcon?.classList.remove("hidden");
+            // Show a temporary success icon
+            const shareIcon = shareButton.querySelector("#shareIcon");
+            shareIcon?.classList.add("hidden");
+            const copyIcon = shareButton.querySelector("#copyIcon");
+            copyIcon?.classList.remove("hidden");
 
-          setTimeout(() => {
-            copyIcon?.classList.add("hidden");
-            shareIcon?.classList.remove("hidden");
-          }, 3000);
-        } catch (err) {
-          console.error("Could not copy URL:", err);
-          alert("Could not copy URL.");
-        }
-      });
-    }
+            setTimeout(() => {
+              copyIcon?.classList.add("hidden");
+              shareIcon?.classList.remove("hidden");
+            }, 3000);
+          } catch (err) {
+            console.error("Could not copy URL:", err);
+            alert("Could not copy URL.");
+          }
+        });
+      }
+
+      const printButton = document.getElementById("printButton");
+      if (printButton) {
+        printButton.addEventListener("click", () => {
+          window._paq?.push([
+            "trackEvent",
+            "Print",
+            "Print Button Click",
+            document.title,
+          ]);
+
+          window.print();
+        });
+      }
+    });
   </script>
 </BaseLayout>

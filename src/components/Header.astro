@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle.astro";
 
 <header
   aria-label="Header"
-  class="sticky top-0 z-50 bg-neutral-100 contrast-more:bg-white dark:bg-neutral-900 contrast-more:dark:bg-black"
+  class="sticky top-0 z-50 bg-neutral-100 contrast-more:bg-white dark:bg-neutral-900 contrast-more:dark:bg-black print:bg-white print:text-black"
   transition:name="header"
   transition:persist
 >
@@ -25,7 +25,7 @@ import ThemeToggle from "./ThemeToggle.astro";
             height="32"
             width="140"
             loading="eager"
-            class="dark:hidden"
+            class="dark:hidden print:block"
           />
           <Image
             src={pawcodeWhite}
@@ -33,12 +33,12 @@ import ThemeToggle from "./ThemeToggle.astro";
             height="32"
             width="140"
             loading="eager"
-            class="hidden dark:block"
+            class="hidden dark:block print:hidden"
           />
         </a>
       </div>
 
-      <div class="flex h-7 gap-2 md:order-3 md:ml-4 md:h-6">
+      <div class="flex h-7 gap-2 md:order-3 md:ml-4 md:h-6 print:hidden">
         <ThemeToggle />
       </div>
 

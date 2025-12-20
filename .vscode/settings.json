@@ -16,5 +16,8 @@
     "postbuild",
     "Supabase",
     "Turso"
-  ]
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }

@@ -15,7 +15,7 @@ const filteredHeadings = headings.filter(
 {
   filteredHeadings.length > 0 && (
     <>
-      <nav aria-label="Table of contents">
+      <nav aria-label="Table of contents" class="print:hidden">
         <details class="hocus:bg-black/5 dark:hocus:bg-white/5 mt-8 rounded-lg border border-neutral-200 not-motion-reduce:transition-colors 2xl:hidden dark:border-neutral-700">
           <summary class="cursor-pointer rounded-t-lg p-4 text-lg font-semibold text-neutral-900 select-none dark:text-neutral-200">
             Table of contents
@@ -35,7 +35,7 @@ const filteredHeadings = headings.filter(
 
       <nav
         aria-label="Table of contents"
-        class="max-w-table-of-contents fixed top-17 right-0 z-40 hidden overflow-y-auto p-4 2xl:block"
+        class="max-w-table-of-contents fixed top-17 right-0 z-40 hidden overflow-y-auto p-4 2xl:block print:hidden"
       >
         <h3 class="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-200">
           Table of Contents

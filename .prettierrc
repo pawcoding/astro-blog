@@ -1,5 +1,13 @@
 {
   "tabWidth": 2,
   "useTabs": false,
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
   "plugins": ["prettier-plugin-astro", "prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"]
 }

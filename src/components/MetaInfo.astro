@@ -24,13 +24,13 @@ if (!category) {
 ---
 
 <dl
-  class="@container flex items-baseline justify-start gap-4 text-sm text-neutral-600 contrast-more:text-black dark:text-neutral-100 contrast-more:dark:text-white"
+  class="@container flex items-baseline justify-start gap-4 text-sm text-neutral-600 contrast-more:text-black dark:text-neutral-100 contrast-more:dark:text-white print:text-gray-800"
 >
   <div class="flex items-center gap-2 select-none">
     <dt>
       <Icon
         name="heroicons:calendar-days-16-solid"
-        class="size-5 dark:hue-rotate-180 dark:invert"
+        class="size-5 dark:not-print:hue-rotate-180 dark:not-print:invert"
         style={`color: ${color}`}
       />
 
@@ -50,7 +50,7 @@ if (!category) {
         <dt>
           <Icon
             name="heroicons:book-open"
-            class="size-5 dark:hue-rotate-180 dark:invert"
+            class="size-5 dark:not-print:hue-rotate-180 dark:not-print:invert"
             style={`color: ${color}`}
           />
 
@@ -70,7 +70,7 @@ if (!category) {
     <dt>
       <Icon
         name="heroicons:tag-solid"
-        class="size-5 dark:hue-rotate-180 dark:invert"
+        class="size-5 dark:not-print:hue-rotate-180 dark:not-print:invert"
         style={`color: ${color}`}
       />
 

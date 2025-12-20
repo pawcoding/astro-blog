@@ -37,7 +37,7 @@ export default function Chat() {
     isGenerating() && messages().at(-1)?.actor === "user";
 
   return (
-    <article class="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-4">
+    <article class="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-4 print:hidden">
       {isOpen() && (
         <div class="flex h-auto w-96 flex-col gap-4 overflow-hidden rounded-lg bg-white p-4 shadow-sm transition-all transition-discrete duration-500 motion-reduce:duration-0 contrast-more:border-2! contrast-more:border-black dark:border dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-none contrast-more:dark:border-white contrast-more:dark:bg-black starting:h-0">
           <section class="scroll-container max-h-128 space-y-4 overflow-y-auto">

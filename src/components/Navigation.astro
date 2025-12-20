@@ -7,7 +7,7 @@ import { Icon } from "astro-icon/components";
   id="nav-button"
   title="Open navigation"
   aria-controls="navigation"
-  class="inline-flex cursor-pointer items-center justify-center md:hidden"
+  class="inline-flex cursor-pointer items-center justify-center md:hidden print:hidden"
   aria-expanded="false"
 >
   <span class="sr-only">Open navigation</span>
@@ -16,7 +16,7 @@ import { Icon } from "astro-icon/components";
 
 <nav
   aria-label="Navigation"
-  class="block overflow-y-clip transition-all duration-300 select-none motion-reduce:duration-0 max-md:max-h-0 max-md:w-full"
+  class="block overflow-y-clip transition-all duration-300 select-none motion-reduce:duration-0 max-md:max-h-0 max-md:w-full print:hidden"
   id="navigation"
 >
   <ul
