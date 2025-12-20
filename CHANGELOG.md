@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/pawcoding/astro-blog/compare/v2.9.3...v2.10.0) (2025-12-20)
+
+
+### Features
+
+* **post:** add print button including custom styles for printing ([53c1ee7](https://github.com/pawcoding/astro-blog/commit/53c1ee78fafb052e5fb1286d72c01b10e42ad227))
+
 ## [2.9.3](https://github.com/pawcoding/astro-blog/compare/v2.9.2...v2.9.3) (2025-12-20)
 
 ## [2.9.2](https://github.com/pawcoding/astro-blog/compare/v2.9.1...v2.9.2) (2025-12-19)

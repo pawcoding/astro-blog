@@ -1,7 +1,7 @@
 {
   "name": "astro-blog",
   "type": "module",
-  "version": "2.9.3",
+  "version": "2.10.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
