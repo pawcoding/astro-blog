@@ -10,8 +10,7 @@
     "update-blog-list": "node ./scripts/update-blog-list.js",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write ./src --cache",
-    "semantic-release": "semantic-release",
+    "prettier": "prettier --write ./src --cache --cache-location ./.prettiercache --experimental-cli",
     "upgrade": "pnpm dlx @astrojs/upgrade && pnpm up -i"
   },
   "dependencies": {
