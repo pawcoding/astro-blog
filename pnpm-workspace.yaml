@@ -1,7 +1,7 @@
-onlyBuiltDependencies:
-  - "@tailwindcss/oxide"
-  - esbuild
-  - sharp
+allowBuilds:
+  "@tailwindcss/oxide": true
+  esbuild: true
+  sharp: true
 # Only allow packages that are at least one day old
 minimumReleaseAge: 1440
 # Except official astro packages and my own ones
@@ -15,3 +15,4 @@ trustPolicyExclude:
   - chokidar@4.0.3
   - semver@6.3.1
   - vite@6.4.1
+blockExoticSubdeps: true

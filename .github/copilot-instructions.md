@@ -7,7 +7,7 @@ Always reference these instructions first and fallback to search or bash command
 ### Node.js Version
 
 - **Required**: Node.js 24 (specified in `.nvmrc`)
-- **Package Manager**: pnpm 10.15.0 (specified in `package.json`)
+- **Package Manager**: pnpm 10.26.1 (specified in `package.json`)
 
 ## Working Effectively
 
