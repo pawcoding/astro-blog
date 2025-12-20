@@ -6,7 +6,7 @@ Always reference these instructions first and fallback to search or bash command
 
 ### Node.js Version
 
-- **Required**: Node.js 22 (specified in `.nvmrc`)
+- **Required**: Node.js 24 (specified in `.nvmrc`)
 - **Package Manager**: pnpm 10.15.0 (specified in `package.json`)
 
 ## Working Effectively
@@ -146,7 +146,7 @@ Content is managed locally using Astro's content collections:
 - `tsconfig.json` - TypeScript configuration (extends Astro strict config)
 - `.prettierrc` - Code formatting rules (with plugins)
 - `pnpm-lock.yaml` - Dependency lockfile
-- `.nvmrc` - Node.js version specification (v22)
+- `.nvmrc` - Node.js version specification (v24)
 
 ### Astro Integrations Used
 
@@ -170,7 +170,7 @@ Based on `astro.config.mjs`:
 - **Icons**: Heroicons, Simple Icons
 - **Analytics**: Matomo
 - **Package Manager**: pnpm
-- **Node**: v22
+- **Node**: v24
 
 ## Deployment and CI/CD
 
