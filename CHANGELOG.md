@@ -1,3 +1,10 @@
+## [2.10.2](https://github.com/pawcoding/astro-blog/compare/v2.10.1...v2.10.2) (2025-12-21)
+
+
+### Performance Improvements
+
+* **redis-streams:** reduce DOM updates in simulation ([a42c6fa](https://github.com/pawcoding/astro-blog/commit/a42c6fa9d1dc8c4fc6735b2e886032983fec0491))
+
 ## [2.10.1](https://github.com/pawcoding/astro-blog/compare/v2.10.0...v2.10.1) (2025-12-21)
 
 
