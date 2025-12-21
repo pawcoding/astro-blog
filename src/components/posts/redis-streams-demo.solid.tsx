@@ -3,6 +3,7 @@ import {
   createMemo,
   createSignal,
   For,
+  Index,
   onCleanup,
 } from "solid-js";
 
@@ -267,14 +268,14 @@ export default function RedisStreamsDemo() {
         </div>
 
         <div class="col-span-2 flex h-full flex-col gap-2 overflow-y-auto rounded-2xl border-2 border-orange-700 bg-orange-200 p-2">
-          <For each={consumers()}>
+          <Index each={consumers()}>
             {(consumer) => (
               <div
                 class="flex h-16 w-full shrink-0 items-center gap-2 rounded-xl border-2 border-yellow-600 bg-yellow-200 p-2"
-                classList={{ "bg-gray-200/50!": consumer.shutdown }}
+                classList={{ "bg-gray-200/50!": consumer().shutdown }}
               >
                 <div class="flex grow gap-2 overflow-x-auto">
-                  <For each={consumer.entries}>
+                  <For each={consumer().entries}>
                     {(entry) => (
                       <span
                         class="block size-12 rounded-full border-2 border-purple-700 bg-purple-300"
@@ -290,15 +291,15 @@ export default function RedisStreamsDemo() {
 
                 <button
                   class="size-12 cursor-pointer rounded-lg bg-yellow-300/50 text-3xl font-bold text-yellow-600 not-disabled:hover:bg-yellow-300"
-                  disabled={consumer.shutdown}
-                  onMouseDown={() => shutdownConsumer(consumer.id)}
+                  disabled={consumer().shutdown}
+                  onMouseDown={() => shutdownConsumer(consumer().id)}
                   title="Shutdown consumer"
                 >
                   &times;
                 </button>
               </div>
             )}
-          </For>
+          </Index>
         </div>
       </section>
 
