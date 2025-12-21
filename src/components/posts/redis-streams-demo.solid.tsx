@@ -258,16 +258,16 @@ export default function RedisStreamsDemo() {
 
   return (
     <div class="contrast-more:dark:border-white; flex flex-col gap-4 rounded-md border-neutral-200 bg-white p-4 shadow-sm contrast-more:border-2 contrast-more:border-black dark:border-neutral-800 dark:shadow-none">
-      <section class="grid h-100 grid-cols-3 gap-4">
-        <div class="flex h-full flex-wrap content-start gap-2 overflow-y-auto rounded-2xl border-2 border-blue-700 bg-blue-200 p-2">
+      <section class="grid h-100 grid-cols-3 gap-4 max-xs:grid-cols-1 max-xs:grid-rows-[auto_1fr]">
+        <div class="flex h-full flex-wrap content-start gap-2 overflow-y-auto rounded-2xl border-2 border-blue-700 bg-blue-200 p-2 max-xs:h-18">
           <For each={stream()}>
             {() => (
-              <span class="block size-12 rounded-full border-2 border-purple-700 bg-purple-300"></span>
+              <span class="block size-12 shrink-0 rounded-full border-2 border-purple-700 bg-purple-300"></span>
             )}
           </For>
         </div>
 
-        <div class="col-span-2 flex h-full flex-col gap-2 overflow-y-auto rounded-2xl border-2 border-orange-700 bg-orange-200 p-2">
+        <div class="flex h-full flex-col gap-2 overflow-y-auto rounded-2xl border-2 border-orange-700 bg-orange-200 p-2 xs:col-span-2">
           <Index each={consumers()}>
             {(consumer) => (
               <div
@@ -278,7 +278,7 @@ export default function RedisStreamsDemo() {
                   <For each={consumer().entries}>
                     {(entry) => (
                       <span
-                        class="block size-12 rounded-full border-2 border-purple-700 bg-purple-300"
+                        class="block size-12 shrink-0 rounded-full border-2 border-purple-700 bg-purple-300"
                         classList={{
                           "border-red-700 bg-red-200": !!entry.failedAt,
                           "border-green-700! bg-green-200!":
@@ -290,7 +290,7 @@ export default function RedisStreamsDemo() {
                 </div>
 
                 <button
-                  class="size-12 cursor-pointer rounded-lg bg-yellow-300/50 text-3xl font-bold text-yellow-600 not-disabled:hover:bg-yellow-300"
+                  class="size-12 rounded-lg bg-yellow-300/50 text-3xl font-bold text-yellow-600 not-disabled:cursor-pointer not-disabled:hover:bg-yellow-300"
                   disabled={consumer().shutdown}
                   onMouseDown={() => shutdownConsumer(consumer().id)}
                   title="Shutdown consumer"
