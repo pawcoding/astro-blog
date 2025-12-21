@@ -27,12 +27,13 @@ posts.sort((a, b) => {
   return dateB.getTime() - dateA.getTime();
 });
 
-const latestPost = posts[0].id === slug ? posts.at(1) : posts[0];
-const categoryPosts = posts.filter(
-  (post) => post.data.category === frontmatter.category,
+const otherPosts = posts.filter((post) => post.id !== slug);
+const latestPost = otherPosts.at(0);
+const categoryPosts = otherPosts.filter(
+  (post) =>
+    post.data.category === frontmatter.category && post.id !== latestPost?.id,
 );
-const relatedPost =
-  categoryPosts[0].id === slug ? categoryPosts.at(1) : categoryPosts[0];
+const relatedPost = categoryPosts.at(0);
 
 const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&send_image=0&action_name=${encodeURIComponent(
   frontmatter.title,
