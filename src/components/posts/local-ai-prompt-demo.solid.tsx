@@ -113,7 +113,9 @@ export default function LocalAiPromptDemo(props: { children?: JSX.Element }) {
             class="grow rounded-sm bg-neutral-100 px-3 py-1 dark:bg-neutral-600"
             placeholder="Enter your prompt here..."
             onKeyDown={(e) => {
-              e.key === "Enter" && run();
+              if (e.key === "Enter") {
+                run();
+              }
             }}
           />
           <button

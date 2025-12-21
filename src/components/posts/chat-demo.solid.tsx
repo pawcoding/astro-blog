@@ -1,5 +1,5 @@
 import { createEffect } from "solid-js";
-import { getUserMessage } from "../../utils/generate-summary";
+import { userMessages } from "../../utils/generate-summary";
 import { createSummaryChatDemo } from "./generate-summary-demo";
 
 /**
@@ -74,7 +74,7 @@ export default function ChatDemo() {
               onClick={() => generateSummary(type)}
               class="cursor-pointer rounded-full bg-blue-500 px-3 py-1 text-white"
             >
-              {getUserMessage(type)}
+              {userMessages[type]}
             </button>
           ))}
         </menu>

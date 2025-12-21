@@ -292,7 +292,7 @@ export default function RedisStreamsDemo() {
                 <button
                   class="size-12 rounded-lg bg-yellow-300/50 text-3xl font-bold text-yellow-600 not-disabled:cursor-pointer not-disabled:hover:bg-yellow-300"
                   disabled={consumer().shutdown}
-                  onMouseDown={() => shutdownConsumer(consumer().id)}
+                  onClick={() => shutdownConsumer(consumer().id)}
                   title="Shutdown consumer"
                 >
                   &times;

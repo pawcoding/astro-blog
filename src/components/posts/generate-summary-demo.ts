@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 import {
-  getUserMessage,
   parseMarkdown,
+  userMessages,
   type ChatMessage,
   type SummaryChat,
 } from "../../utils/generate-summary";
@@ -37,7 +37,7 @@ export function createSummaryChatDemo(): SummaryChat {
       {
         id: crypto.randomUUID(),
         actor: "user",
-        content: getUserMessage(type),
+        content: userMessages[type],
       },
     ]);
     setIsGenerating(true);

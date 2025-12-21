@@ -28,6 +28,13 @@ export type SummaryChat = {
   generateSummary: (type: SummarizerType) => Promise<void>;
 };
 
+export const userMessages: Record<SummarizerType, string> = {
+  tldr: "Give me a TLDR",
+  "key-points": "Give me the key points",
+  teaser: "What's the most interesting part?",
+  headline: "",
+};
+
 export function createSummaryChat(): SummaryChat {
   const [availability, setAvailability] = createSignal<
     Availability | undefined
@@ -77,9 +84,13 @@ export function createSummaryChat(): SummaryChat {
         type,
         format: "markdown",
         length: type === "tldr" ? "long" : "medium",
+        expectedInputLanguages: ["en"],
+        outputLanguage: "en",
+        expectedContextLanguages: ["en"],
         monitor: (monitor) => {
           monitor.addEventListener("downloadprogress", (event) => {
             const progress = event.loaded / event.total;
+            console.info(`Download progress: ${progress * 100}%`);
 
             if (availability !== "available") {
               if (progress > 0) {
@@ -129,7 +140,7 @@ export function createSummaryChat(): SummaryChat {
       {
         id: crypto.randomUUID(),
         actor: "user",
-        content: getUserMessage(type),
+        content: userMessages[type],
       },
     ]);
     setIsGenerating(true);
@@ -199,19 +210,6 @@ export function createSummaryChat(): SummaryChat {
     isGenerating,
     generateSummary,
   };
-}
-
-export function getUserMessage(type: SummarizerType): string {
-  switch (type) {
-    case "tldr":
-      return "Give me a TLDR";
-    case "key-points":
-      return "Give me the key points";
-    case "teaser":
-      return "What's the most interesting part?";
-    default:
-      return "";
-  }
 }
 
 export function parseMarkdown(markdown: string): string {
