@@ -1,3 +1,10 @@
+## [2.10.1](https://github.com/pawcoding/astro-blog/compare/v2.10.0...v2.10.1) (2025-12-21)
+
+
+### Bug Fixes
+
+* **post:** don't show duplicates as latest and related posts ([548b4d8](https://github.com/pawcoding/astro-blog/commit/548b4d8a78fc098dcda047341d8181f2118a6af5))
+
 # [2.10.0](https://github.com/pawcoding/astro-blog/compare/v2.9.3...v2.10.0) (2025-12-20)
 
 
