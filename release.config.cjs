@@ -26,10 +26,12 @@ const config = {
       {
         preset: "angular",
         releaseRules: [
+          { breaking: true, release: "major" },
           { type: "docs", scope: "README", release: "patch" },
           { type: "refactor", release: "patch" },
           { type: "build", scope: "deps", release: "patch" },
           { type: "style", release: "patch" },
+          { type: "perf", release: "patch" },
         ],
         parserOpts: {
           noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
