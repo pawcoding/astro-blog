@@ -1,3 +1,11 @@
+## [2.10.3](https://github.com/pawcoding/astro-blog/compare/v2.10.2...v2.10.3) (2025-12-21)
+
+
+### Performance Improvements
+
+* only import baseline styles where used ([bf0ca44](https://github.com/pawcoding/astro-blog/commit/bf0ca447adebcdce6b8053c518090fbd4c55cee3))
+* use correct rendering primitives for solid components ([60428fd](https://github.com/pawcoding/astro-blog/commit/60428fd648dbd307a987e30ff5ba2a76221cfdad))
+
 ## [2.10.2](https://github.com/pawcoding/astro-blog/compare/v2.10.1...v2.10.2) (2025-12-21)
 
 
