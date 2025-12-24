@@ -1,3 +1,12 @@
+## [2.10.4](https://github.com/pawcoding/astro-blog/compare/v2.10.3...v2.10.4) (2025-12-24)
+
+
+### Bug Fixes
+
+* **chat:** add aria attributes to summary chat ([607505c](https://github.com/pawcoding/astro-blog/commit/607505cc77d4c72b4ea3772201ac0ad1d09a8db2))
+* **a11y:** improve keyboard navigation and focus styles ([3400ef3](https://github.com/pawcoding/astro-blog/commit/3400ef3e927b64c70c1b9d91dd4af4506c3f63ab))
+* **navigation:** update menu button icon when navigation is open ([5d3c45c](https://github.com/pawcoding/astro-blog/commit/5d3c45cf74b3f1f0f3f03deae7f92d9758fc40e9))
+
 ## [2.10.3](https://github.com/pawcoding/astro-blog/compare/v2.10.2...v2.10.3) (2025-12-21)
 
 
