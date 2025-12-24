@@ -35,7 +35,7 @@ const url = `/posts/${id}`;
     >
       {
         image && (
-          <a href={url} tabindex="-1">
+          <a href={url} tabindex="-1" aria-hidden="true">
             <img
               src={image}
               alt={title}

@@ -17,14 +17,17 @@ const filteredHeadings = headings.filter(
     <>
       <nav aria-label="Table of contents" class="print:hidden">
         <details class="mt-8 rounded-lg border border-neutral-200 not-motion-reduce:transition-colors 2xl:hidden dark:border-neutral-700 hocus:bg-black/5 dark:hocus:bg-white/5">
-          <summary class="cursor-pointer rounded-t-lg p-4 text-lg font-semibold text-neutral-900 select-none dark:text-neutral-200">
+          <summary class="cursor-pointer rounded-lg p-4 text-lg font-semibold text-neutral-900 select-none focus:border dark:text-neutral-200">
             Table of contents
           </summary>
 
           <ul class="space-y-2 px-4 pb-4 text-neutral-600 dark:text-neutral-400">
             {filteredHeadings.map((heading) => (
               <li class={heading.depth === 3 ? "ml-4" : ""}>
-                <a class="hover:underline" href={`#${heading.slug}`}>
+                <a
+                  class="hover:underline focus:underline"
+                  href={`#${heading.slug}`}
+                >
                   {heading.text}
                 </a>
               </li>
@@ -43,13 +46,16 @@ const filteredHeadings = headings.filter(
 
         <ul class="space-y-1 text-sm/7 text-neutral-600 dark:text-neutral-400">
           <li>
-            <a href="#title" class="hover:underline">
+            <a href="#title" class="hover:underline focus:underline">
               {title}
             </a>
           </li>
           {filteredHeadings.map((heading) => (
             <li class={heading.depth === 3 ? "ml-4" : ""}>
-              <a href={`#${heading.slug}`} class="hover:underline">
+              <a
+                href={`#${heading.slug}`}
+                class="hover:underline focus:underline"
+              >
                 {heading.text}
               </a>
             </li>

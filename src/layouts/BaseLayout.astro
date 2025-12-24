@@ -107,10 +107,16 @@ const {
   <body
     class="bg-neutral-100 contrast-more:bg-white contrast-more:text-black dark:bg-neutral-900 dark:text-neutral-200 contrast-more:dark:bg-black contrast-more:dark:text-white print:bg-white print:text-black"
   >
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[100] focus:m-2 focus:rounded focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+    >
+      Skip to main content
+    </a>
     <div class="flex min-h-screen flex-col justify-between">
       <Header />
 
-      <main transition:animate="slide">
+      <main id="main-content" transition:animate="slide">
         <slot />
       </main>
 
