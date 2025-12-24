@@ -10,8 +10,9 @@ import { Icon } from "astro-icon/components";
   class="inline-flex cursor-pointer items-center justify-center md:hidden print:hidden"
   aria-expanded="false"
 >
-  <span class="sr-only">Open navigation</span>
-  <Icon name="heroicons:bars-3-bottom-right" size={28} />
+  <span class="sr-only" id="nav-button-text">Open navigation</span>
+  <Icon name="heroicons:bars-3-bottom-right" id="nav-icon-open" size={28} />
+  <Icon name="heroicons:x-mark" id="nav-icon-close" class="hidden" size={28} />
 </button>
 
 <nav
@@ -84,10 +85,15 @@ import { Icon } from "astro-icon/components";
     navButton?.setAttribute("aria-expanded", "true");
     navButton?.setAttribute("title", "Close navigation");
 
-    const navButtonText = navButton?.querySelector("span");
+    const navButtonText = document.getElementById("nav-button-text");
     if (navButtonText) {
-      navButtonText.innerHTML = "Close navigation";
+      navButtonText.textContent = "Close navigation";
     }
+
+    const navIconOpen = document.getElementById("nav-icon-open");
+    const navIconClose = document.getElementById("nav-icon-close");
+    navIconOpen?.classList.add("hidden");
+    navIconClose?.classList.remove("hidden");
 
     const navigation = document.getElementById("navigation");
     navigation?.classList.add("max-md:max-h-24", "max-md:pt-4");
@@ -99,10 +105,15 @@ import { Icon } from "astro-icon/components";
     navButton?.setAttribute("aria-expanded", "false");
     navButton?.setAttribute("title", "Open navigation");
 
-    const navButtonText = navButton?.querySelector("span");
+    const navButtonText = document.getElementById("nav-button-text");
     if (navButtonText) {
-      navButtonText.innerHTML = "Open navigation";
+      navButtonText.textContent = "Open navigation";
     }
+
+    const navIconOpen = document.getElementById("nav-icon-open");
+    const navIconClose = document.getElementById("nav-icon-close");
+    navIconOpen?.classList.remove("hidden");
+    navIconClose?.classList.add("hidden");
 
     const navigation = document.getElementById("navigation");
     navigation?.classList.add("max-md:max-h-0");
