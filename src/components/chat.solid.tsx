@@ -52,7 +52,7 @@ export default function Chat() {
             aria-atomic="false"
           >
             <For each={messages()}>
-              {(message, index) => (
+              {(message) => (
                 <div
                   class={
                     "flex items-start gap-2.5 " +
