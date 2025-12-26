@@ -4,18 +4,25 @@
     "automations",
     "BEDH",
     "bitrates",
+    "brainer",
     "Coolify",
+    "DELCONSUMER",
+    "downloadprogress",
     "elysia",
     "Franken",
     "HATEOAS",
     "HTMX",
     "IONOS",
+    "MAXLEN",
     "ntfy",
     "okayish",
+    "overcomplicate",
     "pawcode",
     "postbuild",
     "Supabase",
-    "Turso"
+    "Turso",
+    "unclaimable",
+    "XREAD"
   ],
   "files.associations": {
     "*.css": "tailwindcss"

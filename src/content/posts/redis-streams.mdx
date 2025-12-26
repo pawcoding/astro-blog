@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Redis Streams"
-description: "See how to establish an event-based communication between scalable microservices using Redis Streams. We'll cover the basic concepts, operstions and some tips for production usage."
+description: "See how to establish an event-based communication between scalable microservices using Redis Streams. We'll cover the basic concepts, operations and some tips for production usage."
 pubDate: 2025-12-21T12:00:00
 category: "under-the-hood"
 tags: ["backend", "redis", "event-based", "microservice"]
@@ -505,7 +505,7 @@ But when using volatile consumers like Kubernetes pods that scale up and down in
 While not tragic, we decided to clean up these consumers periodically with a custom script that runs every night.
 Doing this is a simple call to [`XGROUP DELCONSUMER`](https://redis.io/docs/latest/commands/xgroup-delconsumer/) but there is one caveat:
 When a consumer still has pending messages and is being deleted, its messages will become unclaimable.
-So we can not delete the consumer during it's own shotdown, but need to do it every night, while checking for any pending messages before deleting it.
+So we can not delete the consumer during it's own shutdown, but need to do it every night, while checking for any pending messages before deleting it.
 
 ## Conclusion
 
@@ -515,7 +515,7 @@ That's why I decided to share our experience with you.
 
 Now you too know about the basic concepts of Redis Streams and some commands to interact with them.
 You learned how to use them, when to use them, and got some insights into their limitations.
-For more information, check out the awsome [Introduction to Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/) documentation right from the source.
+For more information, check out the awesome [Introduction to Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/) documentation right from the source.
 
 Have you used streams or other event-based systems in your application?
 I'd love to hear about your experiences and stories as well.
