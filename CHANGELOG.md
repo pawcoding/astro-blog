@@ -1,3 +1,10 @@
+## [2.10.7](https://github.com/pawcoding/astro-blog/compare/v2.10.6...v2.10.7) (2025-12-31)
+
+
+### Bug Fixes
+
+* **redis-streams:** add missing event tracking to demo ([7f60e10](https://github.com/pawcoding/astro-blog/commit/7f60e107b7f46ece14be9b128945c061f19391db))
+
 ## [2.10.6](https://github.com/pawcoding/astro-blog/compare/v2.10.5...v2.10.6) (2025-12-27)
 
 ## [2.10.5](https://github.com/pawcoding/astro-blog/compare/v2.10.4...v2.10.5) (2025-12-26)
