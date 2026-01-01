@@ -10,6 +10,7 @@ import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
 import { externalLink } from "./src/utils/external-link";
 import { calculateReadingTime } from "./src/utils/reading-time";
+import { SITEMAP_BLACKLIST } from "./src/utils/sitemap-blacklist";
 
 const env = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "");
 
@@ -64,6 +65,7 @@ export default defineConfig({
       changefreq: "monthly",
       priority: 0.7,
       lastmod: new Date(),
+      filter: (page) => !SITEMAP_BLACKLIST.includes(page),
     }),
     icon(),
     astroMetaTags(),
@@ -72,5 +74,8 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+  },
+  redirects: {
+    "/posts": "/",
   },
 });
