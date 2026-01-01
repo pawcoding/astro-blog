@@ -21,9 +21,9 @@ To see the blog in action, visit [blog.pawcode.de](https://blog.pawcode.de/?mtm_
 ### Latest blog posts
 
 <!-- BLOG-POST-LIST:START -->
+- [Yearly review: Looking back at 2025](https://blog.pawcode.de/posts/yearly-review-2025/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 - [Introduction to Redis Streams](https://blog.pawcode.de/posts/redis-streams/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 - [Building a local AI-powered Summarizer chat](https://blog.pawcode.de/posts/local-summarizer-chat/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
-- [Building an Astro Integration](https://blog.pawcode.de/posts/building-an-astro-integration/?mtm_compaign=GitHub&mtm_kwd=astro-blog&mtm_source=GitHub)
 <!-- BLOG-POST-LIST:END -->
 
 ---

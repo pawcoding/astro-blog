@@ -1,3 +1,10 @@
+## [2.10.8](https://github.com/pawcoding/astro-blog/compare/v2.10.7...v2.10.8) (2026-01-01)
+
+
+### Bug Fixes
+
+* **sitemap:** ignore redirect urls in sitemap ([34661fb](https://github.com/pawcoding/astro-blog/commit/34661fbf09bc2a4f8cf51a6fb9cf7cc811d98c86))
+
 ## [2.10.7](https://github.com/pawcoding/astro-blog/compare/v2.10.6...v2.10.7) (2025-12-31)
 
 
