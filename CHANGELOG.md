@@ -1,3 +1,10 @@
+## [2.10.11](https://github.com/pawcoding/astro-blog/compare/v2.10.10...v2.10.11) (2026-01-10)
+
+
+### Bug Fixes
+
+* **a11y:** hide visual-only content and use better semantic elements ([44788ce](https://github.com/pawcoding/astro-blog/commit/44788ce9d8ac0834b3b6437283703fe953b9e932))
+
 ## [2.10.10](https://github.com/pawcoding/astro-blog/compare/v2.10.9...v2.10.10) (2026-01-10)
 
 ## [2.10.9](https://github.com/pawcoding/astro-blog/compare/v2.10.8...v2.10.9) (2026-01-03)
