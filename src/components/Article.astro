@@ -23,11 +23,13 @@ const url = `/posts/${id}`;
   style={`background-color: ${color}08`}
 >
   <span
+    aria-hidden="true"
     class="absolute inset-x-0 bottom-0 h-2 dark:hue-rotate-180 dark:invert"
     style={`background-color: ${color}`}></span>
 
   <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
     <section
+      aria-hidden="true"
       class={"relative block contrast-more:border-black contrast-more:dark:border-white " +
         (image
           ? "contrast-more:@max-lg:border-b-2 contrast-more:@lg:border-r-2"
@@ -35,7 +37,7 @@ const url = `/posts/${id}`;
     >
       {
         image && (
-          <a href={url} tabindex="-1" aria-hidden="true">
+          <a href={url} tabindex="-1">
             <img
               src={image}
               alt={title}
@@ -55,20 +57,22 @@ const url = `/posts/${id}`;
           {title}
         </h3>
 
-        <div
+        <p
           class="line-clamp-6 text-base/relaxed text-neutral-600 contrast-more:text-neutral-900 dark:text-neutral-300 contrast-more:dark:text-neutral-100"
         >
           {description}
-        </div>
+        </p>
       </a>
 
       {
         data.tags && (
-          <div class="mt-4 flex flex-wrap items-center gap-1">
+          <ul class="mt-4 flex flex-wrap items-center gap-1">
             {data.tags.map((tag) => (
-              <Tag label={tag} />
+              <li>
+                <Tag label={tag} />
+              </li>
             ))}
-          </div>
+          </ul>
         )
       }
 

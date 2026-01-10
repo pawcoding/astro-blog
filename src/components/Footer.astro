@@ -46,100 +46,109 @@ const year = new Date().getFullYear();
         Version {version} - &copy; {year} pawcode Development
       </a>
 
-      <ul
-        class="mt-8 flex justify-center gap-4 sm:mt-0 lg:justify-end print:hidden"
-      >
-        <li>
-          <a
-            href="/rss.xml"
-            rel="noreferrer"
-            target="_blank"
-            class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
-            title="RSS feed"
-          >
-            <span class="sr-only">RSS feed</span>
+      <address class="mt-8 sm:mt-0 print:hidden">
+        <ul class="flex justify-center gap-4 lg:justify-end">
+          <li>
+            <a
+              href="/rss.xml"
+              rel="noreferrer"
+              target="_blank"
+              class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
+              title="RSS feed"
+            >
+              <span class="sr-only">RSS feed</span>
 
-            <Icon name="heroicons:rss-20-solid" size={20} />
-          </a>
-        </li>
+              <Icon
+                aria-hidden="true"
+                name="heroicons:rss-20-solid"
+                size={20}
+              />
+            </a>
+          </li>
 
-        <li>
-          <a
-            href="https://github.com/pawcoding"
-            rel="noreferrer"
-            target="_blank"
-            class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
-            title="GitHub"
-          >
-            <span class="sr-only">GitHub</span>
+          <li>
+            <a
+              href="https://github.com/pawcoding"
+              rel="noreferrer"
+              target="_blank"
+              class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
+              title="GitHub"
+            >
+              <span class="sr-only">GitHub</span>
 
-            <Icon name="simple-icons:github" size={20} />
-          </a>
-        </li>
+              <Icon aria-hidden="true" name="simple-icons:github" size={20} />
+            </a>
+          </li>
 
-        <li>
-          <a
-            href="https://business-card.io/c/f6658706-c0bb-4352-9432-aebf7566da7c/"
-            rel="noreferrer"
-            target="_blank"
-            class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:contrast-200 dark:invert hocus:opacity-75"
-            title="Business Card"
-          >
-            <span class="sr-only">Business Card</span>
+          <li>
+            <a
+              href="https://business-card.io/c/f6658706-c0bb-4352-9432-aebf7566da7c/"
+              rel="noreferrer"
+              target="_blank"
+              class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:contrast-200 dark:invert hocus:opacity-75"
+              title="Business Card"
+            >
+              <span class="sr-only">Business Card</span>
 
-            <Image
-              src={iconCroco}
-              alt="Business Card"
-              width="20"
-              height="20"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-        </li>
+              <Image
+                aria-hidden="true"
+                src={iconCroco}
+                alt="Business Card"
+                width="20"
+                height="20"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </li>
 
-        <li>
-          <a
-            href="https://www.linkedin.com/in/luis-wolf-0a8a261b2/"
-            rel="noreferrer"
-            target="_blank"
-            class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
-            title="LinkedIn"
-          >
-            <span class="sr-only">LinkedIn</span>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/luis-wolf-0a8a261b2/"
+              rel="noreferrer"
+              target="_blank"
+              class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
+              title="LinkedIn"
+            >
+              <span class="sr-only">LinkedIn</span>
 
-            <Icon name="simple-icons:linkedin" size={20} />
-          </a>
-        </li>
+              <Icon aria-hidden="true" name="simple-icons:linkedin" size={20} />
+            </a>
+          </li>
 
-        <li>
-          <a
-            href="https://www.instagram.com/paw.coding/"
-            rel="noreferrer"
-            target="_blank"
-            class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
-            title="Instagram"
-          >
-            <span class="sr-only">Instagram</span>
+          <li>
+            <a
+              href="https://www.instagram.com/paw.coding/"
+              rel="noreferrer"
+              target="_blank"
+              class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
+              title="Instagram"
+            >
+              <span class="sr-only">Instagram</span>
 
-            <Icon name="simple-icons:instagram" size={20} />
-          </a>
-        </li>
+              <Icon
+                aria-hidden="true"
+                name="simple-icons:instagram"
+                size={20}
+              />
+            </a>
+          </li>
 
-        <li>
-          <a
-            href="https://www.youtube.com/channel/UCMR0jp9jjK4ehhMNkVDGGRA"
-            rel="noreferrer"
-            target="_blank"
-            class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
-            title="YouTube"
-          >
-            <span class="sr-only">YouTube</span>
+          <li>
+            <a
+              href="https://www.youtube.com/channel/UCMR0jp9jjK4ehhMNkVDGGRA"
+              rel="noreferrer"
+              target="_blank"
+              class="text-neutral-700 transition not-contrast-more:hover:opacity-75 motion-reduce:duration-0 contrast-more:text-black dark:invert hocus:opacity-75"
+              title="YouTube"
+            >
+              <span class="sr-only">YouTube</span>
 
-            <Icon name="simple-icons:youtube" size={20} />
-          </a>
-        </li>
-      </ul>
+              <Icon aria-hidden="true" name="simple-icons:youtube" size={20} />
+            </a>
+          </li>
+        </ul>
+      </address>
     </div>
   </div>
 </footer>
