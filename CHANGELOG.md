@@ -1,3 +1,5 @@
+## [2.10.14](https://github.com/pawcoding/astro-blog/compare/v2.10.13...v2.10.14) (2026-02-01)
+
 ## [2.10.13](https://github.com/pawcoding/astro-blog/compare/v2.10.12...v2.10.13) (2026-01-24)
 
 ## [2.10.12](https://github.com/pawcoding/astro-blog/compare/v2.10.11...v2.10.12) (2026-01-17)
