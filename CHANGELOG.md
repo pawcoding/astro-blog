@@ -1,3 +1,15 @@
+# [2.11.0](https://github.com/pawcoding/astro-blog/compare/v2.10.20...v2.11.0) (2026-03-14)
+
+
+### Features
+
+* migrate to Astro Fonts API for self-hosted font serving ([445d756](https://github.com/pawcoding/astro-blog/commit/445d756ed6c9cc4a3f6f3188a4018fd2655feb4c))
+
+
+### Performance Improvements
+
+* reduce font variants to only used weights and styles [deploy] ([06ba0d4](https://github.com/pawcoding/astro-blog/commit/06ba0d47264a0f23f01e40d8f67e6215bbb05f17))
+
 ## [2.10.20](https://github.com/pawcoding/astro-blog/compare/v2.10.19...v2.10.20) (2026-03-14)
 
 ## [2.10.19](https://github.com/pawcoding/astro-blog/compare/v2.10.18...v2.10.19) (2026-03-09)
