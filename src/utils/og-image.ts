@@ -1,4 +1,6 @@
+import { fontData } from "astro:assets";
 import fs from "fs/promises";
+import path from "path";
 import satori from "satori";
 import sharp from "sharp";
 
@@ -6,7 +8,22 @@ export async function generateOgImage(
   title: string,
   subtitle?: string,
 ): Promise<Buffer> {
-  const font = await fs.readFile("./public/fonts/Roboto-Regular.ttf");
+  const sourceSansFace = fontData["--font-source-sans-3"]?.find(
+    (f) => f.weight === "700" && f.style === "normal",
+  );
+  const sourceSansEntry = sourceSansFace?.src?.find((s) =>
+    s.url.endsWith(".ttf"),
+  );
+  if (!sourceSansEntry)
+    throw new Error(
+      "Source Sans 3 weight-700 normal TTF font data not found in fontData",
+    );
+  // During static build prerendering there is no live HTTP server, so we read
+  // the font directly from the output directory on disk.
+  const fontPath = path.join(process.cwd(), "dist", sourceSansEntry.url);
+  const font = await fs.readFile(fontPath).catch(() => {
+    throw new Error(`Failed to read Source Sans 3 font from disk: ${fontPath}`);
+  });
   const logo = await fs.readFile("./public/brand/pawcode-logo.png");
 
   const svg = await satori(
@@ -57,7 +74,7 @@ export async function generateOgImage(
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#fff",
-          fontWeight: 600,
+          fontWeight: 700,
           textAlign: "center",
         },
       },
@@ -65,7 +82,9 @@ export async function generateOgImage(
     {
       width: 1200,
       height: 630,
-      fonts: [{ name: "Roboto", data: font, weight: 500, style: "normal" }],
+      fonts: [
+        { name: "Source Sans 3", data: font, weight: 700, style: "normal" },
+      ],
     },
   );
 

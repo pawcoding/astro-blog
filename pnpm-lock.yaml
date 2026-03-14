@@ -32,15 +32,6 @@ importers:
       '@astrojs/ts-plugin':
         specifier: ^1.10.7
         version: 1.10.7
-      '@fontsource-variable/source-code-pro':
-        specifier: ^5.2.7
-        version: 5.2.7
-      '@fontsource-variable/source-sans-3':
-        specifier: ^5.2.9
-        version: 5.2.9
-      '@fontsource-variable/source-serif-4':
-        specifier: ^5.2.9
-        version: 5.2.9
       '@iconify-json/heroicons':
         specifier: ^1.2.3
         version: 1.2.3
@@ -480,15 +471,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@fontsource-variable/source-code-pro@5.2.7':
-    resolution: {integrity: sha512-kZ0VNwnhvSA7vu5MaiO52eicQ4zC+k+8HBLZb+1js0MK/RngLy25NEUFB1y/AKd0ZMwru88T433QBcFf9m/huw==}
-
-  '@fontsource-variable/source-sans-3@5.2.9':
-    resolution: {integrity: sha512-K9fkQbb0BNnRmmaU+Gpr6U4IaYKpNzA8t07J6aam2i+6v84RT72MVpar8OBr3yYAEznj4riKivPQ2nAF2fPKsw==}
-
-  '@fontsource-variable/source-serif-4@5.2.9':
-    resolution: {integrity: sha512-PPcxjLFk/fS0WHg79pDM2YNvz61kC+oYZ5cWZZyCS0DHpJncmuYOuiZAsvj4tDxlWPBEvxxcRLQQNmSaRbPkqw==}
 
   '@iconify-json/heroicons@1.2.3':
     resolution: {integrity: sha512-n+vmCEgTesRsOpp5AB5ILB6srsgsYK+bieoQBNlafvoEhjVXLq8nIGN4B0v/s4DUfa0dOrjwE/cKJgIKdJXOEg==}
@@ -3250,12 +3232,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.4':
     optional: true
-
-  '@fontsource-variable/source-code-pro@5.2.7': {}
-
-  '@fontsource-variable/source-sans-3@5.2.9': {}
-
-  '@fontsource-variable/source-serif-4@5.2.9': {}
 
   '@iconify-json/heroicons@1.2.3':
     dependencies:
