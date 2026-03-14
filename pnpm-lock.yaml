@@ -84,8 +84,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       satori:
-        specifier: ^0.19.3
-        version: 0.19.3
+        specifier: ^0.25.0
+        version: 0.25.0
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -106,8 +106,8 @@ importers:
         version: 5.1.0
     devDependencies:
       '@types/dom-chromium-ai':
-        specifier: ^0.0.13
-        version: 0.0.13
+        specifier: ^0.0.15
+        version: 0.0.15
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -986,8 +986,8 @@ packages:
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
-  '@types/dom-chromium-ai@0.0.13':
-    resolution: {integrity: sha512-m+CAxlofdsZpP3QVhY9Ys4yUMyRRDfs5kmx+DYywKhNpn9Q6Nt8Gtn3/ayK/rjiHJRY8QJwiNHD6LG55JWibdA==}
+  '@types/dom-chromium-ai@0.0.15':
+    resolution: {integrity: sha512-DHHYK3/PRbkjIClaQ9VGfi2JNAT/zpG3TCtaq1cMXrdIge9xOw0Qb+yi0csNpo0dGEnbmP4zE/ZslUH0CvYCWQ==}
 
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
@@ -2315,8 +2315,8 @@ packages:
   sass-formatter@0.7.9:
     resolution: {integrity: sha512-CWZ8XiSim+fJVG0cFLStwDvft1VI7uvXdCNJYXhDvowiv+DsbD1nXLiQ4zrE5UBvj5DWZJ93cwN0NX5PMsr1Pw==}
 
-  satori@0.19.3:
-    resolution: {integrity: sha512-dKr8TNYSyceWqBoTHWntjy25xaiWMw5GF+f8QOqFsov9OpTswLs7xdbvZudGRp9jkzbhv/4mVjVZYFtpruGKiA==}
+  satori@0.25.0:
+    resolution: {integrity: sha512-utINfLxrYrmSnLvxFT4ZwgwWa8KOjrz7ans32V5wItgHVmzESl/9i33nE38uG0miycab8hUqQtDlOpqrIpB/iw==}
     engines: {node: '>=16'}
 
   sax@1.5.0:
@@ -3675,7 +3675,7 @@ snapshots:
     dependencies:
       '@types/ms': 2.1.0
 
-  '@types/dom-chromium-ai@0.0.13': {}
+  '@types/dom-chromium-ai@0.0.15': {}
 
   '@types/estree-jsx@1.0.5':
     dependencies:
@@ -5470,7 +5470,7 @@ snapshots:
     dependencies:
       suf-log: 2.5.3
 
-  satori@0.19.3:
+  satori@0.25.0:
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0

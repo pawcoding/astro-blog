@@ -39,7 +39,7 @@
     "marked": "^17.0.4",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
-    "satori": "^0.19.3",
+    "satori": "^0.25.0",
     "sharp": "^0.34.5",
     "solid-icons": "^1.2.0",
     "solid-js": "^1.9.11",
@@ -48,7 +48,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@types/dom-chromium-ai": "^0.0.13",
+    "@types/dom-chromium-ai": "^0.0.15",
     "@types/hast": "^3.0.4",
     "astro-meta-tags": "^0.4.0",
     "prettier": "^3.8.1",
@@ -57,5 +57,5 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "vite": "^7.0.0"
   },
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.32.1"
 }
