@@ -1,6 +1,5 @@
 ---
-import "@fontsource-variable/source-code-pro";
-import "@fontsource-variable/source-sans-3";
+import { Font } from "astro:assets";
 import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
@@ -35,6 +34,10 @@ const {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+
+    <Font cssVariable="--font-source-sans-3" preload />
+    <Font cssVariable="--font-source-code-pro" preload />
+    <slot name="head" />
 
     <!-- SEO -->
     <link

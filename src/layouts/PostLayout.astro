@@ -1,5 +1,5 @@
 ---
-import "@fontsource-variable/source-serif-4";
+import { Font } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
@@ -10,6 +10,7 @@ import TableOfContents from "../components/TableOfContents.astro";
 import Tag from "../components/Tag.astro";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
+import "../styles/post.css";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
@@ -41,6 +42,10 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 ---
 
 <BaseLayout {...frontmatter} slug={`/posts/${slug}`} post={true}>
+  <Fragment slot="head">
+    <Font cssVariable="--font-source-serif-4" />
+  </Fragment>
+
   <div
     class="post-container @container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl"
   >

@@ -6,7 +6,7 @@ import icon from "astro-icon";
 import matomo from "astro-matomo";
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import { loadEnv } from "vite";
 import { externalLink } from "./src/utils/external-link";
 import { calculateReadingTime } from "./src/utils/reading-time";
@@ -17,6 +17,30 @@ const env = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "");
 // https://astro.build/config
 export default defineConfig({
   site: "https://blog.pawcode.de",
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Source Sans 3",
+      cssVariable: "--font-source-sans-3",
+      weights: [400, 500, 600, 700],
+      styles: ["normal", "italic"],
+      formats: ["woff2", "ttf"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Source Serif 4",
+      cssVariable: "--font-source-serif-4",
+      weights: [400, 500, 600, 700],
+      styles: ["normal", "italic"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Source Code Pro",
+      cssVariable: "--font-source-code-pro",
+      weights: [400, 700],
+      styles: ["normal", "italic"],
+    },
+  ],
   markdown: {
     rehypePlugins: [
       [
