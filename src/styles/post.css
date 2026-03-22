@@ -34,8 +34,12 @@
       @apply contrast-more:underline;
     }
 
-    sup a {
-      @apply no-underline;
+    sup {
+      @apply inline-block;
+
+      a {
+        @apply no-underline;
+      }
     }
   }
 

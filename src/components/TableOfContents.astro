@@ -8,7 +8,9 @@ const { headings, title } = Astro.props;
 
 // Filter headings to only include h2 and h3 (depth 2 and 3)
 const filteredHeadings = headings.filter(
-  (heading) => heading.depth === 2 || heading.depth === 3,
+  (heading) =>
+    (heading.depth === 2 || heading.depth === 3) &&
+    heading.slug !== "footnote-label",
 );
 ---
 
