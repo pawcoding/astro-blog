@@ -1,12 +1,11 @@
 import { fontData } from "astro:assets";
-import fs from "fs/promises";
-import path from "path";
 import satori from "satori";
 import sharp from "sharp";
 
 export async function generateOgImage(
   title: string,
   subtitle?: string,
+  requestUrl?: URL,
 ): Promise<Buffer> {
   const sourceSansFace = fontData["--font-source-sans-3"]?.find(
     (f) => f.weight === "700" && f.style === "normal",
@@ -16,15 +15,19 @@ export async function generateOgImage(
   );
   if (!sourceSansEntry)
     throw new Error(
-      "Source Sans 3 weight-700 normal TTF font data not found in fontData",
+      "Source Sans 3 weight-700 normal font data not found in fontData",
     );
-  // During static build prerendering there is no live HTTP server, so we read
-  // the font directly from the output directory on disk.
-  const fontPath = path.join(process.cwd(), "dist", sourceSansEntry.url);
-  const font = await fs.readFile(fontPath).catch(() => {
-    throw new Error(`Failed to read Source Sans 3 font from disk: ${fontPath}`);
+  const origin = requestUrl?.origin ?? "http://localhost:4321";
+  const font = await fetch(new URL(sourceSansEntry.url, origin)).then((res) => {
+    if (!res.ok)
+      throw new Error(
+        `Failed to fetch Source Sans 3 font: ${res.status} ${res.statusText}`,
+      );
+    return res.arrayBuffer();
   });
-  const logo = await fs.readFile("./public/brand/pawcode-logo.png");
+  const logo = await fetch(new URL("/brand/pawcode-logo.png", origin)).then(
+    (res) => res.arrayBuffer(),
+  );
 
   const svg = await satori(
     {
@@ -35,9 +38,7 @@ export async function generateOgImage(
             type: "div",
             props: {
               style: {
-                backgroundImage: `url('data:image/png;base64,${logo.toString(
-                  "base64",
-                )}')`,
+                backgroundImage: `url('data:image/png;base64,${Buffer.from(logo).toString("base64")}')`,
                 width: 743,
                 height: 171,
               },

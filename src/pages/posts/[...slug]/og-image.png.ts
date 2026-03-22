@@ -10,10 +10,14 @@ export async function getStaticPaths() {
   }));
 }
 
-export const GET: APIRoute = async function get({ props }): Promise<Response> {
+export const GET: APIRoute = async function get({
+  props,
+  url,
+}): Promise<Response> {
   const png = await generateOgImage(
     props.post.data.title,
     props.post.data.author,
+    url,
   );
 
   return new Response(Buffer.from(png), {
