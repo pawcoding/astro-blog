@@ -37,6 +37,8 @@
     "marked": "^17.0.5",
     "mdast-util-to-string": "^4.0.0",
     "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
     "satori": "^0.26.0",
     "sharp": "^0.34.5",
     "solid-icons": "^1.2.0",

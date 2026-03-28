@@ -7,6 +7,8 @@ import matomo from "astro-matomo";
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig, envField, fontProviders } from "astro/config";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 import { loadEnv } from "vite";
 import { externalLink } from "./src/utils/external-link";
 import { calculateReadingTime } from "./src/utils/reading-time";
@@ -49,6 +51,8 @@ export default defineConfig({
           domain: "blog.pawcode.de",
         },
       ],
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: "append" }],
     ],
     remarkPlugins: [calculateReadingTime],
     shikiConfig: {
