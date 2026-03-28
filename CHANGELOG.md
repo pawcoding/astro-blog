@@ -1,3 +1,16 @@
+# [2.12.0](https://github.com/pawcoding/astro-blog/compare/v2.11.2...v2.12.0) (2026-03-28)
+
+
+### Bug Fixes
+
+* **og-image:** correctly load font during dev and build ([4bea138](https://github.com/pawcoding/astro-blog/commit/4bea138bd4f2248158cf6ac9200dc86ca13fc544))
+* **footnotes:** inline footnote hints and remove footnote section from TOC ([e14007e](https://github.com/pawcoding/astro-blog/commit/e14007e889cbe96f8331bfa2b8d5f7c798dade11))
+
+
+### Features
+
+* **post:** add self-links to headings ([141701e](https://github.com/pawcoding/astro-blog/commit/141701ed05c86654abaa9d77ab027c97b2e7a505))
+
 ## [2.11.2](https://github.com/pawcoding/astro-blog/compare/v2.11.1...v2.11.2) (2026-03-28)
 
 ## [2.11.1](https://github.com/pawcoding/astro-blog/compare/v2.11.0...v2.11.1) (2026-03-21)
