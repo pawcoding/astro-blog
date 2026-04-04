@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/pawcoding/astro-blog/compare/v2.12.1...v2.13.0) (2026-04-04)
+
+
+### Features
+
+* migrate changes from portfolio to blog ([8bbf567](https://github.com/pawcoding/astro-blog/commit/8bbf567b76df6db9fd9951cd4b0131168657cd7b))
+
 ## [2.12.1](https://github.com/pawcoding/astro-blog/compare/v2.12.0...v2.12.1) (2026-04-04)
 
 # [2.12.0](https://github.com/pawcoding/astro-blog/compare/v2.11.2...v2.12.0) (2026-03-28)
