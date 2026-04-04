@@ -1,5 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
+
+const buttonClasses =
+  "block grow rounded-sm text-blue-800/80 transition max-md:hover:invert max-md:hover:hue-rotate-180 motion-reduce:duration-0 max-md:bg-blue-100 max-md:py-1 contrast-more:max-md:hue-rotate-180 contrast-more:max-md:invert md:text-neutral-600 contrast-more:md:text-black dark:text-blue-200 max-md:dark:bg-blue-800 dark:md:text-neutral-300 contrast-more:md:dark:text-white hocus:text-blue-950 max-md:hocus:bg-blue-200 md:hocus:text-neutral-600/75 dark:hocus:text-blue-300 max-md:dark:hocus:bg-blue-900 dark:md:hocus:text-neutral-300/75";
 ---
 
 <button
@@ -23,9 +26,7 @@ import { Icon } from "astro-icon/components";
   <ul
     class="grid grid-cols-3 items-center gap-1 max-md:justify-evenly max-md:text-center md:flex md:gap-6"
   >
-    <li
-      class="block grow rounded-sm rounded-l-lg text-blue-800/80 transition motion-reduce:duration-0 max-md:bg-blue-100 max-md:py-1 contrast-more:max-md:hue-rotate-180 contrast-more:max-md:invert md:text-neutral-600 contrast-more:md:text-black dark:text-blue-200 max-md:dark:bg-blue-800 dark:md:text-neutral-300 contrast-more:md:dark:text-white hocus:text-blue-950 max-md:hocus:bg-blue-200 md:hocus:text-neutral-600/75 dark:hocus:text-blue-300 max-md:dark:hocus:bg-blue-900 dark:md:hocus:text-neutral-300/75"
-    >
+    <li class:list={[buttonClasses, "rounded-l-lg"]}>
       <a class="block items-center md:inline-flex" href="/" title="Blog">
         <span class="inline-block pt-1 md:hidden">
           <Icon name="heroicons:document-text" size={20} />
@@ -35,9 +36,7 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
 
-    <li
-      class="block grow rounded-sm text-blue-800/80 transition motion-reduce:duration-0 max-md:bg-blue-100 max-md:py-1 contrast-more:max-md:hue-rotate-180 contrast-more:max-md:invert md:text-neutral-600 contrast-more:md:text-black dark:text-blue-200 max-md:dark:bg-blue-800 dark:md:text-neutral-300 contrast-more:md:dark:text-white hocus:text-blue-950 max-md:hocus:bg-blue-200 md:hocus:text-neutral-600/75 dark:hocus:text-blue-300 max-md:dark:hocus:bg-blue-900 dark:md:hocus:text-neutral-300/75"
-    >
+    <li class:list={[buttonClasses]}>
       <a
         class="block items-center gap-2 md:inline-flex"
         href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode"
@@ -55,9 +54,7 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
 
-    <li
-      class="block grow rounded-sm rounded-r-lg text-blue-800/80 transition motion-reduce:duration-0 max-md:bg-blue-100 max-md:py-1 contrast-more:max-md:hue-rotate-180 contrast-more:max-md:invert md:text-neutral-600 contrast-more:md:text-black dark:text-blue-200 max-md:dark:bg-blue-800 dark:md:text-neutral-300 contrast-more:md:dark:text-white hocus:text-blue-950 max-md:hocus:bg-blue-200 md:hocus:text-neutral-600/75 dark:hocus:text-blue-300 max-md:dark:hocus:bg-blue-900 dark:md:hocus:text-neutral-300/75"
-    >
+    <li class:list={[buttonClasses, "rounded-r-lg"]}>
       <a
         href="https://github.com/pawcoding"
         rel="noreferrer"
@@ -80,6 +77,8 @@ import { Icon } from "astro-icon/components";
 </nav>
 
 <script is:inline>
+  let closeWatcher = undefined;
+
   function openNav() {
     const navButton = document.getElementById("nav-button");
     navButton?.setAttribute("aria-expanded", "true");
@@ -98,6 +97,11 @@ import { Icon } from "astro-icon/components";
     const navigation = document.getElementById("navigation");
     navigation?.classList.add("max-md:max-h-24", "max-md:pt-4");
     navigation?.classList.remove("max-md:max-h-0");
+
+    if (CloseWatcher) {
+      closeWatcher = new CloseWatcher();
+      closeWatcher.addEventListener("close", closeNav);
+    }
   }
 
   function closeNav() {
@@ -118,6 +122,9 @@ import { Icon } from "astro-icon/components";
     const navigation = document.getElementById("navigation");
     navigation?.classList.add("max-md:max-h-0");
     navigation?.classList.remove("max-md:max-h-24", "max-md:pt-4");
+
+    closeWatcher?.destroy();
+    closeWatcher = undefined;
   }
 
   document.getElementById("nav-button")?.addEventListener("click", function () {

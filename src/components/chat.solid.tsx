@@ -1,5 +1,12 @@
 import { HiSolidSparkles, HiSolidXMark } from "solid-icons/hi";
-import { createEffect, createSignal, For, Index, Show } from "solid-js";
+import {
+  createEffect,
+  createSignal,
+  For,
+  Index,
+  onCleanup,
+  Show,
+} from "solid-js";
 import { createSummaryChat, userMessages } from "../utils/generate-summary";
 
 /**
@@ -29,6 +36,15 @@ export default function Chat() {
       top: scrollContainer.scrollHeight,
       behavior: "smooth",
     });
+  });
+
+  // Use CloseWatcher to close the chat on Escape / back gesture when supported
+  createEffect(() => {
+    if (!isOpen() || !CloseWatcher) return;
+
+    const watcher = new CloseWatcher();
+    watcher.addEventListener("close", () => setIsOpen(false));
+    onCleanup(() => watcher.destroy());
   });
 
   const showSummaryButtons = () =>
