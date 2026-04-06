@@ -106,4 +106,9 @@ export default defineConfig({
   redirects: {
     "/posts": "/",
   },
+  experimental: {
+    queuedRendering: {
+      enabled: true,
+    },
+  },
 });
