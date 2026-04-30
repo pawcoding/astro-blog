@@ -110,5 +110,6 @@ export default defineConfig({
     queuedRendering: {
       enabled: true,
     },
+    rustCompiler: true,
   },
 });
