@@ -1,3 +1,10 @@
+## [2.13.4](https://github.com/pawcoding/astro-blog/compare/v2.13.3...v2.13.4) (2026-04-30)
+
+
+### Performance Improvements
+
+* enable experimental queued rendering ([cd7a14d](https://github.com/pawcoding/astro-blog/commit/cd7a14d8c18754dfbb33305cf10e4d0dededc0f4))
+
 ## [2.13.3](https://github.com/pawcoding/astro-blog/compare/v2.13.2...v2.13.3) (2026-04-25)
 
 ## [2.13.2](https://github.com/pawcoding/astro-blog/compare/v2.13.1...v2.13.2) (2026-04-18)
