@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { generateOgImage } from "../utils/og-image";
 
 export const GET: APIRoute = async function get({ url }): Promise<Response> {
-  const png = await generateOgImage("Blog", undefined, url);
+  const png = await generateOgImage(url, "Blog");
 
   return new Response(Buffer.from(png), {
     headers: {

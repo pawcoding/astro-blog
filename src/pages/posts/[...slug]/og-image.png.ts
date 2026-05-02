@@ -15,9 +15,9 @@ export const GET: APIRoute = async function get({
   url,
 }): Promise<Response> {
   const png = await generateOgImage(
+    url,
     props.post.data.title,
     props.post.data.author,
-    url,
   );
 
   return new Response(Buffer.from(png), {

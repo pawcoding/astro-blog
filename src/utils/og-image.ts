@@ -1,11 +1,11 @@
-import { fontData } from "astro:assets";
+import { experimental_getFontFileURL, fontData } from "astro:assets";
 import satori from "satori";
 import sharp from "sharp";
 
 export async function generateOgImage(
+  requestUrl: URL,
   title: string,
   subtitle?: string,
-  requestUrl?: URL,
 ): Promise<Buffer> {
   const sourceSansFace = fontData["--font-source-sans-3"]?.find(
     (f) => f.weight === "700" && f.style === "normal",
@@ -17,17 +17,18 @@ export async function generateOgImage(
     throw new Error(
       "Source Sans 3 weight-700 normal font data not found in fontData",
     );
-  const origin = requestUrl?.origin ?? "http://localhost:4321";
-  const font = await fetch(new URL(sourceSansEntry.url, origin)).then((res) => {
+
+  const url = experimental_getFontFileURL(sourceSansEntry.url, requestUrl);
+  const font = await fetch(url).then((res) => {
     if (!res.ok)
       throw new Error(
         `Failed to fetch Source Sans 3 font: ${res.status} ${res.statusText}`,
       );
     return res.arrayBuffer();
   });
-  const logo = await fetch(new URL("/brand/pawcode-logo.png", origin)).then(
-    (res) => res.arrayBuffer(),
-  );
+  const logo = await fetch(
+    new URL("/brand/pawcode-logo.png", requestUrl.origin),
+  ).then((res) => res.arrayBuffer());
 
   const svg = await satori(
     {
