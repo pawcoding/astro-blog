@@ -1,3 +1,10 @@
+## [2.13.6](https://github.com/pawcoding/astro-blog/compare/v2.13.5...v2.13.6) (2026-05-03)
+
+
+### Bug Fixes
+
+* **seo:** remove tag pages from sitemap and indexing ([ae51073](https://github.com/pawcoding/astro-blog/commit/ae5107368f04b135cb9f45f4f2b49c5137d9d215))
+
 ## [2.13.5](https://github.com/pawcoding/astro-blog/compare/v2.13.4...v2.13.5) (2026-05-02)
 
 ## [2.13.4](https://github.com/pawcoding/astro-blog/compare/v2.13.3...v2.13.4) (2026-04-30)
