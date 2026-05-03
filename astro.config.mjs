@@ -12,7 +12,7 @@ import rehypeSlug from "rehype-slug";
 import { loadEnv } from "vite";
 import { externalLink } from "./src/utils/external-link";
 import { calculateReadingTime } from "./src/utils/reading-time";
-import { SITEMAP_BLACKLIST } from "./src/utils/sitemap-blacklist";
+import { isBlacklisted } from "./src/utils/sitemap-blacklist";
 
 const env = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "");
 
@@ -70,6 +70,7 @@ export default defineConfig({
       },
     },
   },
+  trailingSlash: "never",
   env: {
     schema: {
       MATOMO_URL: envField.string({ context: "client", access: "public" }),
@@ -93,11 +94,18 @@ export default defineConfig({
       changefreq: "monthly",
       priority: 0.7,
       lastmod: new Date(),
-      filter: (page) => !SITEMAP_BLACKLIST.includes(page),
+      filter: (page) => !isBlacklisted(page),
+      namespaces: {
+        image: false,
+        video: false,
+        news: false,
+      },
     }),
     icon(),
     astroMetaTags(),
-    robotsTxt(),
+    robotsTxt({
+      sitemapBaseFileName: "sitemap-index",
+    }),
     solidJs(),
   ],
   vite: {
