@@ -77,19 +77,19 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
           type="button"
           id="shareButton"
           title="Share post"
-          class="inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300 print:hidden md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75"
+          class="group inline-flex cursor-pointer items-center justify-center md:text-neutral-600 dark:text-neutral-300 print:hidden md:hocus:text-neutral-600/75 dark:hocus:text-neutral-300/75"
         >
           <span class="sr-only">Share post</span>
 
           <Icon
             id="shareIcon"
             name="heroicons:share"
-            class="size-7 md:size-6"
+            class="size-7 group-aria-pressed:hidden md:size-6"
           />
           <Icon
             id="copyIcon"
             name="heroicons:clipboard-document-check"
-            class="hidden size-7 md:size-6"
+            class="hidden size-7 group-aria-pressed:block md:size-6"
           />
         </button>
       </div>
@@ -211,14 +211,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
             await navigator.clipboard.writeText(url);
 
             // Show a temporary success icon
-            const shareIcon = shareButton.querySelector("#shareIcon");
-            shareIcon?.classList.add("hidden");
-            const copyIcon = shareButton.querySelector("#copyIcon");
-            copyIcon?.classList.remove("hidden");
-
+            shareButton.ariaPressed = "true";
             setTimeout(() => {
-              copyIcon?.classList.add("hidden");
-              shareIcon?.classList.remove("hidden");
+              shareButton.ariaPressed = "false";
             }, 3000);
           } catch (err) {
             console.error("Could not copy URL:", err);
