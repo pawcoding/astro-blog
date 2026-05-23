@@ -14,8 +14,12 @@ const buttonClasses =
   aria-expanded="false"
 >
   <span class="sr-only" id="nav-button-text">Open navigation</span>
-  <Icon name="heroicons:bars-3-bottom-right" id="nav-icon-open" size={28} />
-  <Icon name="heroicons:x-mark" id="nav-icon-close" class="hidden" size={28} />
+  <Icon
+    name="heroicons:bars-3-bottom-right"
+    id="nav-icon-open"
+    class="size-7"
+  />
+  <Icon name="heroicons:x-mark" id="nav-icon-close" class="hidden size-7" />
 </button>
 
 <nav
@@ -29,7 +33,7 @@ const buttonClasses =
     <li class:list={[buttonClasses, "rounded-l-lg"]}>
       <a class="block items-center md:inline-flex" href="/" title="Blog">
         <span class="inline-block pt-1 md:hidden">
-          <Icon name="heroicons:document-text" size={20} />
+          <Icon name="heroicons:document-text" class="size-5" />
         </span>
 
         <span class="block">Blog</span>
@@ -43,13 +47,13 @@ const buttonClasses =
         title="Website"
       >
         <span class="inline-block pt-1 md:hidden">
-          <Icon name="heroicons:home" size={20} />
+          <Icon name="heroicons:home" class="size-5" />
         </span>
 
         <span class="block">Website</span>
 
         <span class="hidden md:block">
-          <Icon name="heroicons:arrow-top-right-on-square" size={16} />
+          <Icon name="heroicons:arrow-top-right-on-square" class="size-4" />
         </span>
       </a>
     </li>
@@ -63,13 +67,13 @@ const buttonClasses =
         class="block items-center gap-2 md:inline-flex"
       >
         <span class="inline-block pt-1 md:hidden">
-          <Icon name="simple-icons:github" size={20} />
+          <Icon name="simple-icons:github" class="size-5" />
         </span>
 
         <span class="block">GitHub</span>
 
         <span class="hidden md:block">
-          <Icon name="heroicons:arrow-top-right-on-square" size={16} />
+          <Icon name="heroicons:arrow-top-right-on-square" class="size-4" />
         </span>
       </a>
     </li>

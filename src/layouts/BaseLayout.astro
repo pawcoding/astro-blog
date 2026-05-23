@@ -36,8 +36,6 @@ const noIndex = isBlacklisted(Astro.url.href);
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-
     <Font cssVariable="--font-source-sans-3" preload />
     <Font cssVariable="--font-source-code-pro" preload />
     <slot name="head" />
@@ -95,6 +93,10 @@ const noIndex = isBlacklisted(Astro.url.href);
             content: "width=device-width, initial-scale=1.0",
           },
           {
+            name: "text-scale",
+            content: "scale",
+          },
+          {
             name: "generator",
             content: Astro.generator,
           },
@@ -117,7 +119,7 @@ const noIndex = isBlacklisted(Astro.url.href);
   >
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[100] focus:m-2 focus:rounded focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-100 focus:m-2 focus:rounded focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
     >
       Skip to main content
     </a>
