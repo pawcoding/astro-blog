@@ -46,17 +46,23 @@ const filteredHeadings = headings.filter(
           Table of Contents
         </h3>
 
-        <ul class="space-y-1 text-sm/7 text-neutral-600 dark:text-neutral-400">
-          <li>
-            <a href="#title" class="hover:underline focus:underline">
+        <ul class="text-sm/7 text-neutral-600 scroll-group dark:text-neutral-400">
+          <li class="border-l-4 border-l-transparent py-0.5 pl-2 transition-colors has-target-current:border-l-blue-500">
+            <a
+              href="#title"
+              class="hover:underline focus:underline target-current:text-black dark:target-current:text-white"
+            >
               {title}
             </a>
           </li>
           {filteredHeadings.map((heading) => (
-            <li class={heading.depth === 3 ? "ml-4" : ""}>
+            <li class="border-l-4 border-l-transparent py-0.5 pl-2 transition-colors has-target-current:border-l-blue-500">
               <a
                 href={`#${heading.slug}`}
-                class="hover:underline focus:underline"
+                class:list={[
+                  "hover:underline focus:underline target-current:text-black dark:target-current:text-white",
+                  heading.depth === 3 ? "ml-4" : "",
+                ]}
               >
                 {heading.text}
               </a>

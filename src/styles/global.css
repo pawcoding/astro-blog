@@ -5,6 +5,7 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant hocus (&:hover, &:focus);
+@custom-variant target-current (&:target-current);
 @custom-variant reduce-transparency (@media (prefers-reduced-transparency: reduce));
 
 @theme {
@@ -74,4 +75,8 @@
   address {
     @apply not-italic;
   }
+}
+
+@utility scroll-group {
+  scroll-target-group: auto;
 }
