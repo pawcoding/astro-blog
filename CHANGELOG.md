@@ -1,3 +1,10 @@
+# [2.14.0](https://github.com/pawcoding/astro-blog/compare/v2.13.10...v2.14.0) (2026-05-23)
+
+
+### Features
+
+* **ToC:** add visual scroll-spy ([23cfa0c](https://github.com/pawcoding/astro-blog/commit/23cfa0c4d3f69a9093ea5b5c7ccb3773e671ea1a))
+
 ## [2.13.10](https://github.com/pawcoding/astro-blog/compare/v2.13.9...v2.13.10) (2026-05-23)
 
 
