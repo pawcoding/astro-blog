@@ -1,3 +1,10 @@
+## [2.13.10](https://github.com/pawcoding/astro-blog/compare/v2.13.9...v2.13.10) (2026-05-23)
+
+
+### Bug Fixes
+
+* **a11y:** scale text according to OS settings ([053465f](https://github.com/pawcoding/astro-blog/commit/053465fdd77c5c2cacab6863a4714e015173ed03))
+
 ## [2.13.9](https://github.com/pawcoding/astro-blog/compare/v2.13.8...v2.13.9) (2026-05-23)
 
 ## [2.13.8](https://github.com/pawcoding/astro-blog/compare/v2.13.7...v2.13.8) (2026-05-16)
