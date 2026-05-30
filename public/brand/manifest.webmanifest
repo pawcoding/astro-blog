@@ -1,7 +1,12 @@
 {
   "icons": [
     { "src": "/brand/icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/brand/icon-mask.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
+    {
+      "src": "/brand/icon-mask.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
     { "src": "/brand/icon-512.png", "type": "image/png", "sizes": "512x512" }
   ]
 }

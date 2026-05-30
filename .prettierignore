@@ -1,2 +1,7 @@
 # Exclude blog post MDX files to preserve manually formatted code blocks
 src/content/posts/*.mdx
+
+# Exclude generated files
+CHANGELOG.md
+README.md
+pnpm-lock.yaml

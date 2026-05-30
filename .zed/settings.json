@@ -5,7 +5,7 @@
 {
   "languages": {
     "CSS": {
-      "language_servers": ["tailwindcss-language-server"],
-    },
-  },
+      "language_servers": ["tailwindcss-language-server"]
+    }
+  }
 }

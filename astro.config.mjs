@@ -1,3 +1,4 @@
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
@@ -44,29 +45,31 @@ export default defineConfig({
     },
   ],
   markdown: {
-    rehypePlugins: [
-      [
-        externalLink,
-        {
-          domain: "blog.pawcode.de",
-        },
+    processor: unified({
+      rehypePlugins: [
+        [
+          externalLink,
+          {
+            domain: "blog.pawcode.de",
+          },
+        ],
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: "append" }],
       ],
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: "append" }],
-    ],
-    remarkPlugins: [calculateReadingTime],
+      remarkPlugins: [calculateReadingTime],
+      remarkRehype: {
+        footnoteBackContent: "Back to the content",
+        footnoteLabel: "Footnotes",
+        footnoteLabelTagName: "h3",
+        footnoteLabelProperties: {
+          className: "",
+        },
+      },
+    }),
     shikiConfig: {
       themes: {
         light: "github-light-default",
         dark: "github-dark-dimmed",
-      },
-    },
-    remarkRehype: {
-      footnoteBackContent: "Back to the content",
-      footnoteLabel: "Footnotes",
-      footnoteLabelTagName: "h3",
-      footnoteLabelProperties: {
-        className: "",
       },
     },
   },
