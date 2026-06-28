@@ -1,4 +1,4 @@
-import { unified } from "@astrojs/markdown-remark";
+import { satteri, satteriHeadingIdsPlugin } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
@@ -8,11 +8,10 @@ import matomo from "astro-matomo";
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig, envField, fontProviders } from "astro/config";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
 import { loadEnv } from "vite";
-import { externalLink } from "./src/utils/external-link";
-import { calculateReadingTime } from "./src/utils/reading-time";
+import { autolinkHeadings } from "./src/plugins/autolink-headings";
+import { externalLink } from "./src/plugins/external-link";
+import { calculateReadingTime } from "./src/plugins/reading-time";
 import { isBlacklisted } from "./src/utils/sitemap-blacklist";
 
 const env = loadEnv(process.env.NODE_ENV ?? "", process.cwd(), "");
@@ -45,24 +44,19 @@ export default defineConfig({
     },
   ],
   markdown: {
-    processor: unified({
-      rehypePlugins: [
-        [
-          externalLink,
-          {
-            domain: "blog.pawcode.de",
-          },
-        ],
-        rehypeSlug,
-        [rehypeAutolinkHeadings, { behavior: "append" }],
+    processor: satteri({
+      mdastPlugins: [calculateReadingTime()],
+      hastPlugins: [
+        satteriHeadingIdsPlugin(),
+        autolinkHeadings(),
+        externalLink({ domain: "blog.pawcode.de" }),
       ],
-      remarkPlugins: [calculateReadingTime],
-      remarkRehype: {
-        footnoteBackContent: "Back to the content",
-        footnoteLabel: "Footnotes",
-        footnoteLabelTagName: "h3",
-        footnoteLabelProperties: {
-          className: "",
+      features: {
+        gfm: {
+          footnotes: {
+            label: "Footnotes",
+            backContent: "Back to the content",
+          },
         },
       },
     }),
