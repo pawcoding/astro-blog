@@ -10,6 +10,9 @@ minimumReleaseAgeExclude:
   - "astro"
   - "astro-loader-pocketbase"
   - "astro-integration-pocketbase"
+  # Temporarily allow packages releases less than a week ago
+  - "@napi-rs/wasm-runtime@1.1.6"
+  - "@tybys/wasm-util@0.10.3"
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - chokidar@4.0.3
