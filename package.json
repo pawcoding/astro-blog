@@ -36,7 +36,7 @@
     "dompurify": "^3.4.13",
     "marked": "^18.0.9",
     "reading-time": "^1.5.0",
-    "satori": "^0.26.0",
+    "satori": "^0.29.0",
     "satteri": "^0.9.5",
     "sharp": "^0.35.3",
     "solid-icons": "^1.2.0",
@@ -53,5 +53,5 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "vite": "^8.2.1"
   },
-  "packageManager": "pnpm@11.9.0"
+  "packageManager": "pnpm@11.19.0"
 }
