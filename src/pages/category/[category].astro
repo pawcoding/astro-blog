@@ -4,6 +4,8 @@ import { getCollection, render } from "astro:content";
 import Article from "../../components/Article.astro";
 import { CATEGORIES } from "../../constants/categories";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { GetStaticPathsItem } from "astro";
+import { generateDigest } from "../../utils/generate-digest";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -19,6 +21,11 @@ export async function getStaticPaths() {
         new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
     );
 
+    const digest = generateDigest({
+      category: c,
+      posts: filteredPosts.map((post) => post.digest ?? post),
+    });
+
     return {
       params: {
         category: c.url,
@@ -27,7 +34,8 @@ export async function getStaticPaths() {
         posts: filteredPosts,
         category: c,
       },
-    };
+      cacheKey: digest,
+    } satisfies GetStaticPathsItem;
   });
 }
 

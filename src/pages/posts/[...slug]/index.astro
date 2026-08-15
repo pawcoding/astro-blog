@@ -1,18 +1,20 @@
 ---
 import { getCollection, render } from "astro:content";
 import PostLayout from "../../../layouts/PostLayout.astro";
+import type { GetStaticPathsItem } from "astro";
+import { generateDigest } from "../../../utils/generate-digest";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  posts.sort((a, b) => {
-    return (
-      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-    );
-  });
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+
+  return posts.map(
+    (post) =>
+      ({
+        params: { slug: post.id },
+        props: { post },
+        cacheKey: post.digest ?? generateDigest(post),
+      }) satisfies GetStaticPathsItem,
+  );
 }
 
 const { post } = Astro.props;

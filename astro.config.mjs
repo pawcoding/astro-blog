@@ -111,4 +111,7 @@ export default defineConfig({
   redirects: {
     "/posts": "/",
   },
+  experimental: {
+    incrementalBuild: env.VERCEL !== "1",
+  },
 });
