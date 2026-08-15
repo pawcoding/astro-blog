@@ -1,16 +1,17 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import type { CollectionEntry } from "astro:content";
-import Tag from "./Tag.astro";
 import MetaInfo from "./MetaInfo.astro";
+import Tag from "./Tag.astro";
 
-interface Props {
+interface Props extends HTMLAttributes<"article"> {
   post: CollectionEntry<"posts"> & {
     readingTime?: string;
   };
   loadImageEagerly?: boolean;
 }
 
-const { post, loadImageEagerly } = Astro.props;
+const { post, loadImageEagerly, ...attrs } = Astro.props;
 const { data, readingTime, id } = post;
 const { title, description, image, pubDate, category, color } = data;
 const url = `/posts/${id}`;
@@ -21,6 +22,9 @@ const url = `/posts/${id}`;
   id={id}
   class="@container relative block overflow-hidden rounded-lg border border-neutral-300 p-0 shadow-xs transition focus-within:border-neutral-800 focus-within:shadow-lg not-motion-reduce:hover:shadow-lg contrast-more:border-2 contrast-more:border-black dark:border-neutral-800 dark:bg-neutral-800 dark:shadow-none dark:focus-within:border-neutral-200 contrast-more:dark:border-white contrast-more:dark:bg-black"
   style={`background-color: ${color}08`}
+  aria-labelledby={`${id}-title`}
+  aria-describedby={`${id}-description`}
+  {...attrs}
 >
   <span
     aria-hidden="true"
@@ -53,12 +57,14 @@ const url = `/posts/${id}`;
       <a href={url} class="focus:outline-none">
         <h3
           class="pb-2 text-2xl font-semibold text-neutral-900 contrast-more:text-black @3xl:text-3xl dark:text-neutral-200 contrast-more:dark:text-white"
+          id={`${id}-title`}
         >
           {title}
         </h3>
 
         <p
           class="line-clamp-6 text-base/relaxed text-neutral-600 contrast-more:text-neutral-900 dark:text-neutral-300 contrast-more:dark:text-neutral-100"
+          id={`${id}-description`}
         >
           {description}
         </p>

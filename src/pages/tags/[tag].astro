@@ -80,12 +80,19 @@ try {
       {posts.length} article{posts.length === 1 ? "" : "s"} found with this tag.
     </p>
 
-    <section class="flex flex-col gap-4">
+    <section class="flex flex-col gap-4" role="feed">
       {
         posts.map((post, index) => (
-          <Article post={post} loadImageEagerly={index < 3} />
+          <Article
+            post={post}
+            loadImageEagerly={index < 3}
+            aria-posinset={index + 1}
+            aria-setsize={posts.length}
+          />
         ))
       }
     </section>
+
+    <script src="../../scripts/feed.ts"></script>
   </div>
 </BaseLayout>
