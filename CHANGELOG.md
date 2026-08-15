@@ -1,3 +1,10 @@
+## [2.14.12](https://github.com/pawcoding/astro-blog/compare/v2.14.11...v2.14.12) (2026-08-15)
+
+
+### Bug Fixes
+
+* **a11y:** make post list an aria feed ([90d0fff](https://github.com/pawcoding/astro-blog/commit/90d0fff6eee7527d25f032924810bcaa203079f4))
+
 ## [2.14.11](https://github.com/pawcoding/astro-blog/compare/v2.14.10...v2.14.11) (2026-08-15)
 
 
