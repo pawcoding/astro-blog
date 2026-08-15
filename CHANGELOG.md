@@ -1,3 +1,10 @@
+## [2.14.11](https://github.com/pawcoding/astro-blog/compare/v2.14.10...v2.14.11) (2026-08-15)
+
+
+### Performance Improvements
+
+* enable incremental builds when not running on vercel ([ae972ea](https://github.com/pawcoding/astro-blog/commit/ae972eab73e3c5ff01fff3e0894dad049c69f4a2))
+
 ## [2.14.10](https://github.com/pawcoding/astro-blog/compare/v2.14.9...v2.14.10) (2026-08-15)
 
 ## [2.14.9](https://github.com/pawcoding/astro-blog/compare/v2.14.8...v2.14.9) (2026-08-08)
