@@ -80,3 +80,33 @@
 @utility scroll-group {
   scroll-target-group: auto;
 }
+
+@utility chat-popover {
+  position-area: block-start span-inline-start;
+  margin-block-end: calc(var(--spacing, 0.25rem) * 4);
+  height: 0;
+
+  transition-property: height, display, overlay, padding;
+  transition-behavior: allow-discrete;
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 1ms;
+  }
+
+  &:popover-open {
+    height: auto;
+  }
+
+  &:not(:popover-open) {
+    padding-block: 0;
+  }
+}
+
+@starting-style {
+  .chat-popover {
+    height: 0;
+    padding-block: 0;
+  }
+}
