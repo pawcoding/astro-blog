@@ -1,3 +1,10 @@
+## [2.14.17](https://github.com/pawcoding/astro-blog/compare/v2.14.16...v2.14.17) (2026-09-12)
+
+
+### Bug Fixes
+
+* **a11y:** use correct feed keybindings ([9bddc08](https://github.com/pawcoding/astro-blog/commit/9bddc083052a2080c6ccf7847c1833d9c99ef5af))
+
 ## [2.14.16](https://github.com/pawcoding/astro-blog/compare/v2.14.15...v2.14.16) (2026-09-05)
 
 ## [2.14.15](https://github.com/pawcoding/astro-blog/compare/v2.14.14...v2.14.15) (2026-08-29)
