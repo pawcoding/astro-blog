@@ -21,10 +21,10 @@ function updateFeedFocus(event: Event) {
 
   // Extract the direction from the pressed key
   let direction: "prev" | "next";
-  if (event.key === "ArrowUp") {
+  if (event.key === "PageUp") {
     event.preventDefault();
     direction = "prev";
-  } else if (event.key === "ArrowDown") {
+  } else if (event.key === "PageDown") {
     event.preventDefault();
     direction = "next";
   } else {
