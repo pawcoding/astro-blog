@@ -1,3 +1,10 @@
+## [2.14.18](https://github.com/pawcoding/astro-blog/compare/v2.14.17...v2.14.18) (2026-10-09)
+
+
+### Performance Improvements
+
+* **redis-streams:** pause simulation when out of viewport ([c93d571](https://github.com/pawcoding/astro-blog/commit/c93d571466266895c8515d064b869e8845921a0e))
+
 ## [2.14.17](https://github.com/pawcoding/astro-blog/compare/v2.14.16...v2.14.17) (2026-09-12)
 
 
