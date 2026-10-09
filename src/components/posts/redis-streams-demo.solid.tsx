@@ -5,6 +5,7 @@ import {
   For,
   Index,
   onCleanup,
+  onMount,
 } from "solid-js";
 
 type Entry = {
@@ -22,9 +23,12 @@ type Consumer = {
 };
 
 export default function RedisStreamsDemo() {
+  let demoRef: HTMLDivElement | undefined;
+
   const [stream, setStream] = createSignal<Array<Entry>>([]);
   const [consumers, setConsumers] = createSignal<Array<Consumer>>([]);
   const [autoSpawn, setAutoSpawn] = createSignal(false);
+  const [isPaused, setIsPaused] = createSignal(false);
 
   const hasEntries = createMemo(() => {
     if (stream().length > 0) {
@@ -38,14 +42,14 @@ export default function RedisStreamsDemo() {
     return consumers().some((consumer) => consumer.entries.length > 0);
   });
 
-  let timeout: ReturnType<typeof setTimeout> | undefined = undefined;
+  let processTimeout: ReturnType<typeof setTimeout> | undefined = undefined;
   let spawnInterval: number | undefined = undefined;
   onCleanup(() => {
     reset();
   });
 
   createEffect(() => {
-    if (!autoSpawn()) {
+    if (!autoSpawn() || isPaused()) {
       clearInterval(spawnInterval);
       spawnInterval = undefined;
       return;
@@ -117,9 +121,9 @@ export default function RedisStreamsDemo() {
     setConsumers([]);
     setAutoSpawn(false);
 
-    if (timeout) {
-      clearTimeout(timeout);
-      timeout = undefined;
+    if (processTimeout) {
+      clearTimeout(processTimeout);
+      processTimeout = undefined;
     }
 
     if (spawnInterval) {
@@ -133,7 +137,7 @@ export default function RedisStreamsDemo() {
    */
   function process() {
     // Skip processing if there is already a new tick scheduled or if there are no consumers
-    if (timeout || consumers().length < 1) {
+    if (processTimeout || consumers().length < 1) {
       return;
     }
 
@@ -248,9 +252,9 @@ export default function RedisStreamsDemo() {
 
     // When the simulation still has entries, schedule the next frame
     if (hasEntries()) {
-      timeout = setTimeout(() => {
-        clearTimeout(timeout);
-        timeout = undefined;
+      processTimeout = setTimeout(() => {
+        clearTimeout(processTimeout);
+        processTimeout = undefined;
         requestAnimationFrame(() => process());
       }, 50);
     }
@@ -266,10 +270,37 @@ export default function RedisStreamsDemo() {
     tracked = true;
   }
 
+  onMount(() => {
+    if (!demoRef) {
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const demoElement = entries.find((entry) => entry.target === demoRef);
+      if (!demoElement) {
+        return;
+      }
+
+      if (demoElement.isIntersecting && isPaused()) {
+        setIsPaused(false);
+        process();
+      } else if (!demoElement.isIntersecting && !isPaused()) {
+        setIsPaused(true);
+        if (processTimeout) {
+          clearTimeout(processTimeout);
+          processTimeout = undefined;
+        }
+      }
+    });
+    observer.observe(demoRef);
+    onCleanup(() => observer.disconnect());
+  });
+
   return (
     <div
       class="contrast-more:dark:border-white; flex flex-col gap-4 rounded-md border-neutral-200 bg-white p-4 shadow-sm contrast-more:border-2 contrast-more:border-black dark:border-neutral-800 dark:shadow-none"
       onClick={() => trackInteraction()}
+      ref={demoRef}
     >
       <section class="grid h-100 grid-cols-3 gap-4 max-xs:grid-cols-1 max-xs:grid-rows-[auto_1fr]">
         <div class="flex h-full flex-wrap content-start gap-2 overflow-y-auto rounded-2xl border-2 border-blue-700 bg-blue-200 p-2 max-xs:h-18">
