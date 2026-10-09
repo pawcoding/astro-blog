@@ -32,9 +32,7 @@ try {
   description="Here you can find all my articles. I write about interesting stuff I came across while working on projects or just for fun as well as small tutorials and guides. I hope you enjoy reading them as much as I enjoyed writing and researching them."
 >
   <div class="mx-auto max-w-3xl p-4">
-    <h2
-      class="3xl:text-4xl pb-4 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-200"
-    >
+    <h2 class="3xl:text-4xl pb-4 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-200">
       My articles
     </h2>
 
@@ -46,16 +44,14 @@ try {
     </p>
 
     <section class="flex flex-col gap-4" role="feed">
-      {
-        posts.map((post, index) => (
-          <Article
-            post={post}
-            loadImageEagerly={index < 3}
-            aria-posinset={index + 1}
-            aria-setsize={posts.length}
-          />
-        ))
-      }
+      {posts.map((post, index) => (
+        <Article
+          post={post}
+          loadImageEagerly={index < 3}
+          aria-posinset={index + 1}
+          aria-setsize={posts.length}
+        />
+      ))}
     </section>
 
     <script src="../scripts/feed.ts"></script>

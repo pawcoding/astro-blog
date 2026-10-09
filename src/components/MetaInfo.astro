@@ -23,9 +23,7 @@ if (!category) {
 }
 ---
 
-<dl
-  class="@container flex items-baseline justify-start gap-4 text-sm text-neutral-600 contrast-more:text-black dark:text-neutral-100 contrast-more:dark:text-white print:text-gray-800"
->
+<dl class="@container flex items-baseline justify-start gap-4 text-sm text-neutral-600 contrast-more:text-black dark:text-neutral-100 contrast-more:dark:text-white print:text-gray-800">
   <div
     class="flex items-center gap-2 select-none"
     title={"Published on " + formatDate(pubDate)}
@@ -42,33 +40,29 @@ if (!category) {
     </dt>
 
     <dd>
-      <time datetime={formatDateMachine(pubDate)}>
-        {formatDate(pubDate)}
-      </time>
+      <time datetime={formatDateMachine(pubDate)}>{formatDate(pubDate)}</time>
     </dd>
   </div>
 
-  {
-    readingTime && (
-      <div
-        class="flex items-center gap-2 select-none @max-sm:hidden"
-        title={"Estimated reading time: " + readingTime}
-      >
-        <dt>
-          <Icon
-            aria-hidden="true"
-            name="heroicons:book-open"
-            class="size-5 dark:not-print:hue-rotate-180 dark:not-print:invert"
-            style={`color: ${color}`}
-          />
+  {readingTime && (
+    <div
+      class="flex items-center gap-2 select-none @max-sm:hidden"
+      title={"Estimated reading time: " + readingTime}
+    >
+      <dt>
+        <Icon
+          aria-hidden="true"
+          name="heroicons:book-open"
+          class="size-5 dark:not-print:hue-rotate-180 dark:not-print:invert"
+          style={`color: ${color}`}
+        />
 
-          <span class="sr-only">Reading time</span>
-        </dt>
+        <span class="sr-only">Reading time</span>
+      </dt>
 
-        <dd>{readingTime}</dd>
-      </div>
-    )
-  }
+      <dd>{readingTime}</dd>
+    </div>
+  )}
 
   <a
     href={`/category/${category.url}`}
@@ -86,8 +80,6 @@ if (!category) {
       <span class="sr-only">Category</span>
     </dt>
 
-    <dd>
-      {category.name}
-    </dd>
+    <dd>{category.name}</dd>
   </a>
 </dl>

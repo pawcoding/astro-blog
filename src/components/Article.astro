@@ -29,28 +29,29 @@ const url = `/posts/${id}`;
   <span
     aria-hidden="true"
     class="absolute inset-x-0 bottom-0 h-2 dark:hue-rotate-180 dark:invert"
-    style={`background-color: ${color}`}></span>
+    style={`background-color: ${color}`}
+  ></span>
 
   <div class="grid grid-cols-1 transition-all @lg:grid-cols-[auto_1fr]">
     <section
       aria-hidden="true"
-      class={"relative block contrast-more:border-black contrast-more:dark:border-white " +
+      class={
+        "relative block contrast-more:border-black contrast-more:dark:border-white " +
         (image
           ? "contrast-more:@max-lg:border-b-2 contrast-more:@lg:border-r-2"
-          : "")}
-    >
-      {
-        image && (
-          <a href={url} tabindex="-1">
-            <img
-              src={image}
-              alt={title}
-              loading={loadImageEagerly ? "eager" : "lazy"}
-              class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-top-left"
-            />
-          </a>
-        )
+          : "")
       }
+    >
+      {image && (
+        <a href={url} tabindex="-1">
+          <img
+            src={image}
+            alt={title}
+            loading={loadImageEagerly ? "eager" : "lazy"}
+            class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-top-left"
+          />
+        </a>
+      )}
     </section>
 
     <section class="p-4 @sm:p-6">
@@ -70,17 +71,15 @@ const url = `/posts/${id}`;
         </p>
       </a>
 
-      {
-        data.tags && (
-          <ul class="mt-4 flex flex-wrap items-center gap-1">
-            {data.tags.map((tag) => (
-              <li>
-                <Tag label={tag} />
-              </li>
-            ))}
-          </ul>
-        )
-      }
+      {data.tags && (
+        <ul class="mt-4 flex flex-wrap items-center gap-1">
+          {data.tags.map((tag) => (
+            <li>
+              <Tag label={tag} />
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div class="mt-4">
         <MetaInfo

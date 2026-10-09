@@ -68,30 +68,26 @@ try {
   description={`Here you can find all articles in category ${category.name}. Browse through ${posts.length} article${posts.length === 1 ? "" : "s"}.`}
 >
   <div class="mx-auto max-w-3xl p-4">
-    <h2
-      class="3xl:text-4xl pb-4 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-200"
-    >
+    <h2 class="3xl:text-4xl pb-4 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-200">
       {category.name}
     </h2>
 
     <p class="mb-8 dark:text-neutral-300">
       {category.description}
       <br />
-      There are currently {posts.length} article{posts.length === 1 ? "" : "s"} in
-      this category.
+      There are currently {posts.length} article{posts.length === 1 ? "" : "s"}{" "}
+      in this category.
     </p>
 
     <section class="flex flex-col gap-4" role="feed">
-      {
-        posts.map((post, index) => (
-          <Article
-            post={post}
-            loadImageEagerly={index < 3}
-            aria-posinset={index + 1}
-            aria-setsize={posts.length}
-          />
-        ))
-      }
+      {posts.map((post, index) => (
+        <Article
+          post={post}
+          loadImageEagerly={index < 3}
+          aria-posinset={index + 1}
+          aria-setsize={posts.length}
+        />
+      ))}
     </section>
 
     <script src="../../scripts/feed.ts"></script>

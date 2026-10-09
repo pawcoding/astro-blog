@@ -46,15 +46,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     <Font cssVariable="--font-source-serif-4" />
   </Fragment>
 
-  <div
-    class="post-container @container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl"
-  >
-    <section
-      class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800"
-    >
-      <div
-        class="flex items-center gap-2 pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200"
-      >
+  <div class="post-container @container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl">
+    <section class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800">
+      <div class="flex items-center gap-2 pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200">
         <h1
           class="grow text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200 print:text-black"
           id="title"
@@ -95,7 +89,9 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       </div>
 
       <div class="flex flex-wrap items-center gap-1 pb-4">
-        {frontmatter.tags?.map((tag) => <Tag label={tag} size="medium" />)}
+        {frontmatter.tags?.map((tag) => (
+          <Tag label={tag} size="medium" />
+        ))}
       </div>
 
       <MetaInfo
@@ -116,21 +112,17 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
         <slot />
       </div>
 
-      <p
-        class="text-right text-sm text-neutral-500 dark:text-neutral-300 print:text-gray-800"
-      >
+      <p class="text-right text-sm text-neutral-500 dark:text-neutral-300 print:text-gray-800">
         <time datetime={formatDateMachine(frontmatter.pubDate)}>
           {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
         </time>
 
-        {
-          frontmatter.modDate && (
-            <time datetime={formatDateMachine(frontmatter.modDate)}>
-              {" "}
-              (Updated: <span>{formatDate(frontmatter.modDate)}</span>)
-            </time>
-          )
-        }
+        {frontmatter.modDate && (
+          <time datetime={formatDateMachine(frontmatter.modDate)}>
+            {" "}
+            (Updated: <span>{formatDate(frontmatter.modDate)}</span>)
+          </time>
+        )}
       </p>
     </section>
 
@@ -138,30 +130,24 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
 
     <section class="@container mt-4 max-w-screen-md print:hidden">
       <div class="flex flex-col gap-4">
-        {
-          latestPost && (
-            <div class="w-full">
-              <h4 class="mt-4 mb-2 text-xl font-semibold">Latest Post</h4>
-              <Article post={latestPost} />
-            </div>
-          )
-        }
-        {
-          relatedPost && (
-            <div class="w-full">
-              <h4 class="mt-4 mb-2 text-xl font-semibold">Related Post</h4>
-              <Article post={relatedPost} />
-            </div>
-          )
-        }
+        {latestPost && (
+          <div class="w-full">
+            <h4 class="mt-4 mb-2 text-xl font-semibold">Latest Post</h4>
+            <Article post={latestPost} />
+          </div>
+        )}
+        {relatedPost && (
+          <div class="w-full">
+            <h4 class="mt-4 mb-2 text-xl font-semibold">Related Post</h4>
+            <Article post={relatedPost} />
+          </div>
+        )}
       </div>
     </section>
 
     <hr class="mt-8 border-neutral-300 dark:border-neutral-600" />
 
-    <section
-      class="prose mt-4 max-w-screen-md prose-neutral lg:prose-lg dark:not-print:prose-invert print:prose-sm"
-    >
+    <section class="prose mt-4 max-w-screen-md prose-neutral lg:prose-lg dark:not-print:prose-invert print:prose-sm">
       <small>
         If you have any questions or other feedback, feel free to reach out to
         me on the social media platforms listed below.

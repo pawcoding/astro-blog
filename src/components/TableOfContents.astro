@@ -14,62 +14,60 @@ const filteredHeadings = headings.filter(
 );
 ---
 
-{
-  filteredHeadings.length > 0 && (
-    <>
-      <nav aria-label="Table of contents" class="print:hidden">
-        <details class="mt-8 rounded-lg border border-neutral-200 not-motion-reduce:transition-colors 2xl:hidden dark:border-neutral-700 hocus:bg-black/5 dark:hocus:bg-white/5">
-          <summary class="cursor-pointer rounded-lg p-4 text-lg font-semibold text-neutral-900 select-none focus:border dark:text-neutral-200">
-            Table of contents
-          </summary>
+{filteredHeadings.length > 0 && (
+  <>
+    <nav aria-label="Table of contents" class="print:hidden">
+      <details class="mt-8 rounded-lg border border-neutral-200 not-motion-reduce:transition-colors 2xl:hidden dark:border-neutral-700 hocus:bg-black/5 dark:hocus:bg-white/5">
+        <summary class="cursor-pointer rounded-lg p-4 text-lg font-semibold text-neutral-900 select-none focus:border dark:text-neutral-200">
+          Table of contents
+        </summary>
 
-          <ul class="space-y-2 px-4 pb-4 text-neutral-600 dark:text-neutral-400">
-            {filteredHeadings.map((heading) => (
-              <li class={heading.depth === 3 ? "ml-4" : ""}>
-                <a
-                  class="hover:underline focus:underline"
-                  href={`#${heading.slug}`}
-                >
-                  {heading.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </details>
-      </nav>
-
-      <nav
-        aria-label="Table of contents"
-        class="fixed top-17 right-0 z-40 hidden max-w-table-of-contents overflow-y-auto p-4 2xl:block print:hidden"
-      >
-        <h3 class="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-200">
-          Table of Contents
-        </h3>
-
-        <ul class="text-sm/7 text-neutral-600 scroll-group dark:text-neutral-400">
-          <li class="border-l-4 border-l-transparent py-0.5 pl-2 transition-colors has-target-current:border-l-blue-500">
-            <a
-              href="#title"
-              class="hover:underline focus:underline target-current:text-black dark:target-current:text-white"
-            >
-              {title}
-            </a>
-          </li>
+        <ul class="space-y-2 px-4 pb-4 text-neutral-600 dark:text-neutral-400">
           {filteredHeadings.map((heading) => (
-            <li class="border-l-4 border-l-transparent py-0.5 pl-2 transition-colors has-target-current:border-l-blue-500">
+            <li class={heading.depth === 3 ? "ml-4" : ""}>
               <a
+                class="hover:underline focus:underline"
                 href={`#${heading.slug}`}
-                class:list={[
-                  "hover:underline focus:underline target-current:text-black dark:target-current:text-white",
-                  heading.depth === 3 ? "ml-4" : "",
-                ]}
               >
                 {heading.text}
               </a>
             </li>
           ))}
         </ul>
-      </nav>
-    </>
-  )
-}
+      </details>
+    </nav>
+
+    <nav
+      aria-label="Table of contents"
+      class="fixed top-17 right-0 z-40 hidden max-w-table-of-contents overflow-y-auto p-4 2xl:block print:hidden"
+    >
+      <h3 class="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-200">
+        Table of Contents
+      </h3>
+
+      <ul class="text-sm/7 text-neutral-600 scroll-group dark:text-neutral-400">
+        <li class="border-l-4 border-l-transparent py-0.5 pl-2 transition-colors has-target-current:border-l-blue-500">
+          <a
+            href="#title"
+            class="hover:underline focus:underline target-current:text-black dark:target-current:text-white"
+          >
+            {title}
+          </a>
+        </li>
+        {filteredHeadings.map((heading) => (
+          <li class="border-l-4 border-l-transparent py-0.5 pl-2 transition-colors has-target-current:border-l-blue-500">
+            <a
+              href={`#${heading.slug}`}
+              class:list={[
+                "hover:underline focus:underline target-current:text-black dark:target-current:text-white",
+                heading.depth === 3 ? "ml-4" : "",
+              ]}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </>
+)}

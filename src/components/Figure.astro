@@ -130,35 +130,31 @@ if (!style?.includes("width")) {
 ---
 
 <figure>
-  {
-    typeof src === "string" ? (
-      // @ts-ignore
-      <Image
-        alt={label}
-        class={tailwind}
-        decoding="async"
-        height={height}
-        loading={loading}
-        src={src}
-        style={style}
-        width={width}
-      />
-    ) : (
-      <Image
-        alt={label}
-        class={tailwind}
-        decoding="async"
-        loading={loading}
-        src={src}
-        style={style}
-        widths={widths}
-      />
-    )
-  }
+  {typeof src === "string" ? (
+    // @ts-ignore
+    <Image
+      alt={label}
+      class={tailwind}
+      decoding="async"
+      height={height}
+      loading={loading}
+      src={src}
+      style={style}
+      width={width}
+    />
+  ) : (
+    <Image
+      alt={label}
+      class={tailwind}
+      decoding="async"
+      loading={loading}
+      src={src}
+      style={style}
+      widths={widths}
+    />
+  )}
 
-  {
-    showLabel && (
-      <figcaption style={`text-align: ${alignment}`}>{label}</figcaption>
-    )
-  }
+  {showLabel && (
+    <figcaption style={`text-align: ${alignment}`}>{label}</figcaption>
+  )}
 </figure>

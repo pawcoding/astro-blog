@@ -70,9 +70,7 @@ try {
   description={`Here you can find all articles tagged with #${tag}. Browse through ${posts.length} article${posts.length === 1 ? "" : "s"} on this topic.`}
 >
   <div class="mx-auto max-w-3xl p-4">
-    <h2
-      class="3xl:text-4xl pb-4 text-center font-mono text-3xl font-bold text-neutral-900 dark:text-neutral-200"
-    >
+    <h2 class="3xl:text-4xl pb-4 text-center font-mono text-3xl font-bold text-neutral-900 dark:text-neutral-200">
       #{tag}
     </h2>
 
@@ -81,16 +79,14 @@ try {
     </p>
 
     <section class="flex flex-col gap-4" role="feed">
-      {
-        posts.map((post, index) => (
-          <Article
-            post={post}
-            loadImageEagerly={index < 3}
-            aria-posinset={index + 1}
-            aria-setsize={posts.length}
-          />
-        ))
-      }
+      {posts.map((post, index) => (
+        <Article
+          post={post}
+          loadImageEagerly={index < 3}
+          aria-posinset={index + 1}
+          aria-setsize={posts.length}
+        />
+      ))}
     </section>
 
     <script src="../../scripts/feed.ts"></script>
