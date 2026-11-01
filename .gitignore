@@ -1,6 +1,5 @@
 # build output
 dist/
-.prettiercache
 # generated types
 .astro/
 

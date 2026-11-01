@@ -75,10 +75,10 @@ To see the blog in action, visit [blog.pawcode.de](https://blog.pawcode.de/?mtm_
 
 ### Commands
 
-| Command             | Action                                      |
-| :------------------ | :------------------------------------------ |
-| `pnpm install`      | Installs dependencies                       |
-| `pnpm run dev`      | Starts local dev server at `localhost:4321` |
-| `pnpm run build`    | Build the production site to `./dist/`      |
-| `pnpm run preview`  | Preview the build locally, before deploying |
-| `pnpm run prettier` | Format the code                             |
+| Command            | Action                                      |
+| :----------------- | :------------------------------------------ |
+| `pnpm install`     | Installs dependencies                       |
+| `pnpm run dev`     | Starts local dev server at `localhost:4321` |
+| `pnpm run build`   | Build the production site to `./dist/`      |
+| `pnpm run preview` | Preview the build locally, before deploying |
+| `pnpm run format`  | Format the code                             |

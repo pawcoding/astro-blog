@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 80,
+  "sortPackageJson": {
+    "sortScripts": true
+  },
+  "sortImports": {
+    "newlinesBetween": false
+  },
+  "sortTailwindcss": {
+    "stylesheet": "./src/styles/global.css"
+  },
+  "astro": {},
+  "ignorePatterns": [
+    "src/content/posts/*.mdx",
+    "CHANGELOG.md",
+    "README.md",
+    "pnpm-lock.yaml"
+  ]
+}

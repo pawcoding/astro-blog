@@ -1,5 +1,5 @@
-import { defineMdastPlugin } from "satteri";
 import getReadingTime from "reading-time";
+import { defineMdastPlugin } from "satteri";
 
 export function calculateReadingTime() {
   return () => {

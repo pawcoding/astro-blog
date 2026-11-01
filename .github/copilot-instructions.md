@@ -15,7 +15,7 @@ Always reference these instructions first and fallback to search or bash command
 
 ```bash
 # Auto-fix code formatting - ALWAYS run to fix formatting issues
-pnpm run prettier
+pnpm run format
 # Takes ~2s to complete, formats all files and updates cache
 ```
 
@@ -58,7 +58,7 @@ pnpm run astro sync           # Generate content types
 
 - This project has no unit tests defined
 - Validation relies on TypeScript checking and Astro's content validation
-- **ALWAYS** run `pnpm run prettier` before committing changes
+- **ALWAYS** run `pnpm run format` before committing changes
 - Content is validated against schemas defined in `src/content.config.ts`
 
 ### Manual Testing Scenarios
@@ -144,7 +144,7 @@ Content is managed locally using Astro's content collections:
 - `astro.config.mjs` - Main Astro configuration with integrations
 - `package.json` - Dependencies and scripts
 - `tsconfig.json` - TypeScript configuration (extends Astro strict config)
-- `.prettierrc` - Code formatting rules (with plugins)
+- `.oxfmtrc.json` - Code formatting rules (with plugins)
 - `pnpm-lock.yaml` - Dependency lockfile
 - `.nvmrc` - Node.js version specification (v24)
 
