@@ -10,7 +10,6 @@ minimumReleaseAgeExclude:
   - "astro-integration-pocketbase"
 trustPolicy: no-downgrade
 trustPolicyExclude:
-  - chokidar@4.0.3
   - semver@6.3.1
 trustPolicyExcludePrune: true
 blockExoticSubdeps: true
