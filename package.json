@@ -1,6 +1,6 @@
 {
   "name": "astro-blog",
-  "version": "2.14.20",
+  "version": "2.14.21",
   "type": "module",
   "scripts": {
     "astro": "astro",

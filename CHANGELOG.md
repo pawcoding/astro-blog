@@ -1,3 +1,10 @@
+## [2.14.21](https://github.com/pawcoding/astro-blog/compare/v2.14.20...v2.14.21) (2026-11-20)
+
+
+### Bug Fixes
+
+* **seo:** add schema.org microdata ([2b87510](https://github.com/pawcoding/astro-blog/commit/2b875106430dd11d1d386cf5f5f687ea2463ce70))
+
 ## [2.14.20](https://github.com/pawcoding/astro-blog/compare/v2.14.19...v2.14.20) (2026-11-01)
 
 ## [2.14.19](https://github.com/pawcoding/astro-blog/compare/v2.14.18...v2.14.19) (2026-10-10)
