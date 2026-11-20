@@ -8,18 +8,19 @@ import Chat from "../components/chat.solid";
 import MetaInfo from "../components/MetaInfo.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Tag from "../components/Tag.astro";
+import "../styles/post.css";
 import { formatDate, formatDateMachine } from "../utils/format-date";
 import BaseLayout from "./BaseLayout.astro";
-import "../styles/post.css";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
   slug: string;
   readingTime: string;
+  words: number;
   headings: Array<{ depth: number; slug: string; text: string }>;
 }
 
-const { frontmatter, slug, readingTime, headings } = Astro.props;
+const { frontmatter, slug, readingTime, headings, words } = Astro.props;
 
 const posts = await getCollection("posts");
 posts.sort((a, b) => {
@@ -46,12 +47,28 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
     <Font cssVariable="--font-source-serif-4" />
   </Fragment>
 
-  <div class="post-container @container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl">
+  <div
+    class="post-container @container mx-auto max-w-screen-md p-4 md:max-w-screen-sm lg:max-w-screen-md xl:max-w-3xl"
+    itemscope
+    itemtype="https://schema.org/BlogPosting"
+    itemid=`${Astro.site?.origin}/posts/${slug}`
+  >
+    <meta itemprop="wordCount" content={words.toString()} />
+    <meta itemprop="description" content={frontmatter.description} />
+    <meta
+      itemprop="image"
+      content={
+        frontmatter.image ?? `${Astro.site?.origin}/posts/${slug}/og-image.png`
+      }
+    />
+    <meta itemprop="url" content=`${Astro.site?.origin}/posts/${slug}` />
+
     <section class="border-b border-b-neutral-200 pb-2 dark:border-b-neutral-800">
       <div class="flex items-center gap-2 pb-4 text-neutral-900 @3xl:text-4xl dark:text-neutral-200">
         <h1
           class="grow text-3xl font-bold text-neutral-900 @3xl:text-4xl dark:text-neutral-200 print:text-black"
           id="title"
+          itemprop="headline"
         >
           {frontmatter.title}
         </h1>
@@ -108,17 +125,23 @@ const pixelUrl = `https://analytics.apps.pawcode.de/matomo.php?idsite=9&rec=1&se
       class="prose prose-lg mt-4 max-w-screen-md prose-neutral dark:not-print:prose-invert print:prose-sm prose-code:text-sm"
       id="content"
     >
-      <div>
+      <div itemprop="articleBody">
         <slot />
       </div>
 
       <p class="text-right text-sm text-neutral-500 dark:text-neutral-300 print:text-gray-800">
-        <time datetime={formatDateMachine(frontmatter.pubDate)}>
+        <time
+          itemprop="datePublished"
+          datetime={formatDateMachine(frontmatter.pubDate)}
+        >
           {frontmatter.pubDate && formatDate(frontmatter.pubDate)}
         </time>
 
         {frontmatter.modDate && (
-          <time datetime={formatDateMachine(frontmatter.modDate)}>
+          <time
+            itemprop="dateModified"
+            datetime={formatDateMachine(frontmatter.modDate)}
+          >
             {" "}
             (Updated: <span>{formatDate(frontmatter.modDate)}</span>)
           </time>

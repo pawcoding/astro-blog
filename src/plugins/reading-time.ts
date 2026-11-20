@@ -8,7 +8,9 @@ export function calculateReadingTime() {
     const updateFrontmatter = (ctx: any) => {
       const astro = ctx.data.astro;
       if (astro?.frontmatter) {
-        astro.frontmatter.minutesRead = getReadingTime(totalText).text;
+        const readingTime = getReadingTime(totalText);
+        astro.frontmatter.minutesRead = readingTime.text;
+        astro.frontmatter.words = readingTime.words;
       }
     };
 

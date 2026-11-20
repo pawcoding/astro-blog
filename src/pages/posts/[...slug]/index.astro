@@ -25,6 +25,7 @@ const { Content, remarkPluginFrontmatter, headings } = await render(post);
   frontmatter={post.data}
   slug={post.id}
   readingTime={remarkPluginFrontmatter.minutesRead}
+  words={remarkPluginFrontmatter.words}
   headings={headings}
 >
   <Content />

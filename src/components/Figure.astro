@@ -129,7 +129,7 @@ if (!style?.includes("width")) {
 }
 ---
 
-<figure>
+<figure itemscope itemtype="https://schema.org/ImageObject">
   {typeof src === "string" ? (
     // @ts-ignore
     <Image
@@ -141,6 +141,7 @@ if (!style?.includes("width")) {
       src={src}
       style={style}
       width={width}
+      itemprop="contentUrl"
     />
   ) : (
     <Image
@@ -151,10 +152,13 @@ if (!style?.includes("width")) {
       src={src}
       style={style}
       widths={widths}
+      itemprop="contentUrl"
     />
   )}
 
   {showLabel && (
-    <figcaption style={`text-align: ${alignment}`}>{label}</figcaption>
+    <figcaption style={`text-align: ${alignment}`} itemprop="caption">
+      {label}
+    </figcaption>
   )}
 </figure>

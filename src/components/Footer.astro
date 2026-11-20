@@ -40,8 +40,16 @@ const year = new Date().getFullYear();
       <a
         class="block cursor-default text-center text-sm text-neutral-600 contrast-more:text-black max-sm:mt-8 dark:text-neutral-300 contrast-more:dark:text-white print:w-full print:text-gray-800"
         href="https://pawcode.de?mtm_campaign=Blog&mtm_source=pawcode"
+        itemprop="copyrightNotice"
       >
-        Version {version} - &copy; {year} pawcode Development
+        Version {version} - &copy; {year}{" "}
+        <span
+          itemprop="publisher"
+          itemscope
+          itemtype="https://schema.org/Organization"
+        >
+          <span itemprop="name">pawcode Development</span>
+        </span>
       </a>
 
       <address class="mt-8 sm:mt-0 print:hidden">

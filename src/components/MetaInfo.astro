@@ -40,7 +40,9 @@ if (!category) {
     </dt>
 
     <dd>
-      <time datetime={formatDateMachine(pubDate)}>{formatDate(pubDate)}</time>
+      <time itemprop="datePublished" datetime={formatDateMachine(pubDate)}>
+        {formatDate(pubDate)}
+      </time>
     </dd>
   </div>
 

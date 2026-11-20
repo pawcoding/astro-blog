@@ -24,6 +24,9 @@ const url = `/posts/${id}`;
   style={`background-color: ${color}08`}
   aria-labelledby={`${id}-title`}
   aria-describedby={`${id}-description`}
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  itemid=`${Astro.site?.origin}${url}`
   {...attrs}
 >
   <span
@@ -42,23 +45,30 @@ const url = `/posts/${id}`;
           : "")
       }
     >
-      {image && (
+      {image ? (
         <a href={url} tabindex="-1">
           <img
             src={image}
             alt={title}
             loading={loadImageEagerly ? "eager" : "lazy"}
             class="h-40 w-full object-cover object-top @lg:h-full @lg:w-60 @lg:object-top-left"
+            itemprop="image"
           />
         </a>
+      ) : (
+        <meta
+          itemprop="image"
+          content=`${Astro.site?.origin}${url}/og-image.png`
+        />
       )}
     </section>
 
     <section class="p-4 @sm:p-6">
-      <a href={url} class="focus:outline-none">
+      <a href={url} class="focus:outline-none" itemprop="url">
         <h3
           class="pb-2 text-2xl font-semibold text-neutral-900 contrast-more:text-black @3xl:text-3xl dark:text-neutral-200 contrast-more:dark:text-white"
           id={`${id}-title`}
+          itemprop="headline"
         >
           {title}
         </h3>
@@ -66,6 +76,7 @@ const url = `/posts/${id}`;
         <p
           class="line-clamp-6 text-base/relaxed text-neutral-600 contrast-more:text-neutral-900 dark:text-neutral-300 contrast-more:dark:text-neutral-100"
           id={`${id}-description`}
+          itemprop="description"
         >
           {description}
         </p>
