@@ -1,3 +1,10 @@
+## [2.14.22](https://github.com/pawcoding/astro-blog/compare/v2.14.21...v2.14.22) (2026-11-20)
+
+
+### Bug Fixes
+
+* **seo:** include tag pages to index ([a5da6fc](https://github.com/pawcoding/astro-blog/commit/a5da6fc9d710798f7f68be27dcc689057d6b6a5e))
+
 ## [2.14.21](https://github.com/pawcoding/astro-blog/compare/v2.14.20...v2.14.21) (2026-11-20)
 
 
