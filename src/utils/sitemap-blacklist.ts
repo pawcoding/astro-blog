@@ -4,10 +4,5 @@ export function isBlacklisted(url: string): boolean {
     return true;
   }
 
-  // Do not include tags in the sitemap
-  if (url.includes("tags/")) {
-    return true;
-  }
-
   return false;
 }
