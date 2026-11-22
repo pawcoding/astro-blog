@@ -263,6 +263,9 @@ importers:
       '@types/dom-chromium-ai':
         specifier: ^0.0.18
         version: 0.0.18
+      '@types/dom-speech-recognition':
+        specifier: ^0.0.12
+        version: 0.0.12
       astro-meta-tags:
         specifier: ^0.4.1
         version: 0.4.1(astro@7.4.11(@types/node@24.19.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
@@ -1400,6 +1403,9 @@ packages:
 
   '@types/dom-chromium-ai@0.0.18':
     resolution: {integrity: sha512-/ZITAMdViQlLmEs56d/ET9qJ42EfnrBrLw5gRB4p0raDoavGDacqP9VITK8wNM0f9bPmnddHZeJ+FWIkWi6JlQ==}
+
+  '@types/dom-speech-recognition@0.0.12':
+    resolution: {integrity: sha512-SmLovKV3e/J71U5CBmKYe03Q75biuw7jiEWGoO1arc47CjtmxCr+W7cPJcAAwySSJFwr+jWkr/fPVuVuL+D6Dw==}
 
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
@@ -3762,6 +3768,8 @@ snapshots:
       '@babel/types': 7.29.8
 
   '@types/dom-chromium-ai@0.0.18': {}
+
+  '@types/dom-speech-recognition@0.0.12': {}
 
   '@types/estree-jsx@1.0.5':
     dependencies:

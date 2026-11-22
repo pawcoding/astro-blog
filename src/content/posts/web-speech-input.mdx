@@ -1,0 +1,155 @@
+---
+title: "Speech input running inside your browser"
+description: "Speech recognition can run inside your users browser, completely client-side and for free using a simple interface. Let's explore how to set it up and use it."
+pubDate: 2026-11-23T21:20:00
+category: "dev-notes"
+tags: ["web-development", "speech-input", "speech-recognition", "on-device"]
+---
+
+import { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
+import SpeechInputDemo from '../../components/posts/speech-input-demo.solid';
+
+One of my recent tasks at work was to build a chat interface that allows users to chat in natural language with our questionnaire editor.
+They can just describe what groups, questions, or options they want to create and an agent will translate their message into the appropriate actions within the editor.
+The agent and backend part was handled by our data team, I just needed to implement the front-end chat interface.
+
+While some internal tests, one tester asked if it would be possible to input their messages using speech instead of typing.
+And why not?
+Modern browsers provide the [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API), which handles everything we need for us.
+**For free**, no additional libraries or services needed!
+
+The last vendor to implement this feature was Firefox, which added support just a few days ago in version 160.
+So let's see how we can use this API to add speech input to our chat interface.
+
+## How SpeechRecognition Works
+
+The Web Speech API provides the `SpeechRecognition` interface, which handles all of the complexity of converting spoken language into text for us, using a simple and (mostly) intuitive API.
+Firefox was the last major browser to implement this feature[^1], making this API almost Baseline available:
+
+[^1]:
+    At the time of writing Firefox for Android is still missing support for it.
+
+<BaselineStatus id="speech-recognition" />
+
+The basic `SpeechRecognition` usage involves two main methods, joined by a few events that can / should be handled.
+Let's take a look at a simple example of how to use it:
+
+## How to Use SpeechRecognition
+
+### Initialization
+
+To start, we first need to create an instance of the `SpeechRecognition` interface and configure some basic settings.
+
+```ts
+const recognition = new SpeechRecognition();
+recognition.continuous = true;
+recognition.lang = 'en';
+recognition.interimResults = true;
+```
+
+In my example, I'm using the following three settings:
+- `continuous`:
+  This keeps the recording / transcription active until we explicitly stop it.
+  Otherwise, the recognition will stop automatically after a short period of silence, which may not be intended if you just need a second to think about your next words.
+- `lang`:
+  One downside of this API is that it doesn't automatically detect the spoken language.
+  For this demo, I'm setting it to English, but you can change it to any supported language depending on your application.
+  There is no list of supported languages since this depends on the browser implementation, but the most common ones should work across major browsers.
+- `interimResults`:
+  The coolest option in my opinion.
+  This allows us to receive partial transcription results while the user is still speaking.
+  While a user cannot correct mistakes in real-time, they can see if the transcription is accurate as they speak.
+  This is way nicer than other options like recording audio and then transcribing it afterward via a separate backend service.
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition) also documents some more options like `processLocally` (depending on the browsers implementation this is the default) or `quality` but they are not widely supported yet.
+So we'll stick to the three main settings for now.
+
+### Handling Events
+
+Before we can start our first transcript, we first need to add some event listeners to handle the recognition events properly.
+The most important one is the `result` event, which is fired whenever the recognition service finished a new chunk of information.
+
+```ts
+let transcript = '';
+recognition.onresult = (event) => {
+  const result = Array.from(event.results)
+    .map(chunk => chunk[0].transcript)
+    .join('');
+  transcript = result;
+}
+```
+
+Each time the `result` event is emitted, we extract the current state of the transcript and thus build up the complete transcription incrementally.
+It always contains the transcript up until the current point and the latest partial result, so we can continuously combine them to preview the ongoing transcription in real-time.
+
+Some other useful events to handle include:
+
+- `audiostart`: The browser has started capturing audio.
+- `speechstart`: The service has detected that the user has started speaking.
+- `speechend`: The service has detected that the user has stopped speaking.
+- `audioend`: The browser has finished capturing audio.
+- `end`: The recognition is finished and no more results will be provided.
+- `error`: An error occurred during the recognition process.
+
+You can use these events to provide feedback to the user / update the UI accordingly or trigger other actions like showing an error toast when an error occurs.
+
+### Starting and Stopping Recognition
+
+Finally after all the setup, we can start our first recognition session:
+
+```ts
+recognition.start();
+```
+
+And that's it!
+To stop the recognition once the user has finished speaking, you can call the `stop` method to end the session.
+
+## Demo
+
+I wired up a simple demo to showcase our result in action.
+It's a bit more involved than our sample code above but that's mostly additional state handling and UI updates.
+The core logic is still the same.
+
+<figure>
+  <SpeechInputDemo client:only />
+
+  <no-script class="hidden">
+    The demo requires JavaScript to function properly.
+  </no-script>
+
+  <figcaption class="text-center">
+    Demo of the Web Speech Input in action.
+  </figcaption>
+</figure>
+
+If you're interested you can find the source code for this demo on this blogs [GitHub repository](https://github.com/pawcoding/astro-blog).
+
+## Caveats and Considerations
+
+While the basic functionality of the Web Speech API is implemented in most modern browsers there are some inconsistencies and different levels of support across browsers.
+
+The option `processLocally` is not available in Safari yet.
+With this unset it is up to the browser to decide where the speech recognition processing should take place.
+The nicest implementation in my opinion is the new one from Firefox.
+When you start the first ever recognition session, it will prompt the user that this will download a small model for local speech recognition and the user can decide whether to allow it or not.
+So in here everything is processed on the user's device by default.
+
+`unspokenPunctuation` also seems to be supported by some browsers so far.
+By default sentences are transcribed without punctuation, which can make the transcript harder to read.
+For chat bots it does not really matter (at work we have an existing service that can restore punctuation to transcribed text that we also use here), but it would be nice to have proper punctuation for readability in general.
+Unfortunately at the time of writing, this flag is not even available in the type definitions so I've also not used it in the demo component above.
+
+Another option I did not yet explore is `phrases`, which allows you to provide a list of expected phrases to improve recognition accuracy for specific terms or commands.
+Depending on your use case, this could provide a list of terminology or commands for your application to tailor the recognition process and improve accuracy.
+
+There is also a while `available` and `install` API for managing local speech recognition models, but these make the whole implementation a lot more complex and are not yet widely supported across browsers.
+So for now I'd stick with the basic setup and rely on the browser's defaults.
+In the long run this will enable you to use specialized local models for different levels of accuracy (documented qualities are `command`, `dictation`, and `conversation`).
+
+## Conclusion
+
+The Web Speech API provides a simple but very powerful way to easily integrate speech recognition into your web applications.
+While there are still some inconsistencies and limitations across different browsers, the basic functionality is widely available.
+To be completely safe, you can implement a small feature detection and treat this way of input as an optional progressive enhancement.
+I'd recommend adding this feature to every text (chat) input where you expect users to enter text in natural language.
+It costs you nothing but can significantly enhance the user experience for those who prefer or need to use voice input.
