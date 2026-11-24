@@ -2,6 +2,7 @@
 title: "Speech input running inside your browser"
 description: "Speech recognition can run inside your users browser, completely client-side and for free using a simple interface. Let's explore how to set it up and use it."
 pubDate: 2026-11-23T21:20:00
+modDate: 2026-11-24T07:00:00
 category: "dev-notes"
 tags: ["web-development", "speech-input", "speech-recognition", "on-device"]
 ---
@@ -136,13 +137,13 @@ So in here everything is processed on the user's device by default.
 
 `unspokenPunctuation` also seems to be supported by some browsers so far.
 By default sentences are transcribed without punctuation, which can make the transcript harder to read.
-For chat bots it does not really matter (at work we have an existing service that can restore punctuation to transcribed text that we also use here), but it would be nice to have proper punctuation for readability in general.
+For chat bots it does not really matter (at work we have an existing service that can restore punctuation to transcribed text that we also use for our chatbot), but it would be nice to have proper punctuation for readability in general.
 Unfortunately at the time of writing, this flag is not even available in the type definitions so I've also not used it in the demo component above.
 
 Another option I did not yet explore is `phrases`, which allows you to provide a list of expected phrases to improve recognition accuracy for specific terms or commands.
 Depending on your use case, this could provide a list of terminology or commands for your application to tailor the recognition process and improve accuracy.
 
-There is also a while `available` and `install` API for managing local speech recognition models, but these make the whole implementation a lot more complex and are not yet widely supported across browsers.
+There is also a newer `available` and `install` API for managing local speech recognition models, but these make the whole implementation a lot more complex and are not yet widely supported across browsers.
 So for now I'd stick with the basic setup and rely on the browser's defaults.
 In the long run this will enable you to use specialized local models for different levels of accuracy (documented qualities are `command`, `dictation`, and `conversation`).
 
