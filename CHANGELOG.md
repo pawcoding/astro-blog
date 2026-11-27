@@ -1,3 +1,10 @@
+# [2.15.0](https://github.com/pawcoding/astro-blog/compare/v2.14.22...v2.15.0) (2026-11-27)
+
+
+### Features
+
+* **theme:** sync styles between tabs / windows ([cad9476](https://github.com/pawcoding/astro-blog/commit/cad947672d8fc6c8d64b470db20843e46b9754a9))
+
 ## [2.14.22](https://github.com/pawcoding/astro-blog/compare/v2.14.21...v2.14.22) (2026-11-20)
 
 
