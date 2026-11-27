@@ -29,6 +29,8 @@ import { Icon } from "astro-icon/components";
   // Ensure that window._paq is defined before using it
   window._paq = window._paq || [];
 
+  const broadcastChannel = new BroadcastChannel("style-toggle");
+
   function getTheme() {
     const localStorageTheme = localStorage.getItem("theme");
     if (
@@ -38,7 +40,18 @@ import { Icon } from "astro-icon/components";
       return localStorageTheme;
     }
 
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    darkModeQuery.onchange = (event) => {
+      const newTheme = event.matches ? "dark" : "light";
+      setTheme(document, newTheme);
+    };
+    broadcastChannel.addEventListener("message", (event) => {
+      if (event.data.type === "theme") {
+        darkModeQuery.onchange = undefined;
+      }
+    });
+
+    if (darkModeQuery.matches) {
       return "dark";
     }
     return "light";
@@ -52,25 +65,13 @@ import { Icon } from "astro-icon/components";
     return "sans";
   }
 
-  function setTheme(document, toggle = false) {
-    let theme = getTheme();
-    if (toggle) {
-      theme = theme === "light" ? "dark" : "light";
-    }
-
+  function setTheme(document, theme = getTheme()) {
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("theme", theme);
     window._paq?.push(["setCustomDimension", 1, theme]);
   }
 
-  function setFont(document, toggle = false) {
-    let font = getFont();
-    if (toggle) {
-      font = font === "sans" ? "serif" : "sans";
-    }
-
+  function setFont(document, font = getFont()) {
     document.documentElement.dataset.font = font;
-    window.localStorage.setItem("font", font);
     window._paq?.push(["setCustomDimension", 2, font]);
   }
 
@@ -83,11 +84,25 @@ import { Icon } from "astro-icon/components";
   });
 
   document.getElementById("themeToggle")?.addEventListener("click", () => {
-    setTheme(document, true);
-    window._paq?.push(["trackEvent", "Theme", "Toggle", getTheme()]);
+    const newTheme = getTheme() === "light" ? "dark" : "light";
+    setTheme(document, newTheme);
+    window.localStorage.setItem("theme", newTheme);
+    window._paq?.push(["trackEvent", "Theme", "Toggle", newTheme]);
+    broadcastChannel.postMessage({ type: "theme", value: newTheme });
   });
   document.getElementById("fontToggle")?.addEventListener("click", () => {
-    setFont(document, true);
-    window._paq?.push(["trackEvent", "Font", "Toggle", getFont()]);
+    const newFont = getFont() === "sans" ? "serif" : "sans";
+    setFont(document, newFont);
+    window.localStorage.setItem("font", newFont);
+    window._paq?.push(["trackEvent", "Font", "Toggle", newFont]);
+    broadcastChannel.postMessage({ type: "font", value: newFont });
+  });
+
+  broadcastChannel.addEventListener("message", (event) => {
+    if (event.data.type === "theme") {
+      setTheme(document, event.data.value);
+    } else if (event.data.type === "font") {
+      setFont(document, event.data.value);
+    }
   });
 </script>
