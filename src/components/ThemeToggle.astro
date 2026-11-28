@@ -29,7 +29,7 @@ import { Icon } from "astro-icon/components";
   // Ensure that window._paq is defined before using it
   window._paq = window._paq || [];
 
-  const broadcastChannel = new BroadcastChannel("style-toggle");
+  let darkModeQuery = undefined;
 
   function getTheme() {
     const localStorageTheme = localStorage.getItem("theme");
@@ -45,11 +45,6 @@ import { Icon } from "astro-icon/components";
       const newTheme = event.matches ? "dark" : "light";
       setTheme(document, newTheme);
     };
-    broadcastChannel.addEventListener("message", (event) => {
-      if (event.data.type === "theme") {
-        darkModeQuery.onchange = undefined;
-      }
-    });
 
     if (darkModeQuery.matches) {
       return "dark";
@@ -88,21 +83,30 @@ import { Icon } from "astro-icon/components";
     setTheme(document, newTheme);
     window.localStorage.setItem("theme", newTheme);
     window._paq?.push(["trackEvent", "Theme", "Toggle", newTheme]);
-    broadcastChannel.postMessage({ type: "theme", value: newTheme });
+
+    if (darkModeQuery) {
+      darkModeQuery.onchange = undefined;
+    }
   });
   document.getElementById("fontToggle")?.addEventListener("click", () => {
     const newFont = getFont() === "sans" ? "serif" : "sans";
     setFont(document, newFont);
     window.localStorage.setItem("font", newFont);
     window._paq?.push(["trackEvent", "Font", "Toggle", newFont]);
-    broadcastChannel.postMessage({ type: "font", value: newFont });
   });
 
-  broadcastChannel.addEventListener("message", (event) => {
-    if (event.data.type === "theme") {
-      setTheme(document, event.data.value);
-    } else if (event.data.type === "font") {
-      setFont(document, event.data.value);
+  window.addEventListener("storage", (event) => {
+    if (event.storageArea !== window.localStorage) {
+      return;
+    }
+
+    if (event.key === "theme") {
+      setTheme(document, event.newValue);
+      if (darkModeQuery) {
+        darkModeQuery.onchange = undefined;
+      }
+    } else if (event.key === "font") {
+      setFont(document, event.newValue);
     }
   });
 </script>
